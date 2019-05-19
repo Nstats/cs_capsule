@@ -1,0 +1,1737 @@
+nohup: ignoring input
+05/17/2019 19:47:20 - INFO - root -   Run with args:
+{
+  "bert_model": "../../pretrained_models/uncased_L-12_H-768_A-12",
+  "do_lower_case": true,
+  "do_predict": true,
+  "do_train": true,
+  "doc_stride": 128,
+  "eveluate_every_step": 3000,
+  "fp16": false,
+  "gradient_accumulation_steps": 24,
+  "learning_rate": 3e-05,
+  "local_rank": -1,
+  "log_every_step": 100,
+  "loss_scale": 0,
+  "max_answer_length": 30,
+  "max_query_length": 64,
+  "max_seq_length": 300,
+  "n_best_size": 20,
+  "no_cuda": false,
+  "null_score_diff_threshold": 0.0,
+  "num_train_epochs": 3.0,
+  "output_dir": "../../output/log_eval",
+  "predict_batch_size": 8,
+  "predict_file": "../../data/dev-v2.0.json",
+  "save_model_every_step": 6000,
+  "seed": 42,
+  "server_ip": "",
+  "server_port": "",
+  "train_batch_size": 24,
+  "train_file": "../../data/train-v2.0.json",
+  "verbose_logging": false,
+  "version_2_with_negative": true,
+  "warmup_proportion": 0.1
+}
+05/17/2019 19:47:20 - INFO - __main__ -   device: cuda n_gpu: 1, distributed training: False, 16-bits training: False
+05/17/2019 19:47:20 - INFO - pytorch_pretrained_bert.tokenization -   loading vocabulary file ../../pretrained_models/uncased_L-12_H-768_A-12/vocab.txt
+05/17/2019 19:47:25 - INFO - pytorch_pretrained_bert.modeling -   loading archive file ../../pretrained_models/uncased_L-12_H-768_A-12
+05/17/2019 19:47:25 - INFO - pytorch_pretrained_bert.modeling -   Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 30522
+}
+
+05/17/2019 19:47:28 - INFO - pytorch_pretrained_bert.modeling -   Weights of BertForQuestionAnswering not initialized from pretrained model: ['capsule.conv1.weight', 'capsule.conv1.bias', 'capsule.digit_capsules.route_weights']
+05/17/2019 19:47:28 - INFO - pytorch_pretrained_bert.modeling -   Weights from pretrained model not used in BertForQuestionAnswering: ['cls.predictions.bias', 'cls.predictions.transform.dense.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.decoder.weight', 'cls.seq_relationship.weight', 'cls.seq_relationship.bias']
+05/17/2019 19:47:29 - INFO - __main__ -   trained parameter list:
+bert.embeddings.word_embeddings.weight                                          [30522, 768]                                                                    
+bert.embeddings.position_embeddings.weight                                      [512, 768]                                                                      
+bert.embeddings.token_type_embeddings.weight                                    [2, 768]                                                                        
+bert.embeddings.LayerNorm.weight                                                [768]                                                                           
+bert.embeddings.LayerNorm.bias                                                  [768]                                                                           
+bert.encoder.layer.0.attention.self.query.weight                                [768, 768]                                                                      
+bert.encoder.layer.0.attention.self.query.bias                                  [768]                                                                           
+bert.encoder.layer.0.attention.self.key.weight                                  [768, 768]                                                                      
+bert.encoder.layer.0.attention.self.key.bias                                    [768]                                                                           
+bert.encoder.layer.0.attention.self.value.weight                                [768, 768]                                                                      
+bert.encoder.layer.0.attention.self.value.bias                                  [768]                                                                           
+bert.encoder.layer.0.attention.output.dense.weight                              [768, 768]                                                                      
+bert.encoder.layer.0.attention.output.dense.bias                                [768]                                                                           
+bert.encoder.layer.0.attention.output.LayerNorm.weight                          [768]                                                                           
+bert.encoder.layer.0.attention.output.LayerNorm.bias                            [768]                                                                           
+bert.encoder.layer.0.intermediate.dense.weight                                  [3072, 768]                                                                     
+bert.encoder.layer.0.intermediate.dense.bias                                    [3072]                                                                          
+bert.encoder.layer.0.output.dense.weight                                        [768, 3072]                                                                     
+bert.encoder.layer.0.output.dense.bias                                          [768]                                                                           
+bert.encoder.layer.0.output.LayerNorm.weight                                    [768]                                                                           
+bert.encoder.layer.0.output.LayerNorm.bias                                      [768]                                                                           
+bert.encoder.layer.1.attention.self.query.weight                                [768, 768]                                                                      
+bert.encoder.layer.1.attention.self.query.bias                                  [768]                                                                           
+bert.encoder.layer.1.attention.self.key.weight                                  [768, 768]                                                                      
+bert.encoder.layer.1.attention.self.key.bias                                    [768]                                                                           
+bert.encoder.layer.1.attention.self.value.weight                                [768, 768]                                                                      
+bert.encoder.layer.1.attention.self.value.bias                                  [768]                                                                           
+bert.encoder.layer.1.attention.output.dense.weight                              [768, 768]                                                                      
+bert.encoder.layer.1.attention.output.dense.bias                                [768]                                                                           
+bert.encoder.layer.1.attention.output.LayerNorm.weight                          [768]                                                                           
+bert.encoder.layer.1.attention.output.LayerNorm.bias                            [768]                                                                           
+bert.encoder.layer.1.intermediate.dense.weight                                  [3072, 768]                                                                     
+bert.encoder.layer.1.intermediate.dense.bias                                    [3072]                                                                          
+bert.encoder.layer.1.output.dense.weight                                        [768, 3072]                                                                     
+bert.encoder.layer.1.output.dense.bias                                          [768]                                                                           
+bert.encoder.layer.1.output.LayerNorm.weight                                    [768]                                                                           
+bert.encoder.layer.1.output.LayerNorm.bias                                      [768]                                                                           
+bert.encoder.layer.2.attention.self.query.weight                                [768, 768]                                                                      
+bert.encoder.layer.2.attention.self.query.bias                                  [768]                                                                           
+bert.encoder.layer.2.attention.self.key.weight                                  [768, 768]                                                                      
+bert.encoder.layer.2.attention.self.key.bias                                    [768]                                                                           
+bert.encoder.layer.2.attention.self.value.weight                                [768, 768]                                                                      
+bert.encoder.layer.2.attention.self.value.bias                                  [768]                                                                           
+bert.encoder.layer.2.attention.output.dense.weight                              [768, 768]                                                                      
+bert.encoder.layer.2.attention.output.dense.bias                                [768]                                                                           
+bert.encoder.layer.2.attention.output.LayerNorm.weight                          [768]                                                                           
+bert.encoder.layer.2.attention.output.LayerNorm.bias                            [768]                                                                           
+bert.encoder.layer.2.intermediate.dense.weight                                  [3072, 768]                                                                     
+bert.encoder.layer.2.intermediate.dense.bias                                    [3072]                                                                          
+bert.encoder.layer.2.output.dense.weight                                        [768, 3072]                                                                     
+bert.encoder.layer.2.output.dense.bias                                          [768]                                                                           
+bert.encoder.layer.2.output.LayerNorm.weight                                    [768]                                                                           
+bert.encoder.layer.2.output.LayerNorm.bias                                      [768]                                                                           
+bert.encoder.layer.3.attention.self.query.weight                                [768, 768]                                                                      
+bert.encoder.layer.3.attention.self.query.bias                                  [768]                                                                           
+bert.encoder.layer.3.attention.self.key.weight                                  [768, 768]                                                                      
+bert.encoder.layer.3.attention.self.key.bias                                    [768]                                                                           
+bert.encoder.layer.3.attention.self.value.weight                                [768, 768]                                                                      
+bert.encoder.layer.3.attention.self.value.bias                                  [768]                                                                           
+bert.encoder.layer.3.attention.output.dense.weight                              [768, 768]                                                                      
+bert.encoder.layer.3.attention.output.dense.bias                                [768]                                                                           
+bert.encoder.layer.3.attention.output.LayerNorm.weight                          [768]                                                                           
+bert.encoder.layer.3.attention.output.LayerNorm.bias                            [768]                                                                           
+bert.encoder.layer.3.intermediate.dense.weight                                  [3072, 768]                                                                     
+bert.encoder.layer.3.intermediate.dense.bias                                    [3072]                                                                          
+bert.encoder.layer.3.output.dense.weight                                        [768, 3072]                                                                     
+bert.encoder.layer.3.output.dense.bias                                          [768]                                                                           
+bert.encoder.layer.3.output.LayerNorm.weight                                    [768]                                                                           
+bert.encoder.layer.3.output.LayerNorm.bias                                      [768]                                                                           
+bert.encoder.layer.4.attention.self.query.weight                                [768, 768]                                                                      
+bert.encoder.layer.4.attention.self.query.bias                                  [768]                                                                           
+bert.encoder.layer.4.attention.self.key.weight                                  [768, 768]                                                                      
+bert.encoder.layer.4.attention.self.key.bias                                    [768]                                                                           
+bert.encoder.layer.4.attention.self.value.weight                                [768, 768]                                                                      
+bert.encoder.layer.4.attention.self.value.bias                                  [768]                                                                           
+bert.encoder.layer.4.attention.output.dense.weight                              [768, 768]                                                                      
+bert.encoder.layer.4.attention.output.dense.bias                                [768]                                                                           
+bert.encoder.layer.4.attention.output.LayerNorm.weight                          [768]                                                                           
+bert.encoder.layer.4.attention.output.LayerNorm.bias                            [768]                                                                           
+bert.encoder.layer.4.intermediate.dense.weight                                  [3072, 768]                                                                     
+bert.encoder.layer.4.intermediate.dense.bias                                    [3072]                                                                          
+bert.encoder.layer.4.output.dense.weight                                        [768, 3072]                                                                     
+bert.encoder.layer.4.output.dense.bias                                          [768]                                                                           
+bert.encoder.layer.4.output.LayerNorm.weight                                    [768]                                                                           
+bert.encoder.layer.4.output.LayerNorm.bias                                      [768]                                                                           
+bert.encoder.layer.5.attention.self.query.weight                                [768, 768]                                                                      
+bert.encoder.layer.5.attention.self.query.bias                                  [768]                                                                           
+bert.encoder.layer.5.attention.self.key.weight                                  [768, 768]                                                                      
+bert.encoder.layer.5.attention.self.key.bias                                    [768]                                                                           
+bert.encoder.layer.5.attention.self.value.weight                                [768, 768]                                                                      
+bert.encoder.layer.5.attention.self.value.bias                                  [768]                                                                           
+bert.encoder.layer.5.attention.output.dense.weight                              [768, 768]                                                                      
+bert.encoder.layer.5.attention.output.dense.bias                                [768]                                                                           
+bert.encoder.layer.5.attention.output.LayerNorm.weight                          [768]                                                                           
+bert.encoder.layer.5.attention.output.LayerNorm.bias                            [768]                                                                           
+bert.encoder.layer.5.intermediate.dense.weight                                  [3072, 768]                                                                     
+bert.encoder.layer.5.intermediate.dense.bias                                    [3072]                                                                          
+bert.encoder.layer.5.output.dense.weight                                        [768, 3072]                                                                     
+bert.encoder.layer.5.output.dense.bias                                          [768]                                                                           
+bert.encoder.layer.5.output.LayerNorm.weight                                    [768]                                                                           
+bert.encoder.layer.5.output.LayerNorm.bias                                      [768]                                                                           
+bert.encoder.layer.6.attention.self.query.weight                                [768, 768]                                                                      
+bert.encoder.layer.6.attention.self.query.bias                                  [768]                                                                           
+bert.encoder.layer.6.attention.self.key.weight                                  [768, 768]                                                                      
+bert.encoder.layer.6.attention.self.key.bias                                    [768]                                                                           
+bert.encoder.layer.6.attention.self.value.weight                                [768, 768]                                                                      
+bert.encoder.layer.6.attention.self.value.bias                                  [768]                                                                           
+bert.encoder.layer.6.attention.output.dense.weight                              [768, 768]                                                                      
+bert.encoder.layer.6.attention.output.dense.bias                                [768]                                                                           
+bert.encoder.layer.6.attention.output.LayerNorm.weight                          [768]                                                                           
+bert.encoder.layer.6.attention.output.LayerNorm.bias                            [768]                                                                           
+bert.encoder.layer.6.intermediate.dense.weight                                  [3072, 768]                                                                     
+bert.encoder.layer.6.intermediate.dense.bias                                    [3072]                                                                          
+bert.encoder.layer.6.output.dense.weight                                        [768, 3072]                                                                     
+bert.encoder.layer.6.output.dense.bias                                          [768]                                                                           
+bert.encoder.layer.6.output.LayerNorm.weight                                    [768]                                                                           
+bert.encoder.layer.6.output.LayerNorm.bias                                      [768]                                                                           
+bert.encoder.layer.7.attention.self.query.weight                                [768, 768]                                                                      
+bert.encoder.layer.7.attention.self.query.bias                                  [768]                                                                           
+bert.encoder.layer.7.attention.self.key.weight                                  [768, 768]                                                                      
+bert.encoder.layer.7.attention.self.key.bias                                    [768]                                                                           
+bert.encoder.layer.7.attention.self.value.weight                                [768, 768]                                                                      
+bert.encoder.layer.7.attention.self.value.bias                                  [768]                                                                           
+bert.encoder.layer.7.attention.output.dense.weight                              [768, 768]                                                                      
+bert.encoder.layer.7.attention.output.dense.bias                                [768]                                                                           
+bert.encoder.layer.7.attention.output.LayerNorm.weight                          [768]                                                                           
+bert.encoder.layer.7.attention.output.LayerNorm.bias                            [768]                                                                           
+bert.encoder.layer.7.intermediate.dense.weight                                  [3072, 768]                                                                     
+bert.encoder.layer.7.intermediate.dense.bias                                    [3072]                                                                          
+bert.encoder.layer.7.output.dense.weight                                        [768, 3072]                                                                     
+bert.encoder.layer.7.output.dense.bias                                          [768]                                                                           
+bert.encoder.layer.7.output.LayerNorm.weight                                    [768]                                                                           
+bert.encoder.layer.7.output.LayerNorm.bias                                      [768]                                                                           
+bert.encoder.layer.8.attention.self.query.weight                                [768, 768]                                                                      
+bert.encoder.layer.8.attention.self.query.bias                                  [768]                                                                           
+bert.encoder.layer.8.attention.self.key.weight                                  [768, 768]                                                                      
+bert.encoder.layer.8.attention.self.key.bias                                    [768]                                                                           
+bert.encoder.layer.8.attention.self.value.weight                                [768, 768]                                                                      
+bert.encoder.layer.8.attention.self.value.bias                                  [768]                                                                           
+bert.encoder.layer.8.attention.output.dense.weight                              [768, 768]                                                                      
+bert.encoder.layer.8.attention.output.dense.bias                                [768]                                                                           
+bert.encoder.layer.8.attention.output.LayerNorm.weight                          [768]                                                                           
+bert.encoder.layer.8.attention.output.LayerNorm.bias                            [768]                                                                           
+bert.encoder.layer.8.intermediate.dense.weight                                  [3072, 768]                                                                     
+bert.encoder.layer.8.intermediate.dense.bias                                    [3072]                                                                          
+bert.encoder.layer.8.output.dense.weight                                        [768, 3072]                                                                     
+bert.encoder.layer.8.output.dense.bias                                          [768]                                                                           
+bert.encoder.layer.8.output.LayerNorm.weight                                    [768]                                                                           
+bert.encoder.layer.8.output.LayerNorm.bias                                      [768]                                                                           
+bert.encoder.layer.9.attention.self.query.weight                                [768, 768]                                                                      
+bert.encoder.layer.9.attention.self.query.bias                                  [768]                                                                           
+bert.encoder.layer.9.attention.self.key.weight                                  [768, 768]                                                                      
+bert.encoder.layer.9.attention.self.key.bias                                    [768]                                                                           
+bert.encoder.layer.9.attention.self.value.weight                                [768, 768]                                                                      
+bert.encoder.layer.9.attention.self.value.bias                                  [768]                                                                           
+bert.encoder.layer.9.attention.output.dense.weight                              [768, 768]                                                                      
+bert.encoder.layer.9.attention.output.dense.bias                                [768]                                                                           
+bert.encoder.layer.9.attention.output.LayerNorm.weight                          [768]                                                                           
+bert.encoder.layer.9.attention.output.LayerNorm.bias                            [768]                                                                           
+bert.encoder.layer.9.intermediate.dense.weight                                  [3072, 768]                                                                     
+bert.encoder.layer.9.intermediate.dense.bias                                    [3072]                                                                          
+bert.encoder.layer.9.output.dense.weight                                        [768, 3072]                                                                     
+bert.encoder.layer.9.output.dense.bias                                          [768]                                                                           
+bert.encoder.layer.9.output.LayerNorm.weight                                    [768]                                                                           
+bert.encoder.layer.9.output.LayerNorm.bias                                      [768]                                                                           
+bert.encoder.layer.10.attention.self.query.weight                               [768, 768]                                                                      
+bert.encoder.layer.10.attention.self.query.bias                                 [768]                                                                           
+bert.encoder.layer.10.attention.self.key.weight                                 [768, 768]                                                                      
+bert.encoder.layer.10.attention.self.key.bias                                   [768]                                                                           
+bert.encoder.layer.10.attention.self.value.weight                               [768, 768]                                                                      
+bert.encoder.layer.10.attention.self.value.bias                                 [768]                                                                           
+bert.encoder.layer.10.attention.output.dense.weight                             [768, 768]                                                                      
+bert.encoder.layer.10.attention.output.dense.bias                               [768]                                                                           
+bert.encoder.layer.10.attention.output.LayerNorm.weight                         [768]                                                                           
+bert.encoder.layer.10.attention.output.LayerNorm.bias                           [768]                                                                           
+bert.encoder.layer.10.intermediate.dense.weight                                 [3072, 768]                                                                     
+bert.encoder.layer.10.intermediate.dense.bias                                   [3072]                                                                          
+bert.encoder.layer.10.output.dense.weight                                       [768, 3072]                                                                     
+bert.encoder.layer.10.output.dense.bias                                         [768]                                                                           
+bert.encoder.layer.10.output.LayerNorm.weight                                   [768]                                                                           
+bert.encoder.layer.10.output.LayerNorm.bias                                     [768]                                                                           
+bert.encoder.layer.11.attention.self.query.weight                               [768, 768]                                                                      
+bert.encoder.layer.11.attention.self.query.bias                                 [768]                                                                           
+bert.encoder.layer.11.attention.self.key.weight                                 [768, 768]                                                                      
+bert.encoder.layer.11.attention.self.key.bias                                   [768]                                                                           
+bert.encoder.layer.11.attention.self.value.weight                               [768, 768]                                                                      
+bert.encoder.layer.11.attention.self.value.bias                                 [768]                                                                           
+bert.encoder.layer.11.attention.output.dense.weight                             [768, 768]                                                                      
+bert.encoder.layer.11.attention.output.dense.bias                               [768]                                                                           
+bert.encoder.layer.11.attention.output.LayerNorm.weight                         [768]                                                                           
+bert.encoder.layer.11.attention.output.LayerNorm.bias                           [768]                                                                           
+bert.encoder.layer.11.intermediate.dense.weight                                 [3072, 768]                                                                     
+bert.encoder.layer.11.intermediate.dense.bias                                   [3072]                                                                          
+bert.encoder.layer.11.output.dense.weight                                       [768, 3072]                                                                     
+bert.encoder.layer.11.output.dense.bias                                         [768]                                                                           
+bert.encoder.layer.11.output.LayerNorm.weight                                   [768]                                                                           
+bert.encoder.layer.11.output.LayerNorm.bias                                     [768]                                                                           
+bert.pooler.dense.weight                                                        [768, 768]                                                                      
+bert.pooler.dense.bias                                                          [768]                                                                           
+capsule.conv1.weight                                                            [128, 1, 3, 768]                                                                
+capsule.conv1.bias                                                              [128]                                                                           
+capsule.digit_capsules.route_weights                                            [600, 4768, 8, 8]                                                               
+
+05/17/2019 19:47:39 - INFO - __main__ -   ***** Running training *****
+05/17/2019 19:47:39 - INFO - __main__ -     Num orig examples = 130319
+05/17/2019 19:47:39 - INFO - __main__ -     Num split examples = 136760
+05/17/2019 19:47:39 - INFO - __main__ -     Batch size = 1
+05/17/2019 19:47:39 - INFO - __main__ -     Num steps = 16287
+05/17/2019 19:47:41 - INFO - __main__ -   start training..........................
+Epoch:   0%|          | 0/3 [00:00<?, ?it/s]05/17/2019 19:47:41 - INFO - __main__ -   epoch 1
+05/17/2019 19:47:59 - INFO - __main__ -   epoch 1 step 109 train loss:0.23765762150287628
+05/17/2019 19:48:16 - INFO - __main__ -   epoch 1 step 209 train loss:0.2376575767993927
+05/17/2019 19:48:32 - INFO - __main__ -   epoch 1 step 309 train loss:0.2376575917005539
+05/17/2019 19:48:49 - INFO - __main__ -   epoch 1 step 409 train loss:0.2376575917005539
+05/17/2019 19:49:06 - INFO - __main__ -   epoch 1 step 509 train loss:0.23765762150287628
+05/17/2019 19:49:23 - INFO - __main__ -   epoch 1 step 609 train loss:0.2376575917005539
+05/17/2019 19:49:39 - INFO - __main__ -   epoch 1 step 709 train loss:0.2376575917005539
+05/17/2019 19:49:56 - INFO - __main__ -   epoch 1 step 809 train loss:0.2376575917005539
+05/17/2019 19:50:12 - INFO - __main__ -   epoch 1 step 909 train loss:0.23765762150287628
+05/17/2019 19:50:30 - INFO - __main__ -   epoch 1 step 1009 train loss:0.2376575917005539
+05/17/2019 19:50:46 - INFO - __main__ -   epoch 1 step 1109 train loss:0.2376575917005539
+05/17/2019 19:51:03 - INFO - __main__ -   epoch 1 step 1209 train loss:0.23765762150287628
+05/17/2019 19:51:20 - INFO - __main__ -   epoch 1 step 1309 train loss:0.2376575917005539
+05/17/2019 19:51:37 - INFO - __main__ -   epoch 1 step 1409 train loss:0.2376575767993927
+05/17/2019 19:51:53 - INFO - __main__ -   epoch 1 step 1509 train loss:0.2376575917005539
+05/17/2019 19:52:10 - INFO - __main__ -   epoch 1 step 1609 train loss:0.2376575917005539
+05/17/2019 19:52:27 - INFO - __main__ -   epoch 1 step 1709 train loss:0.2376575917005539
+05/17/2019 19:52:43 - INFO - __main__ -   epoch 1 step 1809 train loss:0.2376575917005539
+05/17/2019 19:53:00 - INFO - __main__ -   epoch 1 step 1909 train loss:0.2376575917005539
+05/17/2019 19:53:17 - INFO - __main__ -   epoch 1 step 2009 train loss:0.23765762150287628
+05/17/2019 19:53:33 - INFO - __main__ -   epoch 1 step 2109 train loss:0.2376575917005539
+05/17/2019 19:53:50 - INFO - __main__ -   epoch 1 step 2209 train loss:0.2376575917005539
+05/17/2019 19:54:07 - INFO - __main__ -   epoch 1 step 2309 train loss:0.2376575767993927
+05/17/2019 19:54:24 - INFO - __main__ -   epoch 1 step 2409 train loss:0.2376575917005539
+05/17/2019 19:54:40 - INFO - __main__ -   epoch 1 step 2509 train loss:0.2376575917005539
+05/17/2019 19:54:57 - INFO - __main__ -   epoch 1 step 2609 train loss:0.2376575917005539
+05/17/2019 19:55:14 - INFO - __main__ -   epoch 1 step 2709 train loss:0.2376575917005539
+05/17/2019 19:55:31 - INFO - __main__ -   epoch 1 step 2809 train loss:0.2376575767993927
+05/17/2019 19:55:47 - INFO - __main__ -   epoch 1 step 2909 train loss:0.23765762150287628
+05/17/2019 19:56:03 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 20:07:48 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_3000_predictions.json
+05/17/2019 20:07:48 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_3000_nbest_predictions.json
+05/17/2019 20:08:30 - INFO - __main__ -   start evaluation script.................
+05/17/2019 20:08:31 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 20:08:31 - INFO - __main__ -   epoch 1 step 3000 eval_loss: 5.703782558441162 evaluate f1: 4.267636946880114 evaluate best f1:50.07159100480081
+05/17/2019 20:08:32 - INFO - __main__ -   epoch 1 step 3009 train loss:0.2376575767993927
+05/17/2019 20:08:48 - INFO - __main__ -   epoch 1 step 3109 train loss:0.2376575917005539
+05/17/2019 20:09:04 - INFO - __main__ -   epoch 1 step 3209 train loss:0.2376575917005539
+05/17/2019 20:09:21 - INFO - __main__ -   epoch 1 step 3309 train loss:0.2376575917005539
+05/17/2019 20:09:37 - INFO - __main__ -   epoch 1 step 3409 train loss:0.2376575917005539
+05/17/2019 20:09:53 - INFO - __main__ -   epoch 1 step 3509 train loss:0.2376575917005539
+05/17/2019 20:10:09 - INFO - __main__ -   epoch 1 step 3609 train loss:0.2376575917005539
+05/17/2019 20:10:25 - INFO - __main__ -   epoch 1 step 3709 train loss:0.2376575917005539
+05/17/2019 20:10:41 - INFO - __main__ -   epoch 1 step 3809 train loss:0.2376575767993927
+05/17/2019 20:10:58 - INFO - __main__ -   epoch 1 step 3909 train loss:0.23765762150287628
+05/17/2019 20:11:14 - INFO - __main__ -   epoch 1 step 4009 train loss:0.2376575917005539
+05/17/2019 20:11:30 - INFO - __main__ -   epoch 1 step 4109 train loss:0.2376575767993927
+05/17/2019 20:11:46 - INFO - __main__ -   epoch 1 step 4209 train loss:0.2376575917005539
+05/17/2019 20:12:02 - INFO - __main__ -   epoch 1 step 4309 train loss:0.2376575767993927
+05/17/2019 20:12:18 - INFO - __main__ -   epoch 1 step 4409 train loss:0.2376575917005539
+05/17/2019 20:12:35 - INFO - __main__ -   epoch 1 step 4509 train loss:0.2376575917005539
+05/17/2019 20:12:51 - INFO - __main__ -   epoch 1 step 4609 train loss:0.2376575917005539
+05/17/2019 20:13:07 - INFO - __main__ -   epoch 1 step 4709 train loss:0.23765762150287628
+05/17/2019 20:13:23 - INFO - __main__ -   epoch 1 step 4809 train loss:0.2376575917005539
+05/17/2019 20:13:39 - INFO - __main__ -   epoch 1 step 4909 train loss:0.2376575917005539
+05/17/2019 20:13:56 - INFO - __main__ -   epoch 1 step 5009 train loss:0.2376575917005539
+05/17/2019 20:14:12 - INFO - __main__ -   epoch 1 step 5109 train loss:0.2376575767993927
+05/17/2019 20:14:28 - INFO - __main__ -   epoch 1 step 5209 train loss:0.2376575767993927
+05/17/2019 20:14:44 - INFO - __main__ -   epoch 1 step 5309 train loss:0.2376575917005539
+05/17/2019 20:15:00 - INFO - __main__ -   epoch 1 step 5409 train loss:0.23765762150287628
+05/17/2019 20:15:16 - INFO - __main__ -   epoch 1 step 5509 train loss:0.23765762150287628
+05/17/2019 20:15:33 - INFO - __main__ -   epoch 1 step 5609 train loss:0.2376575767993927
+05/17/2019 20:15:49 - INFO - __main__ -   epoch 1 step 5709 train loss:0.2376575917005539
+05/17/2019 20:16:05 - INFO - __main__ -   epoch 1 step 5809 train loss:0.23765762150287628
+05/17/2019 20:16:21 - INFO - __main__ -   epoch 1 step 5909 train loss:0.2376575767993927
+05/17/2019 20:16:36 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 20:28:24 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_6000_predictions.json
+05/17/2019 20:28:24 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_6000_nbest_predictions.json
+05/17/2019 20:29:04 - INFO - __main__ -   start evaluation script.................
+05/17/2019 20:29:06 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 20:29:06 - INFO - __main__ -   epoch 1 step 6000 eval_loss: 5.703782558441162 evaluate f1: 4.235213047999078 evaluate best f1:50.07159100480081
+05/17/2019 20:29:07 - INFO - __main__ -   epoch 1 step 6009 train loss:0.23765762150287628
+05/17/2019 20:29:23 - INFO - __main__ -   epoch 1 step 6109 train loss:0.23765762150287628
+05/17/2019 20:29:39 - INFO - __main__ -   epoch 1 step 6209 train loss:0.2376575917005539
+05/17/2019 20:29:55 - INFO - __main__ -   epoch 1 step 6309 train loss:0.2376575917005539
+05/17/2019 20:30:12 - INFO - __main__ -   epoch 1 step 6409 train loss:0.2376575917005539
+05/17/2019 20:30:28 - INFO - __main__ -   epoch 1 step 6509 train loss:0.2376575917005539
+05/17/2019 20:30:44 - INFO - __main__ -   epoch 1 step 6609 train loss:0.2376575917005539
+05/17/2019 20:31:00 - INFO - __main__ -   epoch 1 step 6709 train loss:0.23765762150287628
+05/17/2019 20:31:16 - INFO - __main__ -   epoch 1 step 6809 train loss:0.2376575917005539
+05/17/2019 20:31:32 - INFO - __main__ -   epoch 1 step 6909 train loss:0.23765762150287628
+05/17/2019 20:31:49 - INFO - __main__ -   epoch 1 step 7009 train loss:0.2376575917005539
+05/17/2019 20:32:05 - INFO - __main__ -   epoch 1 step 7109 train loss:0.2376575917005539
+05/17/2019 20:32:21 - INFO - __main__ -   epoch 1 step 7209 train loss:0.2376575917005539
+05/17/2019 20:32:37 - INFO - __main__ -   epoch 1 step 7309 train loss:0.2376575917005539
+05/17/2019 20:32:53 - INFO - __main__ -   epoch 1 step 7409 train loss:0.2376575917005539
+05/17/2019 20:33:09 - INFO - __main__ -   epoch 1 step 7509 train loss:0.2376575917005539
+05/17/2019 20:33:26 - INFO - __main__ -   epoch 1 step 7609 train loss:0.2376575917005539
+05/17/2019 20:33:42 - INFO - __main__ -   epoch 1 step 7709 train loss:0.2376575767993927
+05/17/2019 20:33:58 - INFO - __main__ -   epoch 1 step 7809 train loss:0.2376575767993927
+05/17/2019 20:34:14 - INFO - __main__ -   epoch 1 step 7909 train loss:0.2376575917005539
+05/17/2019 20:34:30 - INFO - __main__ -   epoch 1 step 8009 train loss:0.2376575917005539
+05/17/2019 20:34:46 - INFO - __main__ -   epoch 1 step 8109 train loss:0.2376575767993927
+05/17/2019 20:35:03 - INFO - __main__ -   epoch 1 step 8209 train loss:0.23765762150287628
+05/17/2019 20:35:19 - INFO - __main__ -   epoch 1 step 8309 train loss:0.23765762150287628
+05/17/2019 20:35:35 - INFO - __main__ -   epoch 1 step 8409 train loss:0.2376575917005539
+05/17/2019 20:35:51 - INFO - __main__ -   epoch 1 step 8509 train loss:0.23765762150287628
+05/17/2019 20:36:08 - INFO - __main__ -   epoch 1 step 8609 train loss:0.2376575917005539
+05/17/2019 20:36:24 - INFO - __main__ -   epoch 1 step 8709 train loss:0.23765762150287628
+05/17/2019 20:36:40 - INFO - __main__ -   epoch 1 step 8809 train loss:0.2376575917005539
+05/17/2019 20:36:56 - INFO - __main__ -   epoch 1 step 8909 train loss:0.23765762150287628
+05/17/2019 20:37:11 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 20:49:01 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_9000_predictions.json
+05/17/2019 20:49:01 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_9000_nbest_predictions.json
+05/17/2019 20:49:42 - INFO - __main__ -   start evaluation script.................
+05/17/2019 20:49:43 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 20:49:43 - INFO - __main__ -   epoch 1 step 9000 eval_loss: 5.703782558441162 evaluate f1: 4.256053837048917 evaluate best f1:50.07159100480081
+05/17/2019 20:49:45 - INFO - __main__ -   epoch 1 step 9009 train loss:0.2376575767993927
+05/17/2019 20:50:01 - INFO - __main__ -   epoch 1 step 9109 train loss:0.23765762150287628
+05/17/2019 20:50:17 - INFO - __main__ -   epoch 1 step 9209 train loss:0.2376575767993927
+05/17/2019 20:50:33 - INFO - __main__ -   epoch 1 step 9309 train loss:0.2376575917005539
+05/17/2019 20:50:50 - INFO - __main__ -   epoch 1 step 9409 train loss:0.23765762150287628
+05/17/2019 20:51:06 - INFO - __main__ -   epoch 1 step 9509 train loss:0.2376575917005539
+05/17/2019 20:51:22 - INFO - __main__ -   epoch 1 step 9609 train loss:0.2376575917005539
+05/17/2019 20:51:38 - INFO - __main__ -   epoch 1 step 9709 train loss:0.2376575767993927
+05/17/2019 20:51:54 - INFO - __main__ -   epoch 1 step 9809 train loss:0.2376575917005539
+05/17/2019 20:52:10 - INFO - __main__ -   epoch 1 step 9909 train loss:0.2376575767993927
+05/17/2019 20:52:27 - INFO - __main__ -   epoch 1 step 10009 train loss:0.2376575917005539
+05/17/2019 20:52:43 - INFO - __main__ -   epoch 1 step 10109 train loss:0.2376575917005539
+05/17/2019 20:52:59 - INFO - __main__ -   epoch 1 step 10209 train loss:0.2376575917005539
+05/17/2019 20:53:15 - INFO - __main__ -   epoch 1 step 10309 train loss:0.2376575917005539
+05/17/2019 20:53:31 - INFO - __main__ -   epoch 1 step 10409 train loss:0.2376575917005539
+05/17/2019 20:53:47 - INFO - __main__ -   epoch 1 step 10509 train loss:0.2376575917005539
+05/17/2019 20:54:04 - INFO - __main__ -   epoch 1 step 10609 train loss:0.2376575767993927
+05/17/2019 20:54:20 - INFO - __main__ -   epoch 1 step 10709 train loss:0.2376575917005539
+05/17/2019 20:54:36 - INFO - __main__ -   epoch 1 step 10809 train loss:0.2376575917005539
+05/17/2019 20:54:52 - INFO - __main__ -   epoch 1 step 10909 train loss:0.2376575917005539
+05/17/2019 20:55:08 - INFO - __main__ -   epoch 1 step 11009 train loss:0.2376575917005539
+05/17/2019 20:55:24 - INFO - __main__ -   epoch 1 step 11109 train loss:0.2376575917005539
+05/17/2019 20:55:41 - INFO - __main__ -   epoch 1 step 11209 train loss:0.2376575917005539
+05/17/2019 20:55:57 - INFO - __main__ -   epoch 1 step 11309 train loss:0.2376575917005539
+05/17/2019 20:56:13 - INFO - __main__ -   epoch 1 step 11409 train loss:0.2376575917005539
+05/17/2019 20:56:30 - INFO - __main__ -   epoch 1 step 11509 train loss:0.2376575917005539
+05/17/2019 20:56:46 - INFO - __main__ -   epoch 1 step 11609 train loss:0.2376575917005539
+05/17/2019 20:57:02 - INFO - __main__ -   epoch 1 step 11709 train loss:0.2376575767993927
+05/17/2019 20:57:18 - INFO - __main__ -   epoch 1 step 11809 train loss:0.2376575917005539
+05/17/2019 20:57:35 - INFO - __main__ -   epoch 1 step 11909 train loss:0.2376575917005539
+05/17/2019 20:57:49 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 21:09:39 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_12000_predictions.json
+05/17/2019 21:09:39 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_12000_nbest_predictions.json
+05/17/2019 21:10:20 - INFO - __main__ -   start evaluation script.................
+05/17/2019 21:10:22 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 21:10:22 - INFO - __main__ -   epoch 1 step 12000 eval_loss: 5.703782558441162 evaluate f1: 4.258765891772685 evaluate best f1:50.07159100480081
+05/17/2019 21:10:23 - INFO - __main__ -   epoch 1 step 12009 train loss:0.2376575767993927
+05/17/2019 21:10:39 - INFO - __main__ -   epoch 1 step 12109 train loss:0.2376575767993927
+05/17/2019 21:10:55 - INFO - __main__ -   epoch 1 step 12209 train loss:0.2376575767993927
+05/17/2019 21:11:11 - INFO - __main__ -   epoch 1 step 12309 train loss:0.2376575767993927
+05/17/2019 21:11:28 - INFO - __main__ -   epoch 1 step 12409 train loss:0.2376575767993927
+05/17/2019 21:11:44 - INFO - __main__ -   epoch 1 step 12509 train loss:0.2376575917005539
+05/17/2019 21:12:00 - INFO - __main__ -   epoch 1 step 12609 train loss:0.2376575917005539
+05/17/2019 21:12:16 - INFO - __main__ -   epoch 1 step 12709 train loss:0.2376575767993927
+05/17/2019 21:12:33 - INFO - __main__ -   epoch 1 step 12809 train loss:0.2376575917005539
+05/17/2019 21:12:49 - INFO - __main__ -   epoch 1 step 12909 train loss:0.2376575767993927
+05/17/2019 21:13:05 - INFO - __main__ -   epoch 1 step 13009 train loss:0.2376575767993927
+05/17/2019 21:13:21 - INFO - __main__ -   epoch 1 step 13109 train loss:0.2376575917005539
+05/17/2019 21:13:38 - INFO - __main__ -   epoch 1 step 13209 train loss:0.2376575917005539
+05/17/2019 21:13:54 - INFO - __main__ -   epoch 1 step 13309 train loss:0.23765762150287628
+05/17/2019 21:14:10 - INFO - __main__ -   epoch 1 step 13409 train loss:0.2376575917005539
+05/17/2019 21:14:26 - INFO - __main__ -   epoch 1 step 13509 train loss:0.2376575767993927
+05/17/2019 21:14:43 - INFO - __main__ -   epoch 1 step 13609 train loss:0.2376575767993927
+05/17/2019 21:14:59 - INFO - __main__ -   epoch 1 step 13709 train loss:0.2376575767993927
+05/17/2019 21:15:15 - INFO - __main__ -   epoch 1 step 13809 train loss:0.2376575767993927
+05/17/2019 21:15:31 - INFO - __main__ -   epoch 1 step 13909 train loss:0.2376575917005539
+05/17/2019 21:15:47 - INFO - __main__ -   epoch 1 step 14009 train loss:0.2376575767993927
+05/17/2019 21:16:03 - INFO - __main__ -   epoch 1 step 14109 train loss:0.2376575917005539
+05/17/2019 21:16:20 - INFO - __main__ -   epoch 1 step 14209 train loss:0.2376575917005539
+05/17/2019 21:16:36 - INFO - __main__ -   epoch 1 step 14309 train loss:0.2376575917005539
+05/17/2019 21:16:52 - INFO - __main__ -   epoch 1 step 14409 train loss:0.23765762150287628
+05/17/2019 21:17:08 - INFO - __main__ -   epoch 1 step 14509 train loss:0.2376575917005539
+05/17/2019 21:17:25 - INFO - __main__ -   epoch 1 step 14609 train loss:0.2376575917005539
+05/17/2019 21:17:41 - INFO - __main__ -   epoch 1 step 14709 train loss:0.2376575917005539
+05/17/2019 21:17:57 - INFO - __main__ -   epoch 1 step 14809 train loss:0.2376575767993927
+05/17/2019 21:18:13 - INFO - __main__ -   epoch 1 step 14909 train loss:0.2376575767993927
+05/17/2019 21:18:28 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 21:30:20 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_15000_predictions.json
+05/17/2019 21:30:20 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_15000_nbest_predictions.json
+05/17/2019 21:31:01 - INFO - __main__ -   start evaluation script.................
+05/17/2019 21:31:02 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 21:31:03 - INFO - __main__ -   epoch 1 step 15000 eval_loss: 5.703782558441162 evaluate f1: 4.253171935087778 evaluate best f1:50.07159100480081
+05/17/2019 21:31:04 - INFO - __main__ -   epoch 1 step 15009 train loss:0.2376575767993927
+05/17/2019 21:31:20 - INFO - __main__ -   epoch 1 step 15109 train loss:0.23765762150287628
+05/17/2019 21:31:36 - INFO - __main__ -   epoch 1 step 15209 train loss:0.2376575917005539
+05/17/2019 21:31:53 - INFO - __main__ -   epoch 1 step 15309 train loss:0.2376575917005539
+05/17/2019 21:32:09 - INFO - __main__ -   epoch 1 step 15409 train loss:0.23765762150287628
+05/17/2019 21:32:25 - INFO - __main__ -   epoch 1 step 15509 train loss:0.2376575767993927
+05/17/2019 21:32:41 - INFO - __main__ -   epoch 1 step 15609 train loss:0.2376575767993927
+05/17/2019 21:32:58 - INFO - __main__ -   epoch 1 step 15709 train loss:0.2376575917005539
+05/17/2019 21:33:14 - INFO - __main__ -   epoch 1 step 15809 train loss:0.23765762150287628
+05/17/2019 21:33:30 - INFO - __main__ -   epoch 1 step 15909 train loss:0.2376575917005539
+05/17/2019 21:33:46 - INFO - __main__ -   epoch 1 step 16009 train loss:0.23765762150287628
+05/17/2019 21:34:03 - INFO - __main__ -   epoch 1 step 16109 train loss:0.2376575767993927
+05/17/2019 21:34:19 - INFO - __main__ -   epoch 1 step 16209 train loss:0.2376575917005539
+05/17/2019 21:34:35 - INFO - __main__ -   epoch 1 step 16309 train loss:0.2376575917005539
+05/17/2019 21:34:51 - INFO - __main__ -   epoch 1 step 16409 train loss:0.2376575917005539
+05/17/2019 21:35:08 - INFO - __main__ -   epoch 1 step 16509 train loss:0.2376575917005539
+05/17/2019 21:35:24 - INFO - __main__ -   epoch 1 step 16609 train loss:0.2376575917005539
+05/17/2019 21:35:40 - INFO - __main__ -   epoch 1 step 16709 train loss:0.2376575767993927
+05/17/2019 21:35:56 - INFO - __main__ -   epoch 1 step 16809 train loss:0.2376575917005539
+05/17/2019 21:36:13 - INFO - __main__ -   epoch 1 step 16909 train loss:0.2376575767993927
+05/17/2019 21:36:29 - INFO - __main__ -   epoch 1 step 17009 train loss:0.23765762150287628
+05/17/2019 21:36:45 - INFO - __main__ -   epoch 1 step 17109 train loss:0.2376575767993927
+05/17/2019 21:37:01 - INFO - __main__ -   epoch 1 step 17209 train loss:0.2376575917005539
+05/17/2019 21:37:18 - INFO - __main__ -   epoch 1 step 17309 train loss:0.2376575917005539
+05/17/2019 21:37:34 - INFO - __main__ -   epoch 1 step 17409 train loss:0.2376575767993927
+05/17/2019 21:37:50 - INFO - __main__ -   epoch 1 step 17509 train loss:0.2376575917005539
+05/17/2019 21:38:06 - INFO - __main__ -   epoch 1 step 17609 train loss:0.2376575917005539
+05/17/2019 21:38:22 - INFO - __main__ -   epoch 1 step 17709 train loss:0.23765762150287628
+05/17/2019 21:38:39 - INFO - __main__ -   epoch 1 step 17809 train loss:0.2376575917005539
+05/17/2019 21:38:55 - INFO - __main__ -   epoch 1 step 17909 train loss:0.2376575917005539
+05/17/2019 21:39:10 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 21:50:59 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_18000_predictions.json
+05/17/2019 21:50:59 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_18000_nbest_predictions.json
+05/17/2019 21:51:40 - INFO - __main__ -   start evaluation script.................
+05/17/2019 21:51:42 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 21:51:42 - INFO - __main__ -   epoch 1 step 18000 eval_loss: 5.703782558441162 evaluate f1: 4.282930959845935 evaluate best f1:50.07159100480081
+05/17/2019 21:51:43 - INFO - __main__ -   epoch 1 step 18009 train loss:0.2376575917005539
+05/17/2019 21:51:59 - INFO - __main__ -   epoch 1 step 18109 train loss:0.2376575767993927
+05/17/2019 21:52:15 - INFO - __main__ -   epoch 1 step 18209 train loss:0.2376575767993927
+05/17/2019 21:52:31 - INFO - __main__ -   epoch 1 step 18309 train loss:0.2376575917005539
+05/17/2019 21:52:48 - INFO - __main__ -   epoch 1 step 18409 train loss:0.2376575917005539
+05/17/2019 21:53:04 - INFO - __main__ -   epoch 1 step 18509 train loss:0.2376575767993927
+05/17/2019 21:53:20 - INFO - __main__ -   epoch 1 step 18609 train loss:0.2376575917005539
+05/17/2019 21:53:36 - INFO - __main__ -   epoch 1 step 18709 train loss:0.2376575917005539
+05/17/2019 21:53:52 - INFO - __main__ -   epoch 1 step 18809 train loss:0.2376575917005539
+05/17/2019 21:54:09 - INFO - __main__ -   epoch 1 step 18909 train loss:0.2376575767993927
+05/17/2019 21:54:25 - INFO - __main__ -   epoch 1 step 19009 train loss:0.2376575767993927
+05/17/2019 21:54:41 - INFO - __main__ -   epoch 1 step 19109 train loss:0.2376575917005539
+05/17/2019 21:54:57 - INFO - __main__ -   epoch 1 step 19209 train loss:0.2376575917005539
+05/17/2019 21:55:14 - INFO - __main__ -   epoch 1 step 19309 train loss:0.2376575767993927
+05/17/2019 21:55:30 - INFO - __main__ -   epoch 1 step 19409 train loss:0.2376575917005539
+05/17/2019 21:55:46 - INFO - __main__ -   epoch 1 step 19509 train loss:0.2376575917005539
+05/17/2019 21:56:02 - INFO - __main__ -   epoch 1 step 19609 train loss:0.2376575917005539
+05/17/2019 21:56:18 - INFO - __main__ -   epoch 1 step 19709 train loss:0.2376575917005539
+05/17/2019 21:56:35 - INFO - __main__ -   epoch 1 step 19809 train loss:0.2376575917005539
+05/17/2019 21:56:51 - INFO - __main__ -   epoch 1 step 19909 train loss:0.2376575917005539
+05/17/2019 21:57:07 - INFO - __main__ -   epoch 1 step 20009 train loss:0.2376575917005539
+05/17/2019 21:57:23 - INFO - __main__ -   epoch 1 step 20109 train loss:0.2376575767993927
+05/17/2019 21:57:40 - INFO - __main__ -   epoch 1 step 20209 train loss:0.2376575767993927
+05/17/2019 21:57:56 - INFO - __main__ -   epoch 1 step 20309 train loss:0.2376575917005539
+05/17/2019 21:58:12 - INFO - __main__ -   epoch 1 step 20409 train loss:0.2376575767993927
+05/17/2019 21:58:28 - INFO - __main__ -   epoch 1 step 20509 train loss:0.2376575917005539
+05/17/2019 21:58:44 - INFO - __main__ -   epoch 1 step 20609 train loss:0.2376575917005539
+05/17/2019 21:59:01 - INFO - __main__ -   epoch 1 step 20709 train loss:0.2376575767993927
+05/17/2019 21:59:17 - INFO - __main__ -   epoch 1 step 20809 train loss:0.2376575917005539
+05/17/2019 21:59:33 - INFO - __main__ -   epoch 1 step 20909 train loss:0.2376575917005539
+05/17/2019 21:59:48 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 22:11:40 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_21000_predictions.json
+05/17/2019 22:11:40 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_21000_nbest_predictions.json
+05/17/2019 22:12:22 - INFO - __main__ -   start evaluation script.................
+05/17/2019 22:12:23 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 22:12:23 - INFO - __main__ -   epoch 1 step 21000 eval_loss: 5.703782558441162 evaluate f1: 4.297136974204289 evaluate best f1:50.07159100480081
+05/17/2019 22:12:25 - INFO - __main__ -   epoch 1 step 21009 train loss:0.2376575767993927
+05/17/2019 22:12:41 - INFO - __main__ -   epoch 1 step 21109 train loss:0.2376575917005539
+05/17/2019 22:12:57 - INFO - __main__ -   epoch 1 step 21209 train loss:0.2376575767993927
+05/17/2019 22:13:13 - INFO - __main__ -   epoch 1 step 21309 train loss:0.2376575917005539
+05/17/2019 22:13:29 - INFO - __main__ -   epoch 1 step 21409 train loss:0.23765762150287628
+05/17/2019 22:13:46 - INFO - __main__ -   epoch 1 step 21509 train loss:0.23765762150287628
+05/17/2019 22:14:02 - INFO - __main__ -   epoch 1 step 21609 train loss:0.2376575917005539
+05/17/2019 22:14:18 - INFO - __main__ -   epoch 1 step 21709 train loss:0.2376575917005539
+05/17/2019 22:14:34 - INFO - __main__ -   epoch 1 step 21809 train loss:0.2376575917005539
+05/17/2019 22:14:51 - INFO - __main__ -   epoch 1 step 21909 train loss:0.2376575767993927
+05/17/2019 22:15:07 - INFO - __main__ -   epoch 1 step 22009 train loss:0.2376575917005539
+05/17/2019 22:15:23 - INFO - __main__ -   epoch 1 step 22109 train loss:0.2376575917005539
+05/17/2019 22:15:39 - INFO - __main__ -   epoch 1 step 22209 train loss:0.2376575917005539
+05/17/2019 22:15:56 - INFO - __main__ -   epoch 1 step 22309 train loss:0.2376575917005539
+05/17/2019 22:16:12 - INFO - __main__ -   epoch 1 step 22409 train loss:0.2376575917005539
+05/17/2019 22:16:28 - INFO - __main__ -   epoch 1 step 22509 train loss:0.2376575767993927
+05/17/2019 22:16:44 - INFO - __main__ -   epoch 1 step 22609 train loss:0.2376575917005539
+05/17/2019 22:17:01 - INFO - __main__ -   epoch 1 step 22709 train loss:0.2376575767993927
+05/17/2019 22:17:17 - INFO - __main__ -   epoch 1 step 22809 train loss:0.2376575767993927
+05/17/2019 22:17:33 - INFO - __main__ -   epoch 1 step 22909 train loss:0.2376575917005539
+05/17/2019 22:17:49 - INFO - __main__ -   epoch 1 step 23009 train loss:0.2376575917005539
+05/17/2019 22:18:05 - INFO - __main__ -   epoch 1 step 23109 train loss:0.2376575767993927
+05/17/2019 22:18:22 - INFO - __main__ -   epoch 1 step 23209 train loss:0.2376575917005539
+05/17/2019 22:18:38 - INFO - __main__ -   epoch 1 step 23309 train loss:0.2376575917005539
+05/17/2019 22:18:54 - INFO - __main__ -   epoch 1 step 23409 train loss:0.2376575917005539
+05/17/2019 22:19:11 - INFO - __main__ -   epoch 1 step 23509 train loss:0.23765762150287628
+05/17/2019 22:19:27 - INFO - __main__ -   epoch 1 step 23609 train loss:0.2376575767993927
+05/17/2019 22:19:43 - INFO - __main__ -   epoch 1 step 23709 train loss:0.23765762150287628
+05/17/2019 22:19:59 - INFO - __main__ -   epoch 1 step 23809 train loss:0.2376575767993927
+05/17/2019 22:20:16 - INFO - __main__ -   epoch 1 step 23909 train loss:0.2376575767993927
+05/17/2019 22:20:30 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 22:32:23 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_24000_predictions.json
+05/17/2019 22:32:23 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_24000_nbest_predictions.json
+05/17/2019 22:33:05 - INFO - __main__ -   start evaluation script.................
+05/17/2019 22:33:06 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 22:33:06 - INFO - __main__ -   epoch 1 step 24000 eval_loss: 5.703782558441162 evaluate f1: 4.385944475116082 evaluate best f1:50.07159100480081
+05/17/2019 22:33:08 - INFO - __main__ -   epoch 1 step 24009 train loss:0.2376575917005539
+05/17/2019 22:33:24 - INFO - __main__ -   epoch 1 step 24109 train loss:0.23765762150287628
+05/17/2019 22:33:40 - INFO - __main__ -   epoch 1 step 24209 train loss:0.2376575767993927
+05/17/2019 22:33:56 - INFO - __main__ -   epoch 1 step 24309 train loss:0.2376575917005539
+05/17/2019 22:34:13 - INFO - __main__ -   epoch 1 step 24409 train loss:0.2376575917005539
+05/17/2019 22:34:29 - INFO - __main__ -   epoch 1 step 24509 train loss:0.2376575767993927
+05/17/2019 22:34:45 - INFO - __main__ -   epoch 1 step 24609 train loss:0.2376575917005539
+05/17/2019 22:35:01 - INFO - __main__ -   epoch 1 step 24709 train loss:0.2376575767993927
+05/17/2019 22:35:17 - INFO - __main__ -   epoch 1 step 24809 train loss:0.2376575767993927
+05/17/2019 22:35:34 - INFO - __main__ -   epoch 1 step 24909 train loss:0.2376575767993927
+05/17/2019 22:35:50 - INFO - __main__ -   epoch 1 step 25009 train loss:0.2376575767993927
+05/17/2019 22:36:06 - INFO - __main__ -   epoch 1 step 25109 train loss:0.2376575917005539
+05/17/2019 22:36:22 - INFO - __main__ -   epoch 1 step 25209 train loss:0.2376575767993927
+05/17/2019 22:36:38 - INFO - __main__ -   epoch 1 step 25309 train loss:0.2376575917005539
+05/17/2019 22:36:55 - INFO - __main__ -   epoch 1 step 25409 train loss:0.2376575917005539
+05/17/2019 22:37:11 - INFO - __main__ -   epoch 1 step 25509 train loss:0.23765762150287628
+05/17/2019 22:37:27 - INFO - __main__ -   epoch 1 step 25609 train loss:0.2376575767993927
+05/17/2019 22:37:44 - INFO - __main__ -   epoch 1 step 25709 train loss:0.2376575917005539
+05/17/2019 22:38:00 - INFO - __main__ -   epoch 1 step 25809 train loss:0.2376575917005539
+05/17/2019 22:38:16 - INFO - __main__ -   epoch 1 step 25909 train loss:0.2376575917005539
+05/17/2019 22:38:32 - INFO - __main__ -   epoch 1 step 26009 train loss:0.2376575917005539
+05/17/2019 22:38:48 - INFO - __main__ -   epoch 1 step 26109 train loss:0.2376575917005539
+05/17/2019 22:39:05 - INFO - __main__ -   epoch 1 step 26209 train loss:0.2376575917005539
+05/17/2019 22:39:21 - INFO - __main__ -   epoch 1 step 26309 train loss:0.2376575917005539
+05/17/2019 22:39:37 - INFO - __main__ -   epoch 1 step 26409 train loss:0.2376575917005539
+05/17/2019 22:39:53 - INFO - __main__ -   epoch 1 step 26509 train loss:0.2376575917005539
+05/17/2019 22:40:10 - INFO - __main__ -   epoch 1 step 26609 train loss:0.2376575767993927
+05/17/2019 22:40:26 - INFO - __main__ -   epoch 1 step 26709 train loss:0.2376575917005539
+05/17/2019 22:40:42 - INFO - __main__ -   epoch 1 step 26809 train loss:0.2376575917005539
+05/17/2019 22:40:58 - INFO - __main__ -   epoch 1 step 26909 train loss:0.2376575767993927
+05/17/2019 22:41:13 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 22:53:05 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_27000_predictions.json
+05/17/2019 22:53:05 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_27000_nbest_predictions.json
+05/17/2019 22:53:47 - INFO - __main__ -   start evaluation script.................
+05/17/2019 22:53:48 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 22:53:48 - INFO - __main__ -   epoch 1 step 27000 eval_loss: 5.703782558441162 evaluate f1: 4.513893851706172 evaluate best f1:50.07159100480081
+05/17/2019 22:53:50 - INFO - __main__ -   epoch 1 step 27009 train loss:0.2376575917005539
+05/17/2019 22:54:06 - INFO - __main__ -   epoch 1 step 27109 train loss:0.2376575917005539
+05/17/2019 22:54:22 - INFO - __main__ -   epoch 1 step 27209 train loss:0.2376575917005539
+05/17/2019 22:54:38 - INFO - __main__ -   epoch 1 step 27309 train loss:0.2376575917005539
+05/17/2019 22:54:54 - INFO - __main__ -   epoch 1 step 27409 train loss:0.2376575767993927
+05/17/2019 22:55:11 - INFO - __main__ -   epoch 1 step 27509 train loss:0.2376575767993927
+05/17/2019 22:55:27 - INFO - __main__ -   epoch 1 step 27609 train loss:0.2376575767993927
+05/17/2019 22:55:43 - INFO - __main__ -   epoch 1 step 27709 train loss:0.2376575917005539
+05/17/2019 22:55:59 - INFO - __main__ -   epoch 1 step 27809 train loss:0.2376575767993927
+05/17/2019 22:56:16 - INFO - __main__ -   epoch 1 step 27909 train loss:0.2376575917005539
+05/17/2019 22:56:32 - INFO - __main__ -   epoch 1 step 28009 train loss:0.2376575767993927
+05/17/2019 22:56:48 - INFO - __main__ -   epoch 1 step 28109 train loss:0.23765762150287628
+05/17/2019 22:57:04 - INFO - __main__ -   epoch 1 step 28209 train loss:0.2376575767993927
+05/17/2019 22:57:21 - INFO - __main__ -   epoch 1 step 28309 train loss:0.2376575767993927
+05/17/2019 22:57:37 - INFO - __main__ -   epoch 1 step 28409 train loss:0.2376575767993927
+05/17/2019 22:57:53 - INFO - __main__ -   epoch 1 step 28509 train loss:0.2376575767993927
+05/17/2019 22:58:09 - INFO - __main__ -   epoch 1 step 28609 train loss:0.2376575917005539
+05/17/2019 22:58:26 - INFO - __main__ -   epoch 1 step 28709 train loss:0.2376575767993927
+05/17/2019 22:58:42 - INFO - __main__ -   epoch 1 step 28809 train loss:0.2376575767993927
+05/17/2019 22:58:58 - INFO - __main__ -   epoch 1 step 28909 train loss:0.2376575917005539
+05/17/2019 22:59:14 - INFO - __main__ -   epoch 1 step 29009 train loss:0.23765762150287628
+05/17/2019 22:59:30 - INFO - __main__ -   epoch 1 step 29109 train loss:0.2376575917005539
+05/17/2019 22:59:47 - INFO - __main__ -   epoch 1 step 29209 train loss:0.2376575917005539
+05/17/2019 23:00:03 - INFO - __main__ -   epoch 1 step 29309 train loss:0.2376575767993927
+05/17/2019 23:00:19 - INFO - __main__ -   epoch 1 step 29409 train loss:0.2376575767993927
+05/17/2019 23:00:35 - INFO - __main__ -   epoch 1 step 29509 train loss:0.2376575917005539
+05/17/2019 23:00:52 - INFO - __main__ -   epoch 1 step 29609 train loss:0.23765762150287628
+05/17/2019 23:01:08 - INFO - __main__ -   epoch 1 step 29709 train loss:0.2376575917005539
+05/17/2019 23:01:24 - INFO - __main__ -   epoch 1 step 29809 train loss:0.2376575917005539
+05/17/2019 23:01:41 - INFO - __main__ -   epoch 1 step 29909 train loss:0.2376575917005539
+05/17/2019 23:01:56 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 23:13:49 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_30000_predictions.json
+05/17/2019 23:13:49 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_30000_nbest_predictions.json
+05/17/2019 23:14:30 - INFO - __main__ -   start evaluation script.................
+05/17/2019 23:14:31 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 23:14:31 - INFO - __main__ -   epoch 1 step 30000 eval_loss: 5.703781604766846 evaluate f1: 5.1461658702974535 evaluate best f1:50.07159100480081
+05/17/2019 23:14:32 - INFO - __main__ -   epoch 1 step 30009 train loss:0.2376575767993927
+05/17/2019 23:14:49 - INFO - __main__ -   epoch 1 step 30109 train loss:0.2376575767993927
+05/17/2019 23:15:05 - INFO - __main__ -   epoch 1 step 30209 train loss:0.2376575767993927
+05/17/2019 23:15:21 - INFO - __main__ -   epoch 1 step 30309 train loss:0.2376575767993927
+05/17/2019 23:15:37 - INFO - __main__ -   epoch 1 step 30409 train loss:0.2376575917005539
+05/17/2019 23:15:53 - INFO - __main__ -   epoch 1 step 30509 train loss:0.2376575917005539
+05/17/2019 23:16:09 - INFO - __main__ -   epoch 1 step 30609 train loss:0.2376575767993927
+05/17/2019 23:16:26 - INFO - __main__ -   epoch 1 step 30709 train loss:0.2376575767993927
+05/17/2019 23:16:42 - INFO - __main__ -   epoch 1 step 30809 train loss:0.2376575767993927
+05/17/2019 23:16:58 - INFO - __main__ -   epoch 1 step 30909 train loss:0.2376575917005539
+05/17/2019 23:17:14 - INFO - __main__ -   epoch 1 step 31009 train loss:0.2376575917005539
+05/17/2019 23:17:31 - INFO - __main__ -   epoch 1 step 31109 train loss:0.2376575917005539
+05/17/2019 23:17:47 - INFO - __main__ -   epoch 1 step 31209 train loss:0.2376575767993927
+05/17/2019 23:18:03 - INFO - __main__ -   epoch 1 step 31309 train loss:0.2376575767993927
+05/17/2019 23:18:19 - INFO - __main__ -   epoch 1 step 31409 train loss:0.2376575767993927
+05/17/2019 23:18:35 - INFO - __main__ -   epoch 1 step 31509 train loss:0.2376575767993927
+05/17/2019 23:18:52 - INFO - __main__ -   epoch 1 step 31609 train loss:0.2376575767993927
+05/17/2019 23:19:08 - INFO - __main__ -   epoch 1 step 31709 train loss:0.2376575917005539
+05/17/2019 23:19:24 - INFO - __main__ -   epoch 1 step 31809 train loss:0.2376575917005539
+05/17/2019 23:19:40 - INFO - __main__ -   epoch 1 step 31909 train loss:0.2376575917005539
+05/17/2019 23:19:57 - INFO - __main__ -   epoch 1 step 32009 train loss:0.2376575917005539
+05/17/2019 23:20:13 - INFO - __main__ -   epoch 1 step 32109 train loss:0.2376575767993927
+05/17/2019 23:20:29 - INFO - __main__ -   epoch 1 step 32209 train loss:0.2376575767993927
+05/17/2019 23:20:45 - INFO - __main__ -   epoch 1 step 32309 train loss:0.2376575767993927
+05/17/2019 23:21:02 - INFO - __main__ -   epoch 1 step 32409 train loss:0.23765762150287628
+05/17/2019 23:21:18 - INFO - __main__ -   epoch 1 step 32509 train loss:0.2376575917005539
+05/17/2019 23:21:34 - INFO - __main__ -   epoch 1 step 32609 train loss:0.2376575917005539
+05/17/2019 23:21:50 - INFO - __main__ -   epoch 1 step 32709 train loss:0.2376575917005539
+05/17/2019 23:22:07 - INFO - __main__ -   epoch 1 step 32809 train loss:0.23765762150287628
+05/17/2019 23:22:23 - INFO - __main__ -   epoch 1 step 32909 train loss:0.2376575767993927
+05/17/2019 23:22:38 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 23:34:30 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_33000_predictions.json
+05/17/2019 23:34:30 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_33000_nbest_predictions.json
+05/17/2019 23:35:11 - INFO - __main__ -   start evaluation script.................
+05/17/2019 23:35:12 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 23:35:13 - INFO - __main__ -   epoch 1 step 33000 eval_loss: 5.7037811279296875 evaluate f1: 8.140914290713102 evaluate best f1:50.07159100480081
+05/17/2019 23:35:14 - INFO - __main__ -   epoch 1 step 33009 train loss:0.2376575917005539
+05/17/2019 23:35:31 - INFO - __main__ -   epoch 1 step 33109 train loss:0.2376575917005539
+05/17/2019 23:35:47 - INFO - __main__ -   epoch 1 step 33209 train loss:0.2376575917005539
+05/17/2019 23:36:03 - INFO - __main__ -   epoch 1 step 33309 train loss:0.2376575767993927
+05/17/2019 23:36:19 - INFO - __main__ -   epoch 1 step 33409 train loss:0.2376575767993927
+05/17/2019 23:36:35 - INFO - __main__ -   epoch 1 step 33509 train loss:0.2376575917005539
+05/17/2019 23:36:51 - INFO - __main__ -   epoch 1 step 33609 train loss:0.2376575917005539
+05/17/2019 23:37:08 - INFO - __main__ -   epoch 1 step 33709 train loss:0.2376575767993927
+05/17/2019 23:37:24 - INFO - __main__ -   epoch 1 step 33809 train loss:0.2376575767993927
+05/17/2019 23:37:40 - INFO - __main__ -   epoch 1 step 33909 train loss:0.2376575917005539
+05/17/2019 23:37:56 - INFO - __main__ -   epoch 1 step 34009 train loss:0.2376575917005539
+05/17/2019 23:38:13 - INFO - __main__ -   epoch 1 step 34109 train loss:0.2376575767993927
+05/17/2019 23:38:29 - INFO - __main__ -   epoch 1 step 34209 train loss:0.2376575917005539
+05/17/2019 23:38:45 - INFO - __main__ -   epoch 1 step 34309 train loss:0.2376575917005539
+05/17/2019 23:39:01 - INFO - __main__ -   epoch 1 step 34409 train loss:0.2376575767993927
+05/17/2019 23:39:17 - INFO - __main__ -   epoch 1 step 34509 train loss:0.2376575917005539
+05/17/2019 23:39:34 - INFO - __main__ -   epoch 1 step 34609 train loss:0.2376575917005539
+05/17/2019 23:39:50 - INFO - __main__ -   epoch 1 step 34709 train loss:0.2376575917005539
+05/17/2019 23:40:06 - INFO - __main__ -   epoch 1 step 34809 train loss:0.2376575767993927
+05/17/2019 23:40:23 - INFO - __main__ -   epoch 1 step 34909 train loss:0.2376575767993927
+05/17/2019 23:40:39 - INFO - __main__ -   epoch 1 step 35009 train loss:0.2376575917005539
+05/17/2019 23:40:55 - INFO - __main__ -   epoch 1 step 35109 train loss:0.2376575917005539
+05/17/2019 23:41:11 - INFO - __main__ -   epoch 1 step 35209 train loss:0.2376575767993927
+05/17/2019 23:41:27 - INFO - __main__ -   epoch 1 step 35309 train loss:0.2376575767993927
+05/17/2019 23:41:44 - INFO - __main__ -   epoch 1 step 35409 train loss:0.2376575917005539
+05/17/2019 23:42:00 - INFO - __main__ -   epoch 1 step 35509 train loss:0.2376575917005539
+05/17/2019 23:42:16 - INFO - __main__ -   epoch 1 step 35609 train loss:0.2376575917005539
+05/17/2019 23:42:32 - INFO - __main__ -   epoch 1 step 35709 train loss:0.2376575767993927
+05/17/2019 23:42:49 - INFO - __main__ -   epoch 1 step 35809 train loss:0.2376575767993927
+05/17/2019 23:43:05 - INFO - __main__ -   epoch 1 step 35909 train loss:0.2376575767993927
+05/17/2019 23:43:20 - INFO - __main__ -   Start predicton for evaluating..............
+05/17/2019 23:55:13 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_36000_predictions.json
+05/17/2019 23:55:13 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_36000_nbest_predictions.json
+05/17/2019 23:55:55 - INFO - __main__ -   start evaluation script.................
+05/17/2019 23:55:56 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/17/2019 23:55:56 - INFO - __main__ -   epoch 1 step 36000 eval_loss: 5.7037811279296875 evaluate f1: 19.690479152359103 evaluate best f1:50.072994749992986
+05/17/2019 23:55:58 - INFO - __main__ -   epoch 1 step 36009 train loss:0.2376575767993927
+05/17/2019 23:56:14 - INFO - __main__ -   epoch 1 step 36109 train loss:0.2376575917005539
+05/17/2019 23:56:30 - INFO - __main__ -   epoch 1 step 36209 train loss:0.2376575767993927
+05/17/2019 23:56:46 - INFO - __main__ -   epoch 1 step 36309 train loss:0.2376575767993927
+05/17/2019 23:57:02 - INFO - __main__ -   epoch 1 step 36409 train loss:0.2376575469970703
+05/17/2019 23:57:19 - INFO - __main__ -   epoch 1 step 36509 train loss:0.2376575917005539
+05/17/2019 23:57:35 - INFO - __main__ -   epoch 1 step 36609 train loss:0.2376575917005539
+05/17/2019 23:57:51 - INFO - __main__ -   epoch 1 step 36709 train loss:0.2376575767993927
+05/17/2019 23:58:07 - INFO - __main__ -   epoch 1 step 36809 train loss:0.2376575917005539
+05/17/2019 23:58:24 - INFO - __main__ -   epoch 1 step 36909 train loss:0.2376575469970703
+05/17/2019 23:58:40 - INFO - __main__ -   epoch 1 step 37009 train loss:0.2376575469970703
+05/17/2019 23:58:56 - INFO - __main__ -   epoch 1 step 37109 train loss:0.23765762150287628
+05/17/2019 23:59:12 - INFO - __main__ -   epoch 1 step 37209 train loss:0.2376575767993927
+05/17/2019 23:59:29 - INFO - __main__ -   epoch 1 step 37309 train loss:0.2376575917005539
+05/17/2019 23:59:45 - INFO - __main__ -   epoch 1 step 37409 train loss:0.2376575917005539
+05/18/2019 00:00:01 - INFO - __main__ -   epoch 1 step 37509 train loss:0.23765762150287628
+05/18/2019 00:00:17 - INFO - __main__ -   epoch 1 step 37609 train loss:0.2376575767993927
+05/18/2019 00:00:34 - INFO - __main__ -   epoch 1 step 37709 train loss:0.2376575767993927
+05/18/2019 00:00:50 - INFO - __main__ -   epoch 1 step 37809 train loss:0.2376575767993927
+05/18/2019 00:01:06 - INFO - __main__ -   epoch 1 step 37909 train loss:0.2376575917005539
+05/18/2019 00:01:22 - INFO - __main__ -   epoch 1 step 38009 train loss:0.2376575767993927
+05/18/2019 00:01:38 - INFO - __main__ -   epoch 1 step 38109 train loss:0.2376575917005539
+05/18/2019 00:01:55 - INFO - __main__ -   epoch 1 step 38209 train loss:0.2376575767993927
+05/18/2019 00:02:11 - INFO - __main__ -   epoch 1 step 38309 train loss:0.23765753209590912
+05/18/2019 00:02:27 - INFO - __main__ -   epoch 1 step 38409 train loss:0.2376575469970703
+05/18/2019 00:02:43 - INFO - __main__ -   epoch 1 step 38509 train loss:0.2376575469970703
+05/18/2019 00:03:00 - INFO - __main__ -   epoch 1 step 38609 train loss:0.2376575767993927
+05/18/2019 00:03:16 - INFO - __main__ -   epoch 1 step 38709 train loss:0.2376575767993927
+05/18/2019 00:03:32 - INFO - __main__ -   epoch 1 step 38809 train loss:0.2376575917005539
+05/18/2019 00:03:48 - INFO - __main__ -   epoch 1 step 38909 train loss:0.2376575767993927
+05/18/2019 00:04:03 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 00:15:57 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_39000_predictions.json
+05/18/2019 00:15:57 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_39000_nbest_predictions.json
+05/18/2019 00:16:39 - INFO - __main__ -   start evaluation script.................
+05/18/2019 00:16:40 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 00:16:40 - INFO - __main__ -   epoch 1 step 39000 eval_loss: 5.703780651092529 evaluate f1: 40.01243280749366 evaluate best f1:50.072994749992986
+05/18/2019 00:16:41 - INFO - __main__ -   epoch 1 step 39009 train loss:0.2376575469970703
+05/18/2019 00:16:57 - INFO - __main__ -   epoch 1 step 39109 train loss:0.2376575917005539
+05/18/2019 00:17:13 - INFO - __main__ -   epoch 1 step 39209 train loss:0.2376575469970703
+05/18/2019 00:17:30 - INFO - __main__ -   epoch 1 step 39309 train loss:0.2376575469970703
+05/18/2019 00:17:46 - INFO - __main__ -   epoch 1 step 39409 train loss:0.23765753209590912
+05/18/2019 00:18:02 - INFO - __main__ -   epoch 1 step 39509 train loss:0.2376575767993927
+05/18/2019 00:18:18 - INFO - __main__ -   epoch 1 step 39609 train loss:0.23765753209590912
+05/18/2019 00:18:35 - INFO - __main__ -   epoch 1 step 39709 train loss:0.2376575469970703
+05/18/2019 00:18:51 - INFO - __main__ -   epoch 1 step 39809 train loss:0.2376575469970703
+05/18/2019 00:19:07 - INFO - __main__ -   epoch 1 step 39909 train loss:0.2376575767993927
+05/18/2019 00:19:24 - INFO - __main__ -   epoch 1 step 40009 train loss:0.23765750229358673
+05/18/2019 00:19:40 - INFO - __main__ -   epoch 1 step 40109 train loss:0.23765753209590912
+05/18/2019 00:19:56 - INFO - __main__ -   epoch 1 step 40209 train loss:0.23765750229358673
+05/18/2019 00:20:13 - INFO - __main__ -   epoch 1 step 40309 train loss:0.23765750229358673
+05/18/2019 00:20:29 - INFO - __main__ -   epoch 1 step 40409 train loss:0.23765753209590912
+05/18/2019 00:20:45 - INFO - __main__ -   epoch 1 step 40509 train loss:0.23765753209590912
+05/18/2019 00:21:01 - INFO - __main__ -   epoch 1 step 40609 train loss:0.23765753209590912
+05/18/2019 00:21:18 - INFO - __main__ -   epoch 1 step 40709 train loss:0.23765750229358673
+05/18/2019 00:21:34 - INFO - __main__ -   epoch 1 step 40809 train loss:0.23765747249126434
+05/18/2019 00:21:50 - INFO - __main__ -   epoch 1 step 40909 train loss:0.23765745759010315
+05/18/2019 00:22:06 - INFO - __main__ -   epoch 1 step 41009 train loss:0.23765745759010315
+05/18/2019 00:22:23 - INFO - __main__ -   epoch 1 step 41109 train loss:0.2376573383808136
+05/18/2019 00:22:39 - INFO - __main__ -   epoch 1 step 41209 train loss:0.23765747249126434
+05/18/2019 00:22:55 - INFO - __main__ -   epoch 1 step 41309 train loss:0.23765747249126434
+05/18/2019 00:23:11 - INFO - __main__ -   epoch 1 step 41409 train loss:0.2376573532819748
+05/18/2019 00:23:28 - INFO - __main__ -   epoch 1 step 41509 train loss:0.2376573085784912
+05/18/2019 00:23:44 - INFO - __main__ -   epoch 1 step 41609 train loss:0.2376573532819748
+05/18/2019 00:24:00 - INFO - __main__ -   epoch 1 step 41709 train loss:0.23765714466571808
+05/18/2019 00:24:17 - INFO - __main__ -   epoch 1 step 41809 train loss:0.23765726387500763
+05/18/2019 00:24:33 - INFO - __main__ -   epoch 1 step 41909 train loss:0.23765726387500763
+05/18/2019 00:24:48 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 00:36:38 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_42000_predictions.json
+05/18/2019 00:36:38 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_42000_nbest_predictions.json
+05/18/2019 00:37:18 - INFO - __main__ -   start evaluation script.................
+05/18/2019 00:37:18 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 00:37:19 - INFO - __main__ -   epoch 1 step 42000 eval_loss: 5.703765392303467 evaluate f1: 49.525320089132435 evaluate best f1:50.07159100480081
+05/18/2019 00:37:20 - INFO - __main__ -   epoch 1 step 42009 train loss:0.23765721917152405
+05/18/2019 00:37:36 - INFO - __main__ -   epoch 1 step 42109 train loss:0.2376570701599121
+05/18/2019 00:37:52 - INFO - __main__ -   epoch 1 step 42209 train loss:0.23765592277050018
+05/18/2019 00:38:08 - INFO - __main__ -   epoch 1 step 42309 train loss:0.23765483498573303
+05/18/2019 00:38:25 - INFO - __main__ -   epoch 1 step 42409 train loss:0.2376512587070465
+05/18/2019 00:38:41 - INFO - __main__ -   epoch 1 step 42509 train loss:0.23764429986476898
+05/18/2019 00:38:57 - INFO - __main__ -   epoch 1 step 42609 train loss:0.23763291537761688
+05/18/2019 00:39:13 - INFO - __main__ -   epoch 1 step 42709 train loss:0.23764227330684662
+05/18/2019 00:39:30 - INFO - __main__ -   epoch 1 step 42809 train loss:0.23761343955993652
+05/18/2019 00:39:46 - INFO - __main__ -   epoch 1 step 42909 train loss:0.2376144975423813
+05/18/2019 00:40:02 - INFO - __main__ -   epoch 1 step 43009 train loss:0.2376304417848587
+05/18/2019 00:40:18 - INFO - __main__ -   epoch 1 step 43109 train loss:0.2376333773136139
+05/18/2019 00:40:34 - INFO - __main__ -   epoch 1 step 43209 train loss:0.23763053119182587
+05/18/2019 00:40:51 - INFO - __main__ -   epoch 1 step 43309 train loss:0.23762832581996918
+05/18/2019 00:41:07 - INFO - __main__ -   epoch 1 step 43409 train loss:0.23762860894203186
+05/18/2019 00:41:23 - INFO - __main__ -   epoch 1 step 43509 train loss:0.23760734498500824
+05/18/2019 00:41:39 - INFO - __main__ -   epoch 1 step 43609 train loss:0.23762357234954834
+05/18/2019 00:41:56 - INFO - __main__ -   epoch 1 step 43709 train loss:0.23761685192584991
+05/18/2019 00:42:12 - INFO - __main__ -   epoch 1 step 43809 train loss:0.23761425912380219
+05/18/2019 00:42:28 - INFO - __main__ -   epoch 1 step 43909 train loss:0.2376479208469391
+05/18/2019 00:42:44 - INFO - __main__ -   epoch 1 step 44009 train loss:0.23762498795986176
+05/18/2019 00:43:00 - INFO - __main__ -   epoch 1 step 44109 train loss:0.2376367300748825
+05/18/2019 00:43:17 - INFO - __main__ -   epoch 1 step 44209 train loss:0.23763592541217804
+05/18/2019 00:43:33 - INFO - __main__ -   epoch 1 step 44309 train loss:0.23759400844573975
+05/18/2019 00:43:49 - INFO - __main__ -   epoch 1 step 44409 train loss:0.2376469224691391
+05/18/2019 00:44:05 - INFO - __main__ -   epoch 1 step 44509 train loss:0.2376352846622467
+05/18/2019 00:44:21 - INFO - __main__ -   epoch 1 step 44609 train loss:0.2376134842634201
+05/18/2019 00:44:38 - INFO - __main__ -   epoch 1 step 44709 train loss:0.2376156896352768
+05/18/2019 00:44:54 - INFO - __main__ -   epoch 1 step 44809 train loss:0.2376258820295334
+05/18/2019 00:45:10 - INFO - __main__ -   epoch 1 step 44909 train loss:0.23764704167842865
+05/18/2019 00:45:25 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 00:57:15 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_45000_predictions.json
+05/18/2019 00:57:15 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_45000_nbest_predictions.json
+05/18/2019 00:57:59 - INFO - __main__ -   start evaluation script.................
+05/18/2019 00:58:00 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 00:58:00 - INFO - __main__ -   epoch 1 step 45000 eval_loss: 5.702413558959961 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 00:58:01 - INFO - __main__ -   epoch 1 step 45009 train loss:0.23764710128307343
+05/18/2019 00:58:18 - INFO - __main__ -   epoch 1 step 45109 train loss:0.23761487007141113
+05/18/2019 00:58:34 - INFO - __main__ -   epoch 1 step 45209 train loss:0.2376364916563034
+05/18/2019 00:58:50 - INFO - __main__ -   epoch 1 step 45309 train loss:0.23764637112617493
+05/18/2019 00:59:06 - INFO - __main__ -   epoch 1 step 45409 train loss:0.2376132309436798
+05/18/2019 00:59:22 - INFO - __main__ -   epoch 1 step 45509 train loss:0.23761390149593353
+05/18/2019 00:59:39 - INFO - __main__ -   epoch 1 step 45609 train loss:0.23761463165283203
+05/18/2019 00:59:55 - INFO - __main__ -   epoch 1 step 45709 train loss:0.23761387169361115
+05/18/2019 01:00:11 - INFO - __main__ -   epoch 1 step 45809 train loss:0.2376469224691391
+05/18/2019 01:00:27 - INFO - __main__ -   epoch 1 step 45909 train loss:0.23761315643787384
+05/18/2019 01:00:43 - INFO - __main__ -   epoch 1 step 46009 train loss:0.23763525485992432
+05/18/2019 01:01:00 - INFO - __main__ -   epoch 1 step 46109 train loss:0.23764696717262268
+05/18/2019 01:01:16 - INFO - __main__ -   epoch 1 step 46209 train loss:0.23760230839252472
+05/18/2019 01:01:32 - INFO - __main__ -   epoch 1 step 46309 train loss:0.23760215938091278
+05/18/2019 01:01:48 - INFO - __main__ -   epoch 1 step 46409 train loss:0.23763523995876312
+05/18/2019 01:02:05 - INFO - __main__ -   epoch 1 step 46509 train loss:0.23761196434497833
+05/18/2019 01:02:21 - INFO - __main__ -   epoch 1 step 46609 train loss:0.23762403428554535
+05/18/2019 01:02:37 - INFO - __main__ -   epoch 1 step 46709 train loss:0.23762349784374237
+05/18/2019 01:02:53 - INFO - __main__ -   epoch 1 step 46809 train loss:0.23762357234954834
+05/18/2019 01:03:10 - INFO - __main__ -   epoch 1 step 46909 train loss:0.23759058117866516
+05/18/2019 01:03:26 - INFO - __main__ -   epoch 1 step 47009 train loss:0.2376236766576767
+05/18/2019 01:03:42 - INFO - __main__ -   epoch 1 step 47109 train loss:0.23762404918670654
+05/18/2019 01:03:59 - INFO - __main__ -   epoch 1 step 47209 train loss:0.23762333393096924
+05/18/2019 01:04:15 - INFO - __main__ -   epoch 1 step 47309 train loss:0.23758971691131592
+05/18/2019 01:04:31 - INFO - __main__ -   epoch 1 step 47409 train loss:0.2376236766576767
+05/18/2019 01:04:47 - INFO - __main__ -   epoch 1 step 47509 train loss:0.23763537406921387
+05/18/2019 01:05:03 - INFO - __main__ -   epoch 1 step 47609 train loss:0.23762376606464386
+05/18/2019 01:05:20 - INFO - __main__ -   epoch 1 step 47709 train loss:0.23762355744838715
+05/18/2019 01:05:36 - INFO - __main__ -   epoch 1 step 47809 train loss:0.2376231998205185
+05/18/2019 01:05:52 - INFO - __main__ -   epoch 1 step 47909 train loss:0.23762424290180206
+05/18/2019 01:06:07 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 01:17:58 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_48000_predictions.json
+05/18/2019 01:17:58 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_48000_nbest_predictions.json
+05/18/2019 01:18:46 - INFO - __main__ -   start evaluation script.................
+05/18/2019 01:18:46 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 01:18:46 - INFO - __main__ -   epoch 1 step 48000 eval_loss: 5.702356338500977 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 01:18:48 - INFO - __main__ -   epoch 1 step 48009 train loss:0.2376130372285843
+05/18/2019 01:19:04 - INFO - __main__ -   epoch 1 step 48109 train loss:0.23762290179729462
+05/18/2019 01:19:20 - INFO - __main__ -   epoch 1 step 48209 train loss:0.23764674365520477
+05/18/2019 01:19:36 - INFO - __main__ -   epoch 1 step 48309 train loss:0.23760052025318146
+05/18/2019 01:19:52 - INFO - __main__ -   epoch 1 step 48409 train loss:0.23760008811950684
+05/18/2019 01:20:09 - INFO - __main__ -   epoch 1 step 48509 train loss:0.23760075867176056
+05/18/2019 01:20:25 - INFO - __main__ -   epoch 1 step 48609 train loss:0.2376118004322052
+05/18/2019 01:20:41 - INFO - __main__ -   epoch 1 step 48709 train loss:0.2376118153333664
+05/18/2019 01:20:57 - INFO - __main__ -   epoch 1 step 48809 train loss:0.23763452470302582
+05/18/2019 01:21:13 - INFO - __main__ -   epoch 1 step 48909 train loss:0.2376347780227661
+05/18/2019 01:21:30 - INFO - __main__ -   epoch 1 step 49009 train loss:0.23757672309875488
+05/18/2019 01:21:46 - INFO - __main__ -   epoch 1 step 49109 train loss:0.23760008811950684
+05/18/2019 01:22:02 - INFO - __main__ -   epoch 1 step 49209 train loss:0.23760055005550385
+05/18/2019 01:22:18 - INFO - __main__ -   epoch 1 step 49309 train loss:0.23764626681804657
+05/18/2019 01:22:35 - INFO - __main__ -   epoch 1 step 49409 train loss:0.23759996891021729
+05/18/2019 01:22:51 - INFO - __main__ -   epoch 1 step 49509 train loss:0.23758919537067413
+05/18/2019 01:23:07 - INFO - __main__ -   epoch 1 step 49609 train loss:0.23762312531471252
+05/18/2019 01:23:23 - INFO - __main__ -   epoch 1 step 49709 train loss:0.23762302100658417
+05/18/2019 01:23:40 - INFO - __main__ -   epoch 1 step 49809 train loss:0.23761168122291565
+05/18/2019 01:23:56 - INFO - __main__ -   epoch 1 step 49909 train loss:0.23761196434497833
+05/18/2019 01:24:12 - INFO - __main__ -   epoch 1 step 50009 train loss:0.2376345694065094
+05/18/2019 01:24:28 - INFO - __main__ -   epoch 1 step 50109 train loss:0.2376348227262497
+05/18/2019 01:24:45 - INFO - __main__ -   epoch 1 step 50209 train loss:0.23758821189403534
+05/18/2019 01:25:01 - INFO - __main__ -   epoch 1 step 50309 train loss:0.23759977519512177
+05/18/2019 01:25:17 - INFO - __main__ -   epoch 1 step 50409 train loss:0.23762312531471252
+05/18/2019 01:25:33 - INFO - __main__ -   epoch 1 step 50509 train loss:0.23759996891021729
+05/18/2019 01:25:49 - INFO - __main__ -   epoch 1 step 50609 train loss:0.23763449490070343
+05/18/2019 01:26:06 - INFO - __main__ -   epoch 1 step 50709 train loss:0.23761145770549774
+05/18/2019 01:26:22 - INFO - __main__ -   epoch 1 step 50809 train loss:0.23763476312160492
+05/18/2019 01:26:38 - INFO - __main__ -   epoch 1 step 50909 train loss:0.2376110851764679
+05/18/2019 01:26:53 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 01:38:44 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_51000_predictions.json
+05/18/2019 01:38:44 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_51000_nbest_predictions.json
+05/18/2019 01:39:28 - INFO - __main__ -   start evaluation script.................
+05/18/2019 01:39:29 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 01:39:29 - INFO - __main__ -   epoch 1 step 51000 eval_loss: 5.702328205108643 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 01:39:31 - INFO - __main__ -   epoch 1 step 51009 train loss:0.23759989440441132
+05/18/2019 01:39:47 - INFO - __main__ -   epoch 1 step 51109 train loss:0.23761141300201416
+05/18/2019 01:40:03 - INFO - __main__ -   epoch 1 step 51209 train loss:0.23763488233089447
+05/18/2019 01:40:19 - INFO - __main__ -   epoch 1 step 51309 train loss:0.237611323595047
+05/18/2019 01:40:35 - INFO - __main__ -   epoch 1 step 51409 train loss:0.23761124908924103
+05/18/2019 01:40:52 - INFO - __main__ -   epoch 1 step 51509 train loss:0.23759977519512177
+05/18/2019 01:41:08 - INFO - __main__ -   epoch 1 step 51609 train loss:0.2376345694065094
+05/18/2019 01:41:24 - INFO - __main__ -   epoch 1 step 51709 train loss:0.23764625191688538
+05/18/2019 01:41:40 - INFO - __main__ -   epoch 1 step 51809 train loss:0.23759973049163818
+05/18/2019 01:41:56 - INFO - __main__ -   epoch 1 step 51909 train loss:0.23761136829853058
+05/18/2019 01:42:13 - INFO - __main__ -   epoch 1 step 52009 train loss:0.23758773505687714
+05/18/2019 01:42:29 - INFO - __main__ -   epoch 1 step 52109 train loss:0.23759965598583221
+05/18/2019 01:42:45 - INFO - __main__ -   epoch 1 step 52209 train loss:0.23764632642269135
+05/18/2019 01:43:01 - INFO - __main__ -   epoch 1 step 52309 train loss:0.2376231700181961
+05/18/2019 01:43:18 - INFO - __main__ -   epoch 1 step 52409 train loss:0.23763468861579895
+05/18/2019 01:43:34 - INFO - __main__ -   epoch 1 step 52509 train loss:0.2376229614019394
+05/18/2019 01:43:50 - INFO - __main__ -   epoch 1 step 52609 train loss:0.2375882863998413
+05/18/2019 01:44:06 - INFO - __main__ -   epoch 1 step 52709 train loss:0.23761115968227386
+05/18/2019 01:44:23 - INFO - __main__ -   epoch 1 step 52809 train loss:0.23761121928691864
+05/18/2019 01:44:39 - INFO - __main__ -   epoch 1 step 52909 train loss:0.23763485252857208
+05/18/2019 01:44:55 - INFO - __main__ -   epoch 1 step 53009 train loss:0.2376001626253128
+05/18/2019 01:45:11 - INFO - __main__ -   epoch 1 step 53109 train loss:0.2376227229833603
+05/18/2019 01:45:27 - INFO - __main__ -   epoch 1 step 53209 train loss:0.23755288124084473
+05/18/2019 01:45:44 - INFO - __main__ -   epoch 1 step 53309 train loss:0.23762288689613342
+05/18/2019 01:46:00 - INFO - __main__ -   epoch 1 step 53409 train loss:0.23759965598583221
+05/18/2019 01:46:16 - INFO - __main__ -   epoch 1 step 53509 train loss:0.2376115620136261
+05/18/2019 01:46:32 - INFO - __main__ -   epoch 1 step 53609 train loss:0.23759940266609192
+05/18/2019 01:46:49 - INFO - __main__ -   epoch 1 step 53709 train loss:0.2376111000776291
+05/18/2019 01:47:05 - INFO - __main__ -   epoch 1 step 53809 train loss:0.23762288689613342
+05/18/2019 01:47:21 - INFO - __main__ -   epoch 1 step 53909 train loss:0.2376462072134018
+05/18/2019 01:47:36 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 01:59:28 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_54000_predictions.json
+05/18/2019 01:59:28 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_54000_nbest_predictions.json
+05/18/2019 02:00:21 - INFO - __main__ -   start evaluation script.................
+05/18/2019 02:00:22 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 02:00:22 - INFO - __main__ -   epoch 1 step 54000 eval_loss: 5.702320575714111 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 02:00:23 - INFO - __main__ -   epoch 1 step 54009 train loss:0.23763449490070343
+05/18/2019 02:00:40 - INFO - __main__ -   epoch 1 step 54109 train loss:0.23763449490070343
+05/18/2019 02:00:57 - INFO - __main__ -   epoch 1 step 54209 train loss:0.23758769035339355
+05/18/2019 02:01:14 - INFO - __main__ -   epoch 1 step 54309 train loss:0.23762305080890656
+05/18/2019 02:01:31 - INFO - __main__ -   epoch 1 step 54409 train loss:0.23758788406848907
+05/18/2019 02:01:48 - INFO - __main__ -   epoch 1 step 54509 train loss:0.23759949207305908
+05/18/2019 02:02:04 - INFO - __main__ -   epoch 1 step 54609 train loss:0.23759961128234863
+05/18/2019 02:02:21 - INFO - __main__ -   epoch 1 step 54709 train loss:0.23763468861579895
+05/18/2019 02:02:38 - INFO - __main__ -   epoch 1 step 54809 train loss:0.23761115968227386
+05/18/2019 02:02:55 - INFO - __main__ -   epoch 1 step 54909 train loss:0.23764625191688538
+05/18/2019 02:03:12 - INFO - __main__ -   epoch 1 step 55009 train loss:0.23761115968227386
+05/18/2019 02:03:29 - INFO - __main__ -   epoch 1 step 55109 train loss:0.2376112937927246
+05/18/2019 02:03:45 - INFO - __main__ -   epoch 1 step 55209 train loss:0.2375994771718979
+05/18/2019 02:04:02 - INFO - __main__ -   epoch 1 step 55309 train loss:0.23762281239032745
+05/18/2019 02:04:19 - INFO - __main__ -   epoch 1 step 55409 train loss:0.23763452470302582
+05/18/2019 02:04:36 - INFO - __main__ -   epoch 1 step 55509 train loss:0.237611323595047
+05/18/2019 02:04:53 - INFO - __main__ -   epoch 1 step 55609 train loss:0.23763446509838104
+05/18/2019 02:05:10 - INFO - __main__ -   epoch 1 step 55709 train loss:0.23761124908924103
+05/18/2019 02:05:26 - INFO - __main__ -   epoch 1 step 55809 train loss:0.23762278258800507
+05/18/2019 02:05:43 - INFO - __main__ -   epoch 1 step 55909 train loss:0.23760004341602325
+05/18/2019 02:06:00 - INFO - __main__ -   epoch 1 step 56009 train loss:0.23762285709381104
+05/18/2019 02:06:17 - INFO - __main__ -   epoch 1 step 56109 train loss:0.23759928345680237
+05/18/2019 02:06:34 - INFO - __main__ -   epoch 1 step 56209 train loss:0.23759935796260834
+05/18/2019 02:06:51 - INFO - __main__ -   epoch 1 step 56309 train loss:0.2376345843076706
+05/18/2019 02:07:07 - INFO - __main__ -   epoch 1 step 56409 train loss:0.23762252926826477
+05/18/2019 02:07:24 - INFO - __main__ -   epoch 1 step 56509 train loss:0.23761112987995148
+05/18/2019 02:07:41 - INFO - __main__ -   epoch 1 step 56609 train loss:0.2376345694065094
+05/18/2019 02:07:58 - INFO - __main__ -   epoch 1 step 56709 train loss:0.23758761584758759
+05/18/2019 02:08:15 - INFO - __main__ -   epoch 1 step 56809 train loss:0.23764626681804657
+05/18/2019 02:08:32 - INFO - __main__ -   epoch 1 step 56909 train loss:0.23762281239032745
+05/18/2019 02:08:47 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 02:21:22 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_57000_predictions.json
+05/18/2019 02:21:22 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_57000_nbest_predictions.json
+05/18/2019 02:22:18 - INFO - __main__ -   start evaluation script.................
+05/18/2019 02:22:19 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 02:22:19 - INFO - __main__ -   epoch 1 step 57000 eval_loss: 5.70231819152832 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 02:22:21 - INFO - __main__ -   epoch 1 step 57009 train loss:0.23759987950325012
+05/18/2019 02:22:37 - INFO - __main__ -   epoch 1 step 57109 train loss:0.23758767545223236
+05/18/2019 02:22:54 - INFO - __main__ -   epoch 1 step 57209 train loss:0.23759935796260834
+05/18/2019 02:23:11 - INFO - __main__ -   epoch 1 step 57309 train loss:0.23762281239032745
+05/18/2019 02:23:28 - INFO - __main__ -   epoch 1 step 57409 train loss:0.23765809834003448
+05/18/2019 02:23:45 - INFO - __main__ -   epoch 1 step 57509 train loss:0.23762273788452148
+05/18/2019 02:24:02 - INFO - __main__ -   epoch 1 step 57609 train loss:0.2376462072134018
+05/18/2019 02:24:18 - INFO - __main__ -   epoch 1 step 57709 train loss:0.23761101067066193
+05/18/2019 02:24:35 - INFO - __main__ -   epoch 1 step 57809 train loss:0.23762308061122894
+05/18/2019 02:24:52 - INFO - __main__ -   epoch 1 step 57909 train loss:0.2376345694065094
+05/18/2019 02:25:09 - INFO - __main__ -   epoch 1 step 58009 train loss:0.23763442039489746
+05/18/2019 02:25:26 - INFO - __main__ -   epoch 1 step 58109 train loss:0.23759911954402924
+05/18/2019 02:25:43 - INFO - __main__ -   epoch 1 step 58209 train loss:0.23761086165905
+05/18/2019 02:25:59 - INFO - __main__ -   epoch 1 step 58309 train loss:0.23763461410999298
+05/18/2019 02:26:16 - INFO - __main__ -   epoch 1 step 58409 train loss:0.23761104047298431
+05/18/2019 02:26:33 - INFO - __main__ -   epoch 1 step 58509 train loss:0.2376345694065094
+05/18/2019 02:26:50 - INFO - __main__ -   epoch 1 step 58609 train loss:0.23761086165905
+05/18/2019 02:27:07 - INFO - __main__ -   epoch 1 step 58709 train loss:0.2376110553741455
+05/18/2019 02:27:23 - INFO - __main__ -   epoch 1 step 58809 train loss:0.23763449490070343
+05/18/2019 02:27:40 - INFO - __main__ -   epoch 1 step 58909 train loss:0.23764625191688538
+05/18/2019 02:27:57 - INFO - __main__ -   epoch 1 step 59009 train loss:0.2376343458890915
+05/18/2019 02:28:14 - INFO - __main__ -   epoch 1 step 59109 train loss:0.23762281239032745
+05/18/2019 02:28:30 - INFO - __main__ -   epoch 1 step 59209 train loss:0.23765797913074493
+05/18/2019 02:28:47 - INFO - __main__ -   epoch 1 step 59309 train loss:0.2376110851764679
+05/18/2019 02:29:04 - INFO - __main__ -   epoch 1 step 59409 train loss:0.23762273788452148
+05/18/2019 02:29:21 - INFO - __main__ -   epoch 1 step 59509 train loss:0.23758737742900848
+05/18/2019 02:29:38 - INFO - __main__ -   epoch 1 step 59609 train loss:0.23762264847755432
+05/18/2019 02:29:55 - INFO - __main__ -   epoch 1 step 59709 train loss:0.23761112987995148
+05/18/2019 02:30:12 - INFO - __main__ -   epoch 1 step 59809 train loss:0.2376226931810379
+05/18/2019 02:30:28 - INFO - __main__ -   epoch 1 step 59909 train loss:0.2375992387533188
+05/18/2019 02:30:44 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 02:43:20 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_60000_predictions.json
+05/18/2019 02:43:20 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_60000_nbest_predictions.json
+05/18/2019 02:44:13 - INFO - __main__ -   start evaluation script.................
+05/18/2019 02:44:14 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 02:44:14 - INFO - __main__ -   epoch 1 step 60000 eval_loss: 5.702313423156738 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 02:44:16 - INFO - __main__ -   epoch 1 step 60009 train loss:0.23763446509838104
+05/18/2019 02:44:33 - INFO - __main__ -   epoch 1 step 60109 train loss:0.23762273788452148
+05/18/2019 02:44:49 - INFO - __main__ -   epoch 1 step 60209 train loss:0.2376227229833603
+05/18/2019 02:45:06 - INFO - __main__ -   epoch 1 step 60309 train loss:0.23762278258800507
+05/18/2019 02:45:23 - INFO - __main__ -   epoch 1 step 60409 train loss:0.23761093616485596
+05/18/2019 02:45:40 - INFO - __main__ -   epoch 1 step 60509 train loss:0.23764625191688538
+05/18/2019 02:45:57 - INFO - __main__ -   epoch 1 step 60609 train loss:0.23759932816028595
+05/18/2019 02:46:13 - INFO - __main__ -   epoch 1 step 60709 train loss:0.237634539604187
+05/18/2019 02:46:30 - INFO - __main__ -   epoch 1 step 60809 train loss:0.2376227229833603
+05/18/2019 02:46:47 - INFO - __main__ -   epoch 1 step 60909 train loss:0.23763452470302582
+05/18/2019 02:47:04 - INFO - __main__ -   epoch 1 step 61009 train loss:0.23762281239032745
+05/18/2019 02:47:21 - INFO - __main__ -   epoch 1 step 61109 train loss:0.23761104047298431
+05/18/2019 02:47:38 - INFO - __main__ -   epoch 1 step 61209 train loss:0.23763446509838104
+05/18/2019 02:47:54 - INFO - __main__ -   epoch 1 step 61309 train loss:0.23758748173713684
+05/18/2019 02:48:11 - INFO - __main__ -   epoch 1 step 61409 train loss:0.23758907616138458
+05/18/2019 02:48:28 - INFO - __main__ -   epoch 1 step 61509 train loss:0.23761096596717834
+05/18/2019 02:48:45 - INFO - __main__ -   epoch 1 step 61609 train loss:0.237622931599617
+05/18/2019 02:49:02 - INFO - __main__ -   epoch 1 step 61709 train loss:0.23759964108467102
+05/18/2019 02:49:19 - INFO - __main__ -   epoch 1 step 61809 train loss:0.23759937286376953
+05/18/2019 02:49:35 - INFO - __main__ -   epoch 1 step 61909 train loss:0.23761092126369476
+05/18/2019 02:49:52 - INFO - __main__ -   epoch 1 step 62009 train loss:0.23762273788452148
+05/18/2019 02:50:09 - INFO - __main__ -   epoch 1 step 62109 train loss:0.2376227229833603
+05/18/2019 02:50:26 - INFO - __main__ -   epoch 1 step 62209 train loss:0.2375757247209549
+05/18/2019 02:50:43 - INFO - __main__ -   epoch 1 step 62309 train loss:0.23762260377407074
+05/18/2019 02:51:00 - INFO - __main__ -   epoch 1 step 62409 train loss:0.23762273788452148
+05/18/2019 02:51:17 - INFO - __main__ -   epoch 1 step 62509 train loss:0.23758719861507416
+05/18/2019 02:51:34 - INFO - __main__ -   epoch 1 step 62609 train loss:0.23762264847755432
+05/18/2019 02:51:50 - INFO - __main__ -   epoch 1 step 62709 train loss:0.23762278258800507
+05/18/2019 02:52:07 - INFO - __main__ -   epoch 1 step 62809 train loss:0.23762273788452148
+05/18/2019 02:52:24 - INFO - __main__ -   epoch 1 step 62909 train loss:0.2376462072134018
+05/18/2019 02:52:39 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 03:05:16 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_63000_predictions.json
+05/18/2019 03:05:16 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_63000_nbest_predictions.json
+05/18/2019 03:06:08 - INFO - __main__ -   start evaluation script.................
+05/18/2019 03:06:09 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 03:06:09 - INFO - __main__ -   epoch 1 step 63000 eval_loss: 5.702311992645264 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 03:06:11 - INFO - __main__ -   epoch 1 step 63009 train loss:0.23761093616485596
+05/18/2019 03:06:27 - INFO - __main__ -   epoch 1 step 63109 train loss:0.23763449490070343
+05/18/2019 03:06:44 - INFO - __main__ -   epoch 1 step 63209 train loss:0.2376462072134018
+05/18/2019 03:07:01 - INFO - __main__ -   epoch 1 step 63309 train loss:0.23758743703365326
+05/18/2019 03:07:18 - INFO - __main__ -   epoch 1 step 63409 train loss:0.2376226931810379
+05/18/2019 03:07:35 - INFO - __main__ -   epoch 1 step 63509 train loss:0.23759911954402924
+05/18/2019 03:07:52 - INFO - __main__ -   epoch 1 step 63609 train loss:0.23759916424751282
+05/18/2019 03:08:09 - INFO - __main__ -   epoch 1 step 63709 train loss:0.23761089146137238
+05/18/2019 03:08:25 - INFO - __main__ -   epoch 1 step 63809 train loss:0.23759929835796356
+05/18/2019 03:08:42 - INFO - __main__ -   epoch 1 step 63909 train loss:0.23764625191688538
+05/18/2019 03:08:59 - INFO - __main__ -   epoch 1 step 64009 train loss:0.23764626681804657
+05/18/2019 03:09:16 - INFO - __main__ -   epoch 1 step 64109 train loss:0.2376226931810379
+05/18/2019 03:09:33 - INFO - __main__ -   epoch 1 step 64209 train loss:0.23761104047298431
+05/18/2019 03:09:50 - INFO - __main__ -   epoch 1 step 64309 train loss:0.2376108467578888
+05/18/2019 03:10:07 - INFO - __main__ -   epoch 1 step 64409 train loss:0.2376108467578888
+05/18/2019 03:10:24 - INFO - __main__ -   epoch 1 step 64509 train loss:0.23761098086833954
+05/18/2019 03:10:40 - INFO - __main__ -   epoch 1 step 64609 train loss:0.2376110553741455
+05/18/2019 03:10:57 - INFO - __main__ -   epoch 1 step 64709 train loss:0.2376345694065094
+05/18/2019 03:11:14 - INFO - __main__ -   epoch 1 step 64809 train loss:0.23762278258800507
+05/18/2019 03:11:31 - INFO - __main__ -   epoch 1 step 64909 train loss:0.23761104047298431
+05/18/2019 03:11:48 - INFO - __main__ -   epoch 1 step 65009 train loss:0.2376226931810379
+05/18/2019 03:12:05 - INFO - __main__ -   epoch 1 step 65109 train loss:0.23763442039489746
+05/18/2019 03:12:22 - INFO - __main__ -   epoch 1 step 65209 train loss:0.23762273788452148
+05/18/2019 03:12:39 - INFO - __main__ -   epoch 1 step 65309 train loss:0.2376108169555664
+05/18/2019 03:12:55 - INFO - __main__ -   epoch 1 step 65409 train loss:0.23761089146137238
+05/18/2019 03:13:12 - INFO - __main__ -   epoch 1 step 65509 train loss:0.23759901523590088
+05/18/2019 03:13:29 - INFO - __main__ -   epoch 1 step 65609 train loss:0.23763446509838104
+05/18/2019 03:13:46 - INFO - __main__ -   epoch 1 step 65709 train loss:0.2375878095626831
+05/18/2019 03:14:03 - INFO - __main__ -   epoch 1 step 65809 train loss:0.23764625191688538
+05/18/2019 03:14:20 - INFO - __main__ -   epoch 1 step 65909 train loss:0.23762285709381104
+05/18/2019 03:14:35 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 03:27:14 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_66000_predictions.json
+05/18/2019 03:27:14 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_66000_nbest_predictions.json
+05/18/2019 03:28:07 - INFO - __main__ -   start evaluation script.................
+05/18/2019 03:28:08 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 03:28:08 - INFO - __main__ -   epoch 1 step 66000 eval_loss: 5.702311992645264 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 03:28:10 - INFO - __main__ -   epoch 1 step 66009 train loss:0.2376227229833603
+05/18/2019 03:28:26 - INFO - __main__ -   epoch 1 step 66109 train loss:0.23763437569141388
+05/18/2019 03:28:43 - INFO - __main__ -   epoch 1 step 66209 train loss:0.23758743703365326
+05/18/2019 03:29:00 - INFO - __main__ -   epoch 1 step 66309 train loss:0.23762278258800507
+05/18/2019 03:29:17 - INFO - __main__ -   epoch 1 step 66409 train loss:0.23763445019721985
+05/18/2019 03:29:34 - INFO - __main__ -   epoch 1 step 66509 train loss:0.23763442039489746
+05/18/2019 03:29:50 - INFO - __main__ -   epoch 1 step 66609 train loss:0.237599179148674
+05/18/2019 03:30:07 - INFO - __main__ -   epoch 1 step 66709 train loss:0.23764626681804657
+05/18/2019 03:30:24 - INFO - __main__ -   epoch 1 step 66809 train loss:0.23762264847755432
+05/18/2019 03:30:41 - INFO - __main__ -   epoch 1 step 66909 train loss:0.23759908974170685
+05/18/2019 03:30:58 - INFO - __main__ -   epoch 1 step 67009 train loss:0.2376461774110794
+05/18/2019 03:31:15 - INFO - __main__ -   epoch 1 step 67109 train loss:0.23762254416942596
+05/18/2019 03:31:32 - INFO - __main__ -   epoch 1 step 67209 train loss:0.2376343309879303
+05/18/2019 03:31:48 - INFO - __main__ -   epoch 1 step 67309 train loss:0.23761086165905
+05/18/2019 03:32:05 - INFO - __main__ -   epoch 1 step 67409 train loss:0.237599179148674
+05/18/2019 03:32:22 - INFO - __main__ -   epoch 1 step 67509 train loss:0.23762266337871552
+05/18/2019 03:32:39 - INFO - __main__ -   epoch 1 step 67609 train loss:0.23762266337871552
+05/18/2019 03:32:56 - INFO - __main__ -   epoch 1 step 67709 train loss:0.23762261867523193
+05/18/2019 03:33:13 - INFO - __main__ -   epoch 1 step 67809 train loss:0.23762266337871552
+05/18/2019 03:33:30 - INFO - __main__ -   epoch 1 step 67909 train loss:0.2376580536365509
+05/18/2019 03:33:46 - INFO - __main__ -   epoch 1 step 68009 train loss:0.2376108467578888
+05/18/2019 03:34:03 - INFO - __main__ -   epoch 1 step 68109 train loss:0.23759908974170685
+05/18/2019 03:34:20 - INFO - __main__ -   epoch 1 step 68209 train loss:0.2376226931810379
+05/18/2019 03:34:37 - INFO - __main__ -   epoch 1 step 68309 train loss:0.23762261867523193
+05/18/2019 03:34:54 - INFO - __main__ -   epoch 1 step 68409 train loss:0.23758725821971893
+05/18/2019 03:35:11 - INFO - __main__ -   epoch 1 step 68509 train loss:0.23763442039489746
+05/18/2019 03:35:28 - INFO - __main__ -   epoch 1 step 68609 train loss:0.2376108169555664
+05/18/2019 03:35:45 - INFO - __main__ -   epoch 1 step 68709 train loss:0.23759901523590088
+05/18/2019 03:36:02 - INFO - __main__ -   epoch 1 step 68809 train loss:0.2376462072134018
+05/18/2019 03:36:18 - INFO - __main__ -   epoch 1 step 68909 train loss:0.23758721351623535
+05/18/2019 03:36:34 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 03:49:11 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_69000_predictions.json
+05/18/2019 03:49:11 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_69000_nbest_predictions.json
+05/18/2019 03:50:05 - INFO - __main__ -   start evaluation script.................
+05/18/2019 03:50:06 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 03:50:06 - INFO - __main__ -   epoch 1 step 69000 eval_loss: 5.7023091316223145 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 03:50:07 - INFO - __main__ -   epoch 1 step 69009 train loss:0.23759925365447998
+05/18/2019 03:50:24 - INFO - __main__ -   epoch 1 step 69109 train loss:0.2376461774110794
+05/18/2019 03:50:41 - INFO - __main__ -   epoch 1 step 69209 train loss:0.2376108169555664
+05/18/2019 03:50:57 - INFO - __main__ -   epoch 1 step 69309 train loss:0.23763445019721985
+05/18/2019 03:51:14 - INFO - __main__ -   epoch 1 step 69409 train loss:0.23762257397174835
+05/18/2019 03:51:31 - INFO - __main__ -   epoch 1 step 69509 train loss:0.2376226931810379
+05/18/2019 03:51:48 - INFO - __main__ -   epoch 1 step 69609 train loss:0.23761096596717834
+05/18/2019 03:52:05 - INFO - __main__ -   epoch 1 step 69709 train loss:0.23759916424751282
+05/18/2019 03:52:21 - INFO - __main__ -   epoch 1 step 69809 train loss:0.23761089146137238
+05/18/2019 03:52:38 - INFO - __main__ -   epoch 1 step 69909 train loss:0.23762254416942596
+05/18/2019 03:52:55 - INFO - __main__ -   epoch 1 step 70009 train loss:0.237599179148674
+05/18/2019 03:53:12 - INFO - __main__ -   epoch 1 step 70109 train loss:0.23763440549373627
+05/18/2019 03:53:29 - INFO - __main__ -   epoch 1 step 70209 train loss:0.23761068284511566
+05/18/2019 03:53:46 - INFO - __main__ -   epoch 1 step 70309 train loss:0.2376108467578888
+05/18/2019 03:54:03 - INFO - __main__ -   epoch 1 step 70409 train loss:0.23759913444519043
+05/18/2019 03:54:19 - INFO - __main__ -   epoch 1 step 70509 train loss:0.23763437569141388
+05/18/2019 03:54:36 - INFO - __main__ -   epoch 1 step 70609 train loss:0.2376108467578888
+05/18/2019 03:54:54 - INFO - __main__ -   epoch 1 step 70709 train loss:0.23758725821971893
+05/18/2019 03:55:11 - INFO - __main__ -   epoch 1 step 70809 train loss:0.2376461774110794
+05/18/2019 03:55:28 - INFO - __main__ -   epoch 1 step 70909 train loss:0.23761093616485596
+05/18/2019 03:55:44 - INFO - __main__ -   epoch 1 step 71009 train loss:0.23759905993938446
+05/18/2019 03:56:01 - INFO - __main__ -   epoch 1 step 71109 train loss:0.23762260377407074
+05/18/2019 03:56:18 - INFO - __main__ -   epoch 1 step 71209 train loss:0.23763437569141388
+05/18/2019 03:56:35 - INFO - __main__ -   epoch 1 step 71309 train loss:0.2375992089509964
+05/18/2019 03:56:52 - INFO - __main__ -   epoch 1 step 71409 train loss:0.23763442039489746
+05/18/2019 03:57:09 - INFO - __main__ -   epoch 1 step 71509 train loss:0.23762264847755432
+05/18/2019 03:57:26 - INFO - __main__ -   epoch 1 step 71609 train loss:0.2376108020544052
+05/18/2019 03:57:43 - INFO - __main__ -   epoch 1 step 71709 train loss:0.23762264847755432
+05/18/2019 03:58:00 - INFO - __main__ -   epoch 1 step 71809 train loss:0.23759987950325012
+05/18/2019 03:58:16 - INFO - __main__ -   epoch 1 step 71909 train loss:0.23758724331855774
+05/18/2019 03:58:32 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 04:11:11 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_72000_predictions.json
+05/18/2019 04:11:11 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_72000_nbest_predictions.json
+05/18/2019 04:12:04 - INFO - __main__ -   start evaluation script.................
+05/18/2019 04:12:05 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 04:12:05 - INFO - __main__ -   epoch 1 step 72000 eval_loss: 5.702309608459473 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 04:12:07 - INFO - __main__ -   epoch 1 step 72009 train loss:0.23763442039489746
+05/18/2019 04:12:23 - INFO - __main__ -   epoch 1 step 72109 train loss:0.2376226931810379
+05/18/2019 04:12:40 - INFO - __main__ -   epoch 1 step 72209 train loss:0.2376108020544052
+05/18/2019 04:12:57 - INFO - __main__ -   epoch 1 step 72309 train loss:0.23758728802204132
+05/18/2019 04:13:14 - INFO - __main__ -   epoch 1 step 72409 train loss:0.2376108467578888
+05/18/2019 04:13:31 - INFO - __main__ -   epoch 1 step 72509 train loss:0.23758721351623535
+05/18/2019 04:13:48 - INFO - __main__ -   epoch 1 step 72609 train loss:0.2376343458890915
+05/18/2019 04:14:04 - INFO - __main__ -   epoch 1 step 72709 train loss:0.23759904503822327
+05/18/2019 04:14:21 - INFO - __main__ -   epoch 1 step 72809 train loss:0.23757557570934296
+05/18/2019 04:14:38 - INFO - __main__ -   epoch 1 step 72909 train loss:0.23761092126369476
+05/18/2019 04:14:55 - INFO - __main__ -   epoch 1 step 73009 train loss:0.23759911954402924
+05/18/2019 04:15:12 - INFO - __main__ -   epoch 1 step 73109 train loss:0.23761086165905
+05/18/2019 04:15:29 - INFO - __main__ -   epoch 1 step 73209 train loss:0.2376108467578888
+05/18/2019 04:15:46 - INFO - __main__ -   epoch 1 step 73309 train loss:0.2376345694065094
+05/18/2019 04:16:03 - INFO - __main__ -   epoch 1 step 73409 train loss:0.2376108020544052
+05/18/2019 04:16:20 - INFO - __main__ -   epoch 1 step 73509 train loss:0.23762264847755432
+05/18/2019 04:16:37 - INFO - __main__ -   epoch 1 step 73609 train loss:0.23762264847755432
+05/18/2019 04:16:53 - INFO - __main__ -   epoch 1 step 73709 train loss:0.2375880777835846
+05/18/2019 04:17:10 - INFO - __main__ -   epoch 1 step 73809 train loss:0.23759901523590088
+05/18/2019 04:17:27 - INFO - __main__ -   epoch 1 step 73909 train loss:0.23758724331855774
+05/18/2019 04:17:44 - INFO - __main__ -   epoch 1 step 74009 train loss:0.2376345694065094
+05/18/2019 04:18:01 - INFO - __main__ -   epoch 1 step 74109 train loss:0.2376108020544052
+05/18/2019 04:18:18 - INFO - __main__ -   epoch 1 step 74209 train loss:0.2375873625278473
+05/18/2019 04:18:34 - INFO - __main__ -   epoch 1 step 74309 train loss:0.23762257397174835
+05/18/2019 04:18:51 - INFO - __main__ -   epoch 1 step 74409 train loss:0.2376108467578888
+05/18/2019 04:19:08 - INFO - __main__ -   epoch 1 step 74509 train loss:0.23759916424751282
+05/18/2019 04:19:25 - INFO - __main__ -   epoch 1 step 74609 train loss:0.23762264847755432
+05/18/2019 04:19:42 - INFO - __main__ -   epoch 1 step 74709 train loss:0.23762257397174835
+05/18/2019 04:19:59 - INFO - __main__ -   epoch 1 step 74809 train loss:0.23763449490070343
+05/18/2019 04:20:16 - INFO - __main__ -   epoch 1 step 74909 train loss:0.23761074244976044
+05/18/2019 04:20:31 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 04:33:07 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_75000_predictions.json
+05/18/2019 04:33:07 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_75000_nbest_predictions.json
+05/18/2019 04:34:00 - INFO - __main__ -   start evaluation script.................
+05/18/2019 04:34:01 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 04:34:01 - INFO - __main__ -   epoch 1 step 75000 eval_loss: 5.70230770111084 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 04:34:02 - INFO - __main__ -   epoch 1 step 75009 train loss:0.23758721351623535
+05/18/2019 04:34:19 - INFO - __main__ -   epoch 1 step 75109 train loss:0.23762260377407074
+05/18/2019 04:34:36 - INFO - __main__ -   epoch 1 step 75209 train loss:0.23761077225208282
+05/18/2019 04:34:52 - INFO - __main__ -   epoch 1 step 75309 train loss:0.2375871241092682
+05/18/2019 04:35:09 - INFO - __main__ -   epoch 1 step 75409 train loss:0.23761077225208282
+05/18/2019 04:35:26 - INFO - __main__ -   epoch 1 step 75509 train loss:0.23761086165905
+05/18/2019 04:35:43 - INFO - __main__ -   epoch 1 step 75609 train loss:0.23759900033473969
+05/18/2019 04:36:00 - INFO - __main__ -   epoch 1 step 75709 train loss:0.2376108020544052
+05/18/2019 04:36:17 - INFO - __main__ -   epoch 1 step 75809 train loss:0.23758795857429504
+05/18/2019 04:36:33 - INFO - __main__ -   epoch 1 step 75909 train loss:0.23759929835796356
+05/18/2019 04:36:50 - INFO - __main__ -   epoch 1 step 76009 train loss:0.2376108169555664
+05/18/2019 04:37:07 - INFO - __main__ -   epoch 1 step 76109 train loss:0.23761092126369476
+05/18/2019 04:37:24 - INFO - __main__ -   epoch 1 step 76209 train loss:0.23761065304279327
+05/18/2019 04:37:41 - INFO - __main__ -   epoch 1 step 76309 train loss:0.2376108467578888
+05/18/2019 04:37:58 - INFO - __main__ -   epoch 1 step 76409 train loss:0.23759901523590088
+05/18/2019 04:38:14 - INFO - __main__ -   epoch 1 step 76509 train loss:0.2376343458890915
+05/18/2019 04:38:31 - INFO - __main__ -   epoch 1 step 76609 train loss:0.23763446509838104
+05/18/2019 04:38:48 - INFO - __main__ -   epoch 1 step 76709 train loss:0.23761089146137238
+05/18/2019 04:39:05 - INFO - __main__ -   epoch 1 step 76809 train loss:0.23761074244976044
+05/18/2019 04:39:22 - INFO - __main__ -   epoch 1 step 76909 train loss:0.23756353557109833
+05/18/2019 04:39:39 - INFO - __main__ -   epoch 1 step 77009 train loss:0.23762249946594238
+05/18/2019 04:39:56 - INFO - __main__ -   epoch 1 step 77109 train loss:0.2375754415988922
+05/18/2019 04:40:13 - INFO - __main__ -   epoch 1 step 77209 train loss:0.23762260377407074
+05/18/2019 04:40:29 - INFO - __main__ -   epoch 1 step 77309 train loss:0.23762261867523193
+05/18/2019 04:40:46 - INFO - __main__ -   epoch 1 step 77409 train loss:0.23759904503822327
+05/18/2019 04:41:03 - INFO - __main__ -   epoch 1 step 77509 train loss:0.2376461774110794
+05/18/2019 04:41:20 - INFO - __main__ -   epoch 1 step 77609 train loss:0.23763446509838104
+05/18/2019 04:41:37 - INFO - __main__ -   epoch 1 step 77709 train loss:0.23762261867523193
+05/18/2019 04:41:54 - INFO - __main__ -   epoch 1 step 77809 train loss:0.23759900033473969
+05/18/2019 04:42:11 - INFO - __main__ -   epoch 1 step 77909 train loss:0.23762261867523193
+05/18/2019 04:42:26 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 04:55:01 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_78000_predictions.json
+05/18/2019 04:55:01 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_78000_nbest_predictions.json
+05/18/2019 04:55:55 - INFO - __main__ -   start evaluation script.................
+05/18/2019 04:55:56 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 04:55:56 - INFO - __main__ -   epoch 1 step 78000 eval_loss: 5.702307224273682 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 04:55:57 - INFO - __main__ -   epoch 1 step 78009 train loss:0.2375989407300949
+05/18/2019 04:56:14 - INFO - __main__ -   epoch 1 step 78109 train loss:0.23762260377407074
+05/18/2019 04:56:31 - INFO - __main__ -   epoch 1 step 78209 train loss:0.23763437569141388
+05/18/2019 04:56:48 - INFO - __main__ -   epoch 1 step 78309 train loss:0.23762261867523193
+05/18/2019 04:57:04 - INFO - __main__ -   epoch 1 step 78409 train loss:0.23759911954402924
+05/18/2019 04:57:21 - INFO - __main__ -   epoch 1 step 78509 train loss:0.2375873178243637
+05/18/2019 04:57:38 - INFO - __main__ -   epoch 1 step 78609 train loss:0.23762260377407074
+05/18/2019 04:57:55 - INFO - __main__ -   epoch 1 step 78709 train loss:0.2376343309879303
+05/18/2019 04:58:12 - INFO - __main__ -   epoch 1 step 78809 train loss:0.23763440549373627
+05/18/2019 04:58:29 - INFO - __main__ -   epoch 1 step 78909 train loss:0.23761086165905
+05/18/2019 04:58:45 - INFO - __main__ -   epoch 1 step 79009 train loss:0.23762257397174835
+05/18/2019 04:59:02 - INFO - __main__ -   epoch 1 step 79109 train loss:0.2375992089509964
+05/18/2019 04:59:19 - INFO - __main__ -   epoch 1 step 79209 train loss:0.23758716881275177
+05/18/2019 04:59:36 - INFO - __main__ -   epoch 1 step 79309 train loss:0.23759900033473969
+05/18/2019 04:59:53 - INFO - __main__ -   epoch 1 step 79409 train loss:0.23762273788452148
+05/18/2019 05:00:10 - INFO - __main__ -   epoch 1 step 79509 train loss:0.23762266337871552
+05/18/2019 05:00:27 - INFO - __main__ -   epoch 1 step 79609 train loss:0.23762254416942596
+05/18/2019 05:00:43 - INFO - __main__ -   epoch 1 step 79709 train loss:0.23761077225208282
+05/18/2019 05:01:00 - INFO - __main__ -   epoch 1 step 79809 train loss:0.23759900033473969
+05/18/2019 05:01:17 - INFO - __main__ -   epoch 1 step 79909 train loss:0.23759892582893372
+05/18/2019 05:01:34 - INFO - __main__ -   epoch 1 step 80009 train loss:0.2375989705324173
+05/18/2019 05:01:51 - INFO - __main__ -   epoch 1 step 80109 train loss:0.23763442039489746
+05/18/2019 05:02:08 - INFO - __main__ -   epoch 1 step 80209 train loss:0.2376108169555664
+05/18/2019 05:02:24 - INFO - __main__ -   epoch 1 step 80309 train loss:0.23762266337871552
+05/18/2019 05:02:41 - INFO - __main__ -   epoch 1 step 80409 train loss:0.23758716881275177
+05/18/2019 05:02:58 - INFO - __main__ -   epoch 1 step 80509 train loss:0.23762254416942596
+05/18/2019 05:03:15 - INFO - __main__ -   epoch 1 step 80609 train loss:0.23764614760875702
+05/18/2019 05:03:32 - INFO - __main__ -   epoch 1 step 80709 train loss:0.23762260377407074
+05/18/2019 05:03:49 - INFO - __main__ -   epoch 1 step 80809 train loss:0.237646222114563
+05/18/2019 05:04:05 - INFO - __main__ -   epoch 1 step 80909 train loss:0.2376343458890915
+05/18/2019 05:04:21 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 05:16:53 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_81000_predictions.json
+05/18/2019 05:16:53 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_81000_nbest_predictions.json
+05/18/2019 05:17:46 - INFO - __main__ -   start evaluation script.................
+05/18/2019 05:17:47 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 05:17:47 - INFO - __main__ -   epoch 1 step 81000 eval_loss: 5.702307224273682 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 05:17:49 - INFO - __main__ -   epoch 1 step 81009 train loss:0.23762261867523193
+05/18/2019 05:18:05 - INFO - __main__ -   epoch 1 step 81109 train loss:0.23758716881275177
+05/18/2019 05:18:22 - INFO - __main__ -   epoch 1 step 81209 train loss:0.23758713901042938
+05/18/2019 05:18:39 - INFO - __main__ -   epoch 1 step 81309 train loss:0.23759901523590088
+05/18/2019 05:18:56 - INFO - __main__ -   epoch 1 step 81409 train loss:0.23762266337871552
+05/18/2019 05:19:13 - INFO - __main__ -   epoch 1 step 81509 train loss:0.23759900033473969
+05/18/2019 05:19:30 - INFO - __main__ -   epoch 1 step 81609 train loss:0.2376108020544052
+05/18/2019 05:19:46 - INFO - __main__ -   epoch 1 step 81709 train loss:0.2375989407300949
+05/18/2019 05:20:03 - INFO - __main__ -   epoch 1 step 81809 train loss:0.23761077225208282
+05/18/2019 05:20:20 - INFO - __main__ -   epoch 1 step 81909 train loss:0.23759900033473969
+05/18/2019 05:20:37 - INFO - __main__ -   epoch 1 step 82009 train loss:0.23761077225208282
+05/18/2019 05:20:54 - INFO - __main__ -   epoch 1 step 82109 train loss:0.23759904503822327
+05/18/2019 05:21:11 - INFO - __main__ -   epoch 1 step 82209 train loss:0.2375754565000534
+05/18/2019 05:21:27 - INFO - __main__ -   epoch 1 step 82309 train loss:0.23761077225208282
+05/18/2019 05:21:44 - INFO - __main__ -   epoch 1 step 82409 train loss:0.23763437569141388
+05/18/2019 05:22:01 - INFO - __main__ -   epoch 1 step 82509 train loss:0.2376108169555664
+05/18/2019 05:22:18 - INFO - __main__ -   epoch 1 step 82609 train loss:0.23763437569141388
+05/18/2019 05:22:35 - INFO - __main__ -   epoch 1 step 82709 train loss:0.23765797913074493
+05/18/2019 05:22:52 - INFO - __main__ -   epoch 1 step 82809 train loss:0.2376343458890915
+05/18/2019 05:23:08 - INFO - __main__ -   epoch 1 step 82909 train loss:0.23758719861507416
+05/18/2019 05:23:25 - INFO - __main__ -   epoch 1 step 83009 train loss:0.23758719861507416
+05/18/2019 05:23:42 - INFO - __main__ -   epoch 1 step 83109 train loss:0.23759901523590088
+05/18/2019 05:23:59 - INFO - __main__ -   epoch 1 step 83209 train loss:0.23757560551166534
+05/18/2019 05:24:15 - INFO - __main__ -   epoch 1 step 83309 train loss:0.23763437569141388
+05/18/2019 05:24:32 - INFO - __main__ -   epoch 1 step 83409 train loss:0.23761077225208282
+05/18/2019 05:24:49 - INFO - __main__ -   epoch 1 step 83509 train loss:0.23762260377407074
+05/18/2019 05:25:06 - INFO - __main__ -   epoch 1 step 83609 train loss:0.23762266337871552
+05/18/2019 05:25:23 - INFO - __main__ -   epoch 1 step 83709 train loss:0.23758724331855774
+05/18/2019 05:25:40 - INFO - __main__ -   epoch 1 step 83809 train loss:0.2376108020544052
+05/18/2019 05:25:57 - INFO - __main__ -   epoch 1 step 83909 train loss:0.2376108467578888
+05/18/2019 05:26:12 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 05:38:47 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_84000_predictions.json
+05/18/2019 05:38:47 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_84000_nbest_predictions.json
+05/18/2019 05:39:42 - INFO - __main__ -   start evaluation script.................
+05/18/2019 05:39:43 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 05:39:43 - INFO - __main__ -   epoch 1 step 84000 eval_loss: 5.702307224273682 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 05:39:44 - INFO - __main__ -   epoch 1 step 84009 train loss:0.23763442039489746
+05/18/2019 05:40:01 - INFO - __main__ -   epoch 1 step 84109 train loss:0.23759901523590088
+05/18/2019 05:40:18 - INFO - __main__ -   epoch 1 step 84209 train loss:0.2376108020544052
+05/18/2019 05:40:34 - INFO - __main__ -   epoch 1 step 84309 train loss:0.23763437569141388
+05/18/2019 05:40:51 - INFO - __main__ -   epoch 1 step 84409 train loss:0.23762257397174835
+05/18/2019 05:41:08 - INFO - __main__ -   epoch 1 step 84509 train loss:0.23762273788452148
+05/18/2019 05:41:25 - INFO - __main__ -   epoch 1 step 84609 train loss:0.2375989705324173
+05/18/2019 05:41:42 - INFO - __main__ -   epoch 1 step 84709 train loss:0.2376461774110794
+05/18/2019 05:41:58 - INFO - __main__ -   epoch 1 step 84809 train loss:0.23764614760875702
+05/18/2019 05:42:15 - INFO - __main__ -   epoch 1 step 84909 train loss:0.23759892582893372
+05/18/2019 05:42:32 - INFO - __main__ -   epoch 1 step 85009 train loss:0.2375989705324173
+05/18/2019 05:42:49 - INFO - __main__ -   epoch 1 step 85109 train loss:0.23761086165905
+05/18/2019 05:43:05 - INFO - __main__ -   epoch 1 step 85209 train loss:0.23762260377407074
+05/18/2019 05:43:22 - INFO - __main__ -   epoch 1 step 85309 train loss:0.23759900033473969
+05/18/2019 05:43:39 - INFO - __main__ -   epoch 1 step 85409 train loss:0.23762252926826477
+05/18/2019 05:43:56 - INFO - __main__ -   epoch 1 step 85509 train loss:0.23762254416942596
+05/18/2019 05:44:13 - INFO - __main__ -   epoch 1 step 85609 train loss:0.23761077225208282
+05/18/2019 05:44:30 - INFO - __main__ -   epoch 1 step 85709 train loss:0.23762254416942596
+05/18/2019 05:44:47 - INFO - __main__ -   epoch 1 step 85809 train loss:0.2375989407300949
+05/18/2019 05:45:03 - INFO - __main__ -   epoch 1 step 85909 train loss:0.2376343458890915
+05/18/2019 05:45:20 - INFO - __main__ -   epoch 1 step 86009 train loss:0.23759901523590088
+05/18/2019 05:45:37 - INFO - __main__ -   epoch 1 step 86109 train loss:0.23761077225208282
+05/18/2019 05:45:54 - INFO - __main__ -   epoch 1 step 86209 train loss:0.23761092126369476
+05/18/2019 05:46:10 - INFO - __main__ -   epoch 1 step 86309 train loss:0.23762252926826477
+05/18/2019 05:46:27 - INFO - __main__ -   epoch 1 step 86409 train loss:0.23763437569141388
+05/18/2019 05:46:44 - INFO - __main__ -   epoch 1 step 86509 train loss:0.23763442039489746
+05/18/2019 05:47:00 - INFO - __main__ -   epoch 1 step 86609 train loss:0.23761086165905
+05/18/2019 05:47:17 - INFO - __main__ -   epoch 1 step 86709 train loss:0.23762254416942596
+05/18/2019 05:47:34 - INFO - __main__ -   epoch 1 step 86809 train loss:0.2376462072134018
+05/18/2019 05:47:51 - INFO - __main__ -   epoch 1 step 86909 train loss:0.23763437569141388
+05/18/2019 05:48:06 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 06:00:39 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_87000_predictions.json
+05/18/2019 06:00:39 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_87000_nbest_predictions.json
+05/18/2019 06:01:34 - INFO - __main__ -   start evaluation script.................
+05/18/2019 06:01:34 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 06:01:35 - INFO - __main__ -   epoch 1 step 87000 eval_loss: 5.702305316925049 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 06:01:36 - INFO - __main__ -   epoch 1 step 87009 train loss:0.23761072754859924
+05/18/2019 06:01:53 - INFO - __main__ -   epoch 1 step 87109 train loss:0.23761077225208282
+05/18/2019 06:02:09 - INFO - __main__ -   epoch 1 step 87209 train loss:0.23763437569141388
+05/18/2019 06:02:26 - INFO - __main__ -   epoch 1 step 87309 train loss:0.2376343309879303
+05/18/2019 06:02:43 - INFO - __main__ -   epoch 1 step 87409 train loss:0.2375989407300949
+05/18/2019 06:03:00 - INFO - __main__ -   epoch 1 step 87509 train loss:0.23759888112545013
+05/18/2019 06:03:16 - INFO - __main__ -   epoch 1 step 87609 train loss:0.23758716881275177
+05/18/2019 06:03:33 - INFO - __main__ -   epoch 1 step 87709 train loss:0.23764614760875702
+05/18/2019 06:03:50 - INFO - __main__ -   epoch 1 step 87809 train loss:0.23764614760875702
+05/18/2019 06:04:07 - INFO - __main__ -   epoch 1 step 87909 train loss:0.23759900033473969
+05/18/2019 06:04:24 - INFO - __main__ -   epoch 1 step 88009 train loss:0.2375871241092682
+05/18/2019 06:04:40 - INFO - __main__ -   epoch 1 step 88109 train loss:0.23761068284511566
+05/18/2019 06:04:57 - INFO - __main__ -   epoch 1 step 88209 train loss:0.23762252926826477
+05/18/2019 06:05:14 - INFO - __main__ -   epoch 1 step 88309 train loss:0.2376461774110794
+05/18/2019 06:05:31 - INFO - __main__ -   epoch 1 step 88409 train loss:0.23764614760875702
+05/18/2019 06:05:48 - INFO - __main__ -   epoch 1 step 88509 train loss:0.23758716881275177
+05/18/2019 06:06:05 - INFO - __main__ -   epoch 1 step 88609 train loss:0.2375989705324173
+05/18/2019 06:06:21 - INFO - __main__ -   epoch 1 step 88709 train loss:0.237634539604187
+05/18/2019 06:06:38 - INFO - __main__ -   epoch 1 step 88809 train loss:0.23763437569141388
+05/18/2019 06:06:55 - INFO - __main__ -   epoch 1 step 88909 train loss:0.2375989407300949
+05/18/2019 06:07:12 - INFO - __main__ -   epoch 1 step 89009 train loss:0.2376343011856079
+05/18/2019 06:07:29 - INFO - __main__ -   epoch 1 step 89109 train loss:0.23761077225208282
+05/18/2019 06:07:46 - INFO - __main__ -   epoch 1 step 89209 train loss:0.23762254416942596
+05/18/2019 06:08:02 - INFO - __main__ -   epoch 1 step 89309 train loss:0.23758719861507416
+05/18/2019 06:08:19 - INFO - __main__ -   epoch 1 step 89409 train loss:0.23761069774627686
+05/18/2019 06:08:36 - INFO - __main__ -   epoch 1 step 89509 train loss:0.23762260377407074
+05/18/2019 06:08:53 - INFO - __main__ -   epoch 1 step 89609 train loss:0.2376462072134018
+05/18/2019 06:09:10 - INFO - __main__ -   epoch 1 step 89709 train loss:0.2376343309879303
+05/18/2019 06:09:26 - INFO - __main__ -   epoch 1 step 89809 train loss:0.23759892582893372
+05/18/2019 06:09:43 - INFO - __main__ -   epoch 1 step 89909 train loss:0.2376108020544052
+05/18/2019 06:09:59 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 06:22:36 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_90000_predictions.json
+05/18/2019 06:22:36 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_90000_nbest_predictions.json
+05/18/2019 06:23:28 - INFO - __main__ -   start evaluation script.................
+05/18/2019 06:23:29 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 06:23:29 - INFO - __main__ -   epoch 1 step 90000 eval_loss: 5.702305316925049 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 06:23:31 - INFO - __main__ -   epoch 1 step 90009 train loss:0.23761077225208282
+05/18/2019 06:23:48 - INFO - __main__ -   epoch 1 step 90109 train loss:0.23762260377407074
+05/18/2019 06:24:04 - INFO - __main__ -   epoch 1 step 90209 train loss:0.23763437569141388
+05/18/2019 06:24:21 - INFO - __main__ -   epoch 1 step 90309 train loss:0.23758721351623535
+05/18/2019 06:24:38 - INFO - __main__ -   epoch 1 step 90409 train loss:0.23762249946594238
+05/18/2019 06:24:55 - INFO - __main__ -   epoch 1 step 90509 train loss:0.23759888112545013
+05/18/2019 06:25:11 - INFO - __main__ -   epoch 1 step 90609 train loss:0.2376461774110794
+05/18/2019 06:25:28 - INFO - __main__ -   epoch 1 step 90709 train loss:0.2375989705324173
+05/18/2019 06:25:45 - INFO - __main__ -   epoch 1 step 90809 train loss:0.23762252926826477
+05/18/2019 06:26:02 - INFO - __main__ -   epoch 1 step 90909 train loss:0.23761077225208282
+05/18/2019 06:26:19 - INFO - __main__ -   epoch 1 step 91009 train loss:0.23763437569141388
+05/18/2019 06:26:36 - INFO - __main__ -   epoch 1 step 91109 train loss:0.23759900033473969
+05/18/2019 06:26:53 - INFO - __main__ -   epoch 1 step 91209 train loss:0.23762261867523193
+05/18/2019 06:27:09 - INFO - __main__ -   epoch 1 step 91309 train loss:0.23762254416942596
+05/18/2019 06:27:26 - INFO - __main__ -   epoch 1 step 91409 train loss:0.2376108020544052
+05/18/2019 06:27:43 - INFO - __main__ -   epoch 1 step 91509 train loss:0.23761068284511566
+05/18/2019 06:28:00 - INFO - __main__ -   epoch 1 step 91609 train loss:0.23762257397174835
+05/18/2019 06:28:16 - INFO - __main__ -   epoch 1 step 91709 train loss:0.23762260377407074
+05/18/2019 06:28:33 - INFO - __main__ -   epoch 1 step 91809 train loss:0.23763442039489746
+05/18/2019 06:28:50 - INFO - __main__ -   epoch 1 step 91909 train loss:0.23759892582893372
+05/18/2019 06:29:07 - INFO - __main__ -   epoch 1 step 92009 train loss:0.23762249946594238
+05/18/2019 06:29:24 - INFO - __main__ -   epoch 1 step 92109 train loss:0.23761074244976044
+05/18/2019 06:29:41 - INFO - __main__ -   epoch 1 step 92209 train loss:0.23761069774627686
+05/18/2019 06:29:58 - INFO - __main__ -   epoch 1 step 92309 train loss:0.23759889602661133
+05/18/2019 06:30:15 - INFO - __main__ -   epoch 1 step 92409 train loss:0.23759901523590088
+05/18/2019 06:30:32 - INFO - __main__ -   epoch 1 step 92509 train loss:0.23761074244976044
+05/18/2019 06:30:48 - INFO - __main__ -   epoch 1 step 92609 train loss:0.23762252926826477
+05/18/2019 06:31:05 - INFO - __main__ -   epoch 1 step 92709 train loss:0.23758725821971893
+05/18/2019 06:31:22 - INFO - __main__ -   epoch 1 step 92809 train loss:0.23758716881275177
+05/18/2019 06:31:39 - INFO - __main__ -   epoch 1 step 92909 train loss:0.23762257397174835
+05/18/2019 06:31:54 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 06:44:26 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_93000_predictions.json
+05/18/2019 06:44:26 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_93000_nbest_predictions.json
+05/18/2019 06:45:19 - INFO - __main__ -   start evaluation script.................
+05/18/2019 06:45:20 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 06:45:20 - INFO - __main__ -   epoch 1 step 93000 eval_loss: 5.702305793762207 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 06:45:21 - INFO - __main__ -   epoch 1 step 93009 train loss:0.2376108169555664
+05/18/2019 06:45:38 - INFO - __main__ -   epoch 1 step 93109 train loss:0.23761074244976044
+05/18/2019 06:45:55 - INFO - __main__ -   epoch 1 step 93209 train loss:0.2376108169555664
+05/18/2019 06:46:11 - INFO - __main__ -   epoch 1 step 93309 train loss:0.2375989407300949
+05/18/2019 06:46:28 - INFO - __main__ -   epoch 1 step 93409 train loss:0.23763442039489746
+05/18/2019 06:46:45 - INFO - __main__ -   epoch 1 step 93509 train loss:0.23762254416942596
+05/18/2019 06:47:02 - INFO - __main__ -   epoch 1 step 93609 train loss:0.23762261867523193
+05/18/2019 06:47:19 - INFO - __main__ -   epoch 1 step 93709 train loss:0.2376343458890915
+05/18/2019 06:47:36 - INFO - __main__ -   epoch 1 step 93809 train loss:0.23762254416942596
+05/18/2019 06:47:53 - INFO - __main__ -   epoch 1 step 93909 train loss:0.23761074244976044
+05/18/2019 06:48:09 - INFO - __main__ -   epoch 1 step 94009 train loss:0.23762252926826477
+05/18/2019 06:48:26 - INFO - __main__ -   epoch 1 step 94109 train loss:0.23759900033473969
+05/18/2019 06:48:43 - INFO - __main__ -   epoch 1 step 94209 train loss:0.23761077225208282
+05/18/2019 06:49:00 - INFO - __main__ -   epoch 1 step 94309 train loss:0.2376343309879303
+05/18/2019 06:49:17 - INFO - __main__ -   epoch 1 step 94409 train loss:0.23761072754859924
+05/18/2019 06:49:34 - INFO - __main__ -   epoch 1 step 94509 train loss:0.23759892582893372
+05/18/2019 06:49:51 - INFO - __main__ -   epoch 1 step 94609 train loss:0.23762252926826477
+05/18/2019 06:50:08 - INFO - __main__ -   epoch 1 step 94709 train loss:0.23762252926826477
+05/18/2019 06:50:24 - INFO - __main__ -   epoch 1 step 94809 train loss:0.2376461774110794
+05/18/2019 06:50:41 - INFO - __main__ -   epoch 1 step 94909 train loss:0.23762254416942596
+05/18/2019 06:50:58 - INFO - __main__ -   epoch 1 step 95009 train loss:0.23761072754859924
+05/18/2019 06:51:15 - INFO - __main__ -   epoch 1 step 95109 train loss:0.23763437569141388
+05/18/2019 06:51:32 - INFO - __main__ -   epoch 1 step 95209 train loss:0.23761069774627686
+05/18/2019 06:51:49 - INFO - __main__ -   epoch 1 step 95309 train loss:0.23763437569141388
+05/18/2019 06:52:06 - INFO - __main__ -   epoch 1 step 95409 train loss:0.23762260377407074
+05/18/2019 06:52:23 - INFO - __main__ -   epoch 1 step 95509 train loss:0.2376343309879303
+05/18/2019 06:52:39 - INFO - __main__ -   epoch 1 step 95609 train loss:0.23762260377407074
+05/18/2019 06:52:56 - INFO - __main__ -   epoch 1 step 95709 train loss:0.23762261867523193
+05/18/2019 06:53:13 - INFO - __main__ -   epoch 1 step 95809 train loss:0.23757536709308624
+05/18/2019 06:53:30 - INFO - __main__ -   epoch 1 step 95909 train loss:0.23762273788452148
+05/18/2019 06:53:45 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 07:06:21 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_96000_predictions.json
+05/18/2019 07:06:21 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_96000_nbest_predictions.json
+05/18/2019 07:07:14 - INFO - __main__ -   start evaluation script.................
+05/18/2019 07:07:15 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 07:07:15 - INFO - __main__ -   epoch 1 step 96000 eval_loss: 5.702309608459473 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 07:07:17 - INFO - __main__ -   epoch 1 step 96009 train loss:0.23763440549373627
+05/18/2019 07:07:34 - INFO - __main__ -   epoch 1 step 96109 train loss:0.23757556080818176
+05/18/2019 07:07:50 - INFO - __main__ -   epoch 1 step 96209 train loss:0.23761096596717834
+05/18/2019 07:08:07 - INFO - __main__ -   epoch 1 step 96309 train loss:0.2375989705324173
+05/18/2019 07:08:24 - INFO - __main__ -   epoch 1 step 96409 train loss:0.2376343309879303
+05/18/2019 07:08:41 - INFO - __main__ -   epoch 1 step 96509 train loss:0.2375989705324173
+05/18/2019 07:08:58 - INFO - __main__ -   epoch 1 step 96609 train loss:0.23762260377407074
+05/18/2019 07:09:15 - INFO - __main__ -   epoch 1 step 96709 train loss:0.23761092126369476
+05/18/2019 07:09:32 - INFO - __main__ -   epoch 1 step 96809 train loss:0.23765794932842255
+05/18/2019 07:09:48 - INFO - __main__ -   epoch 1 step 96909 train loss:0.2375989705324173
+05/18/2019 07:10:05 - INFO - __main__ -   epoch 1 step 97009 train loss:0.23763442039489746
+05/18/2019 07:10:22 - INFO - __main__ -   epoch 1 step 97109 train loss:0.23763442039489746
+05/18/2019 07:10:39 - INFO - __main__ -   epoch 1 step 97209 train loss:0.23762260377407074
+05/18/2019 07:10:56 - INFO - __main__ -   epoch 1 step 97309 train loss:0.23761086165905
+05/18/2019 07:11:13 - INFO - __main__ -   epoch 1 step 97409 train loss:0.23761077225208282
+05/18/2019 07:11:30 - INFO - __main__ -   epoch 1 step 97509 train loss:0.23763442039489746
+05/18/2019 07:11:47 - INFO - __main__ -   epoch 1 step 97609 train loss:0.2375989407300949
+05/18/2019 07:12:03 - INFO - __main__ -   epoch 1 step 97709 train loss:0.2376108169555664
+05/18/2019 07:12:20 - INFO - __main__ -   epoch 1 step 97809 train loss:0.23761086165905
+05/18/2019 07:12:37 - INFO - __main__ -   epoch 1 step 97909 train loss:0.23761077225208282
+05/18/2019 07:12:54 - INFO - __main__ -   epoch 1 step 98009 train loss:0.2376461774110794
+05/18/2019 07:13:11 - INFO - __main__ -   epoch 1 step 98109 train loss:0.2376108020544052
+05/18/2019 07:13:28 - INFO - __main__ -   epoch 1 step 98209 train loss:0.23761086165905
+05/18/2019 07:13:44 - INFO - __main__ -   epoch 1 step 98309 train loss:0.23762261867523193
+05/18/2019 07:14:01 - INFO - __main__ -   epoch 1 step 98409 train loss:0.23757533729076385
+05/18/2019 07:14:18 - INFO - __main__ -   epoch 1 step 98509 train loss:0.23761077225208282
+05/18/2019 07:14:35 - INFO - __main__ -   epoch 1 step 98609 train loss:0.2376108020544052
+05/18/2019 07:14:52 - INFO - __main__ -   epoch 1 step 98709 train loss:0.23761077225208282
+05/18/2019 07:15:09 - INFO - __main__ -   epoch 1 step 98809 train loss:0.2375989407300949
+05/18/2019 07:15:26 - INFO - __main__ -   epoch 1 step 98909 train loss:0.23758721351623535
+05/18/2019 07:15:41 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 07:28:13 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_99000_predictions.json
+05/18/2019 07:28:13 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_99000_nbest_predictions.json
+05/18/2019 07:29:06 - INFO - __main__ -   start evaluation script.................
+05/18/2019 07:29:07 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 07:29:07 - INFO - __main__ -   epoch 1 step 99000 eval_loss: 5.702306747436523 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 07:29:08 - INFO - __main__ -   epoch 1 step 99009 train loss:0.23762254416942596
+05/18/2019 07:29:25 - INFO - __main__ -   epoch 1 step 99109 train loss:0.23763437569141388
+05/18/2019 07:29:42 - INFO - __main__ -   epoch 1 step 99209 train loss:0.23759904503822327
+05/18/2019 07:29:58 - INFO - __main__ -   epoch 1 step 99309 train loss:0.23758716881275177
+05/18/2019 07:30:15 - INFO - __main__ -   epoch 1 step 99409 train loss:0.23763437569141388
+05/18/2019 07:30:32 - INFO - __main__ -   epoch 1 step 99509 train loss:0.23764614760875702
+05/18/2019 07:30:49 - INFO - __main__ -   epoch 1 step 99609 train loss:0.23761074244976044
+05/18/2019 07:31:06 - INFO - __main__ -   epoch 1 step 99709 train loss:0.2376343309879303
+05/18/2019 07:31:22 - INFO - __main__ -   epoch 1 step 99809 train loss:0.2375989407300949
+05/18/2019 07:31:39 - INFO - __main__ -   epoch 1 step 99909 train loss:0.2376343458890915
+05/18/2019 07:31:56 - INFO - __main__ -   epoch 1 step 100009 train loss:0.23761074244976044
+05/18/2019 07:32:13 - INFO - __main__ -   epoch 1 step 100109 train loss:0.23761089146137238
+05/18/2019 07:32:30 - INFO - __main__ -   epoch 1 step 100209 train loss:0.2376343458890915
+05/18/2019 07:32:47 - INFO - __main__ -   epoch 1 step 100309 train loss:0.23762261867523193
+05/18/2019 07:33:04 - INFO - __main__ -   epoch 1 step 100409 train loss:0.23761074244976044
+05/18/2019 07:33:21 - INFO - __main__ -   epoch 1 step 100509 train loss:0.23762252926826477
+05/18/2019 07:33:38 - INFO - __main__ -   epoch 1 step 100609 train loss:0.23761072754859924
+05/18/2019 07:33:55 - INFO - __main__ -   epoch 1 step 100709 train loss:0.23759900033473969
+05/18/2019 07:34:11 - INFO - __main__ -   epoch 1 step 100809 train loss:0.23764625191688538
+05/18/2019 07:34:28 - INFO - __main__ -   epoch 1 step 100909 train loss:0.23761086165905
+05/18/2019 07:34:45 - INFO - __main__ -   epoch 1 step 101009 train loss:0.23764608800411224
+05/18/2019 07:35:02 - INFO - __main__ -   epoch 1 step 101109 train loss:0.23757529258728027
+05/18/2019 07:35:19 - INFO - __main__ -   epoch 1 step 101209 train loss:0.23762260377407074
+05/18/2019 07:35:36 - INFO - __main__ -   epoch 1 step 101309 train loss:0.2375989407300949
+05/18/2019 07:35:53 - INFO - __main__ -   epoch 1 step 101409 train loss:0.2375752180814743
+05/18/2019 07:36:10 - INFO - __main__ -   epoch 1 step 101509 train loss:0.23761069774627686
+05/18/2019 07:36:26 - INFO - __main__ -   epoch 1 step 101609 train loss:0.23756347596645355
+05/18/2019 07:36:43 - INFO - __main__ -   epoch 1 step 101709 train loss:0.23761077225208282
+05/18/2019 07:37:00 - INFO - __main__ -   epoch 1 step 101809 train loss:0.2375989705324173
+05/18/2019 07:37:17 - INFO - __main__ -   epoch 1 step 101909 train loss:0.23757529258728027
+05/18/2019 07:37:32 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 07:50:08 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_102000_predictions.json
+05/18/2019 07:50:08 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_102000_nbest_predictions.json
+05/18/2019 07:51:01 - INFO - __main__ -   start evaluation script.................
+05/18/2019 07:51:02 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 07:51:02 - INFO - __main__ -   epoch 1 step 102000 eval_loss: 5.702304840087891 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 07:51:04 - INFO - __main__ -   epoch 1 step 102009 train loss:0.23762254416942596
+05/18/2019 07:51:20 - INFO - __main__ -   epoch 1 step 102109 train loss:0.23763437569141388
+05/18/2019 07:51:37 - INFO - __main__ -   epoch 1 step 102209 train loss:0.23764613270759583
+05/18/2019 07:51:54 - INFO - __main__ -   epoch 1 step 102309 train loss:0.23762257397174835
+05/18/2019 07:52:11 - INFO - __main__ -   epoch 1 step 102409 train loss:0.23763440549373627
+05/18/2019 07:52:27 - INFO - __main__ -   epoch 1 step 102509 train loss:0.2376108020544052
+05/18/2019 07:52:44 - INFO - __main__ -   epoch 1 step 102609 train loss:0.2375989407300949
+05/18/2019 07:53:01 - INFO - __main__ -   epoch 1 step 102709 train loss:0.2375870943069458
+05/18/2019 07:53:18 - INFO - __main__ -   epoch 1 step 102809 train loss:0.23761072754859924
+05/18/2019 07:53:35 - INFO - __main__ -   epoch 1 step 102909 train loss:0.23763437569141388
+05/18/2019 07:53:52 - INFO - __main__ -   epoch 1 step 103009 train loss:0.23763442039489746
+05/18/2019 07:54:09 - INFO - __main__ -   epoch 1 step 103109 train loss:0.23759889602661133
+05/18/2019 07:54:26 - INFO - __main__ -   epoch 1 step 103209 train loss:0.2376343458890915
+05/18/2019 07:54:42 - INFO - __main__ -   epoch 1 step 103309 train loss:0.23762254416942596
+05/18/2019 07:54:59 - INFO - __main__ -   epoch 1 step 103409 train loss:0.23764614760875702
+05/18/2019 07:55:16 - INFO - __main__ -   epoch 1 step 103509 train loss:0.23759900033473969
+05/18/2019 07:55:33 - INFO - __main__ -   epoch 1 step 103609 train loss:0.2376343309879303
+05/18/2019 07:55:50 - INFO - __main__ -   epoch 1 step 103709 train loss:0.23763440549373627
+05/18/2019 07:56:07 - INFO - __main__ -   epoch 1 step 103809 train loss:0.23761069774627686
+05/18/2019 07:56:24 - INFO - __main__ -   epoch 1 step 103909 train loss:0.23761074244976044
+05/18/2019 07:56:41 - INFO - __main__ -   epoch 1 step 104009 train loss:0.23764614760875702
+05/18/2019 07:56:57 - INFO - __main__ -   epoch 1 step 104109 train loss:0.23761074244976044
+05/18/2019 07:57:14 - INFO - __main__ -   epoch 1 step 104209 train loss:0.2376343458890915
+05/18/2019 07:57:31 - INFO - __main__ -   epoch 1 step 104309 train loss:0.23759900033473969
+05/18/2019 07:57:48 - INFO - __main__ -   epoch 1 step 104409 train loss:0.23761069774627686
+05/18/2019 07:58:05 - INFO - __main__ -   epoch 1 step 104509 train loss:0.23759889602661133
+05/18/2019 07:58:22 - INFO - __main__ -   epoch 1 step 104609 train loss:0.23765800893306732
+05/18/2019 07:58:39 - INFO - __main__ -   epoch 1 step 104709 train loss:0.23759888112545013
+05/18/2019 07:58:56 - INFO - __main__ -   epoch 1 step 104809 train loss:0.23764614760875702
+05/18/2019 07:59:12 - INFO - __main__ -   epoch 1 step 104909 train loss:0.23762252926826477
+05/18/2019 07:59:28 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 08:11:59 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_105000_predictions.json
+05/18/2019 08:11:59 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_105000_nbest_predictions.json
+05/18/2019 08:12:52 - INFO - __main__ -   start evaluation script.................
+05/18/2019 08:12:53 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 08:12:53 - INFO - __main__ -   epoch 1 step 105000 eval_loss: 5.702304840087891 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 08:12:55 - INFO - __main__ -   epoch 1 step 105009 train loss:0.23762254416942596
+05/18/2019 08:13:11 - INFO - __main__ -   epoch 1 step 105109 train loss:0.23761072754859924
+05/18/2019 08:13:28 - INFO - __main__ -   epoch 1 step 105209 train loss:0.23761069774627686
+05/18/2019 08:13:45 - INFO - __main__ -   epoch 1 step 105309 train loss:0.2376461774110794
+05/18/2019 08:14:02 - INFO - __main__ -   epoch 1 step 105409 train loss:0.23759888112545013
+05/18/2019 08:14:19 - INFO - __main__ -   epoch 1 step 105509 train loss:0.23761069774627686
+05/18/2019 08:14:35 - INFO - __main__ -   epoch 1 step 105609 train loss:0.2376343011856079
+05/18/2019 08:14:52 - INFO - __main__ -   epoch 1 step 105709 train loss:0.2375989705324173
+05/18/2019 08:15:09 - INFO - __main__ -   epoch 1 step 105809 train loss:0.2375989407300949
+05/18/2019 08:15:26 - INFO - __main__ -   epoch 1 step 105909 train loss:0.23759889602661133
+05/18/2019 08:15:43 - INFO - __main__ -   epoch 1 step 106009 train loss:0.23761068284511566
+05/18/2019 08:15:59 - INFO - __main__ -   epoch 1 step 106109 train loss:0.2375871241092682
+05/18/2019 08:16:16 - INFO - __main__ -   epoch 1 step 106209 train loss:0.23761069774627686
+05/18/2019 08:16:33 - INFO - __main__ -   epoch 1 step 106309 train loss:0.23761077225208282
+05/18/2019 08:16:50 - INFO - __main__ -   epoch 1 step 106409 train loss:0.23764613270759583
+05/18/2019 08:17:06 - INFO - __main__ -   epoch 1 step 106509 train loss:0.23764614760875702
+05/18/2019 08:17:23 - INFO - __main__ -   epoch 1 step 106609 train loss:0.2375752478837967
+05/18/2019 08:17:40 - INFO - __main__ -   epoch 1 step 106709 train loss:0.23761069774627686
+05/18/2019 08:17:57 - INFO - __main__ -   epoch 1 step 106809 train loss:0.23761072754859924
+05/18/2019 08:18:14 - INFO - __main__ -   epoch 1 step 106909 train loss:0.23759892582893372
+05/18/2019 08:18:30 - INFO - __main__ -   epoch 1 step 107009 train loss:0.23761072754859924
+05/18/2019 08:18:47 - INFO - __main__ -   epoch 1 step 107109 train loss:0.23761069774627686
+05/18/2019 08:19:04 - INFO - __main__ -   epoch 1 step 107209 train loss:0.23762252926826477
+05/18/2019 08:19:21 - INFO - __main__ -   epoch 1 step 107309 train loss:0.23762254416942596
+05/18/2019 08:19:38 - INFO - __main__ -   epoch 1 step 107409 train loss:0.23757532238960266
+05/18/2019 08:19:54 - INFO - __main__ -   epoch 1 step 107509 train loss:0.2376461774110794
+05/18/2019 08:20:11 - INFO - __main__ -   epoch 1 step 107609 train loss:0.23762252926826477
+05/18/2019 08:20:28 - INFO - __main__ -   epoch 1 step 107709 train loss:0.23761068284511566
+05/18/2019 08:20:45 - INFO - __main__ -   epoch 1 step 107809 train loss:0.23765800893306732
+05/18/2019 08:21:02 - INFO - __main__ -   epoch 1 step 107909 train loss:0.23762252926826477
+05/18/2019 08:21:17 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 08:33:49 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_108000_predictions.json
+05/18/2019 08:33:49 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_108000_nbest_predictions.json
+05/18/2019 08:34:41 - INFO - __main__ -   start evaluation script.................
+05/18/2019 08:34:43 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 08:34:43 - INFO - __main__ -   epoch 1 step 108000 eval_loss: 5.702303409576416 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 08:34:44 - INFO - __main__ -   epoch 1 step 108009 train loss:0.23765794932842255
+05/18/2019 08:35:01 - INFO - __main__ -   epoch 1 step 108109 train loss:0.2376462072134018
+05/18/2019 08:35:18 - INFO - __main__ -   epoch 1 step 108209 train loss:0.23763440549373627
+05/18/2019 08:35:35 - INFO - __main__ -   epoch 1 step 108309 train loss:0.23761072754859924
+05/18/2019 08:35:52 - INFO - __main__ -   epoch 1 step 108409 train loss:0.23762249946594238
+05/18/2019 08:36:08 - INFO - __main__ -   epoch 1 step 108509 train loss:0.23762254416942596
+05/18/2019 08:36:25 - INFO - __main__ -   epoch 1 step 108609 train loss:0.2376343309879303
+05/18/2019 08:36:42 - INFO - __main__ -   epoch 1 step 108709 train loss:0.23762252926826477
+05/18/2019 08:36:59 - INFO - __main__ -   epoch 1 step 108809 train loss:0.2376343458890915
+05/18/2019 08:37:16 - INFO - __main__ -   epoch 1 step 108909 train loss:0.23762257397174835
+05/18/2019 08:37:33 - INFO - __main__ -   epoch 1 step 109009 train loss:0.23761077225208282
+05/18/2019 08:37:49 - INFO - __main__ -   epoch 1 step 109109 train loss:0.23762254416942596
+05/18/2019 08:38:06 - INFO - __main__ -   epoch 1 step 109209 train loss:0.23762252926826477
+05/18/2019 08:38:23 - INFO - __main__ -   epoch 1 step 109309 train loss:0.23761069774627686
+05/18/2019 08:38:40 - INFO - __main__ -   epoch 1 step 109409 train loss:0.23761068284511566
+05/18/2019 08:38:56 - INFO - __main__ -   epoch 1 step 109509 train loss:0.23762254416942596
+05/18/2019 08:39:13 - INFO - __main__ -   epoch 1 step 109609 train loss:0.23761068284511566
+05/18/2019 08:39:30 - INFO - __main__ -   epoch 1 step 109709 train loss:0.23762249946594238
+05/18/2019 08:39:47 - INFO - __main__ -   epoch 1 step 109809 train loss:0.2376224845647812
+05/18/2019 08:40:03 - INFO - __main__ -   epoch 1 step 109909 train loss:0.23761074244976044
+05/18/2019 08:40:20 - INFO - __main__ -   epoch 1 step 110009 train loss:0.23762254416942596
+05/18/2019 08:40:37 - INFO - __main__ -   epoch 1 step 110109 train loss:0.23761072754859924
+05/18/2019 08:40:54 - INFO - __main__ -   epoch 1 step 110209 train loss:0.2376343309879303
+05/18/2019 08:41:11 - INFO - __main__ -   epoch 1 step 110309 train loss:0.23761072754859924
+05/18/2019 08:41:27 - INFO - __main__ -   epoch 1 step 110409 train loss:0.23759889602661133
+05/18/2019 08:41:44 - INFO - __main__ -   epoch 1 step 110509 train loss:0.23762257397174835
+05/18/2019 08:42:01 - INFO - __main__ -   epoch 1 step 110609 train loss:0.23761074244976044
+05/18/2019 08:42:18 - INFO - __main__ -   epoch 1 step 110709 train loss:0.23762260377407074
+05/18/2019 08:42:35 - INFO - __main__ -   epoch 1 step 110809 train loss:0.23762260377407074
+05/18/2019 08:42:51 - INFO - __main__ -   epoch 1 step 110909 train loss:0.23762249946594238
+05/18/2019 08:43:07 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 08:55:43 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_111000_predictions.json
+05/18/2019 08:55:43 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_111000_nbest_predictions.json
+05/18/2019 08:56:34 - INFO - __main__ -   start evaluation script.................
+05/18/2019 08:56:36 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 08:56:36 - INFO - __main__ -   epoch 1 step 111000 eval_loss: 5.702303409576416 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 08:56:38 - INFO - __main__ -   epoch 1 step 111009 train loss:0.23763440549373627
+05/18/2019 08:56:54 - INFO - __main__ -   epoch 1 step 111109 train loss:0.23762261867523193
+05/18/2019 08:57:11 - INFO - __main__ -   epoch 1 step 111209 train loss:0.2375870943069458
+05/18/2019 08:57:28 - INFO - __main__ -   epoch 1 step 111309 train loss:0.23762252926826477
+05/18/2019 08:57:45 - INFO - __main__ -   epoch 1 step 111409 train loss:0.237646222114563
+05/18/2019 08:58:01 - INFO - __main__ -   epoch 1 step 111509 train loss:0.2376343309879303
+05/18/2019 08:58:18 - INFO - __main__ -   epoch 1 step 111609 train loss:0.2376343458890915
+05/18/2019 08:58:35 - INFO - __main__ -   epoch 1 step 111709 train loss:0.23761068284511566
+05/18/2019 08:58:52 - INFO - __main__ -   epoch 1 step 111809 train loss:0.23761072754859924
+05/18/2019 08:59:09 - INFO - __main__ -   epoch 1 step 111909 train loss:0.23761072754859924
+05/18/2019 08:59:25 - INFO - __main__ -   epoch 1 step 112009 train loss:0.23761089146137238
+05/18/2019 08:59:42 - INFO - __main__ -   epoch 1 step 112109 train loss:0.23761068284511566
+05/18/2019 08:59:59 - INFO - __main__ -   epoch 1 step 112209 train loss:0.23761069774627686
+05/18/2019 09:00:16 - INFO - __main__ -   epoch 1 step 112309 train loss:0.2375870943069458
+05/18/2019 09:00:32 - INFO - __main__ -   epoch 1 step 112409 train loss:0.2376343458890915
+05/18/2019 09:00:49 - INFO - __main__ -   epoch 1 step 112509 train loss:0.2376343309879303
+05/18/2019 09:01:06 - INFO - __main__ -   epoch 1 step 112609 train loss:0.2376343458890915
+05/18/2019 09:01:23 - INFO - __main__ -   epoch 1 step 112709 train loss:0.23761068284511566
+05/18/2019 09:01:40 - INFO - __main__ -   epoch 1 step 112809 train loss:0.2376224547624588
+05/18/2019 09:01:57 - INFO - __main__ -   epoch 1 step 112909 train loss:0.23759889602661133
+05/18/2019 09:02:13 - INFO - __main__ -   epoch 1 step 113009 train loss:0.23759888112545013
+05/18/2019 09:02:30 - INFO - __main__ -   epoch 1 step 113109 train loss:0.23759892582893372
+05/18/2019 09:02:47 - INFO - __main__ -   epoch 1 step 113209 train loss:0.23762254416942596
+05/18/2019 09:03:04 - INFO - __main__ -   epoch 1 step 113309 train loss:0.2375989407300949
+05/18/2019 09:03:21 - INFO - __main__ -   epoch 1 step 113409 train loss:0.23762249946594238
+05/18/2019 09:03:38 - INFO - __main__ -   epoch 1 step 113509 train loss:0.2376461774110794
+05/18/2019 09:03:54 - INFO - __main__ -   epoch 1 step 113609 train loss:0.23761069774627686
+05/18/2019 09:04:11 - INFO - __main__ -   epoch 1 step 113709 train loss:0.23761072754859924
+05/18/2019 09:04:28 - INFO - __main__ -   epoch 1 step 113809 train loss:0.23758701980113983
+05/18/2019 09:04:45 - INFO - __main__ -   epoch 1 step 113909 train loss:0.23759892582893372
+05/18/2019 09:05:00 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 09:17:36 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_114000_predictions.json
+05/18/2019 09:17:36 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_114000_nbest_predictions.json
+05/18/2019 09:18:27 - INFO - __main__ -   start evaluation script.................
+05/18/2019 09:18:28 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 09:18:28 - INFO - __main__ -   epoch 1 step 114000 eval_loss: 5.702303409576416 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 09:18:29 - INFO - __main__ -   epoch 1 step 114009 train loss:0.23759885132312775
+05/18/2019 09:18:46 - INFO - __main__ -   epoch 1 step 114109 train loss:0.2375752031803131
+05/18/2019 09:19:02 - INFO - __main__ -   epoch 1 step 114209 train loss:0.23759888112545013
+05/18/2019 09:19:19 - INFO - __main__ -   epoch 1 step 114309 train loss:0.23761072754859924
+05/18/2019 09:19:36 - INFO - __main__ -   epoch 1 step 114409 train loss:0.23763440549373627
+05/18/2019 09:19:53 - INFO - __main__ -   epoch 1 step 114509 train loss:0.23762252926826477
+05/18/2019 09:20:10 - INFO - __main__ -   epoch 1 step 114609 train loss:0.23761069774627686
+05/18/2019 09:20:26 - INFO - __main__ -   epoch 1 step 114709 train loss:0.2376462072134018
+05/18/2019 09:20:43 - INFO - __main__ -   epoch 1 step 114809 train loss:0.23759889602661133
+05/18/2019 09:21:00 - INFO - __main__ -   epoch 1 step 114909 train loss:0.23762254416942596
+05/18/2019 09:21:17 - INFO - __main__ -   epoch 1 step 115009 train loss:0.23759885132312775
+05/18/2019 09:21:34 - INFO - __main__ -   epoch 1 step 115109 train loss:0.23759889602661133
+05/18/2019 09:21:51 - INFO - __main__ -   epoch 1 step 115209 train loss:0.23761069774627686
+05/18/2019 09:22:08 - INFO - __main__ -   epoch 1 step 115309 train loss:0.23761069774627686
+05/18/2019 09:22:25 - INFO - __main__ -   epoch 1 step 115409 train loss:0.2375870794057846
+05/18/2019 09:22:41 - INFO - __main__ -   epoch 1 step 115509 train loss:0.23759889602661133
+05/18/2019 09:22:58 - INFO - __main__ -   epoch 1 step 115609 train loss:0.2376108020544052
+05/18/2019 09:23:15 - INFO - __main__ -   epoch 1 step 115709 train loss:0.23759892582893372
+05/18/2019 09:23:32 - INFO - __main__ -   epoch 1 step 115809 train loss:0.23764625191688538
+05/18/2019 09:23:49 - INFO - __main__ -   epoch 1 step 115909 train loss:0.23761077225208282
+05/18/2019 09:24:06 - INFO - __main__ -   epoch 1 step 116009 train loss:0.23757533729076385
+05/18/2019 09:24:22 - INFO - __main__ -   epoch 1 step 116109 train loss:0.23761072754859924
+05/18/2019 09:24:39 - INFO - __main__ -   epoch 1 step 116209 train loss:0.2376462072134018
+05/18/2019 09:24:56 - INFO - __main__ -   epoch 1 step 116309 train loss:0.2376108020544052
+05/18/2019 09:25:13 - INFO - __main__ -   epoch 1 step 116409 train loss:0.23762254416942596
+05/18/2019 09:25:30 - INFO - __main__ -   epoch 1 step 116509 train loss:0.23761074244976044
+05/18/2019 09:25:47 - INFO - __main__ -   epoch 1 step 116609 train loss:0.23763437569141388
+05/18/2019 09:26:04 - INFO - __main__ -   epoch 1 step 116709 train loss:0.23759888112545013
+05/18/2019 09:26:21 - INFO - __main__ -   epoch 1 step 116809 train loss:0.2375989407300949
+05/18/2019 09:26:38 - INFO - __main__ -   epoch 1 step 116909 train loss:0.2376343458890915
+05/18/2019 09:26:53 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 09:39:36 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_117000_predictions.json
+05/18/2019 09:39:36 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_117000_nbest_predictions.json
+05/18/2019 09:40:28 - INFO - __main__ -   start evaluation script.................
+05/18/2019 09:40:30 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 09:40:30 - INFO - __main__ -   epoch 1 step 117000 eval_loss: 5.702303409576416 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 09:40:32 - INFO - __main__ -   epoch 1 step 117009 train loss:0.23761068284511566
+05/18/2019 09:40:48 - INFO - __main__ -   epoch 1 step 117109 train loss:0.23761072754859924
+05/18/2019 09:41:05 - INFO - __main__ -   epoch 1 step 117209 train loss:0.23761065304279327
+05/18/2019 09:41:22 - INFO - __main__ -   epoch 1 step 117309 train loss:0.23759885132312775
+05/18/2019 09:41:39 - INFO - __main__ -   epoch 1 step 117409 train loss:0.2375870794057846
+05/18/2019 09:41:56 - INFO - __main__ -   epoch 1 step 117509 train loss:0.23763437569141388
+05/18/2019 09:42:12 - INFO - __main__ -   epoch 1 step 117609 train loss:0.23762252926826477
+05/18/2019 09:42:29 - INFO - __main__ -   epoch 1 step 117709 train loss:0.23763437569141388
+05/18/2019 09:42:46 - INFO - __main__ -   epoch 1 step 117809 train loss:0.23759885132312775
+05/18/2019 09:43:03 - INFO - __main__ -   epoch 1 step 117909 train loss:0.23762249946594238
+05/18/2019 09:43:21 - INFO - __main__ -   epoch 1 step 118009 train loss:0.23762254416942596
+05/18/2019 09:43:38 - INFO - __main__ -   epoch 1 step 118109 train loss:0.2375870943069458
+05/18/2019 09:43:54 - INFO - __main__ -   epoch 1 step 118209 train loss:0.2376343309879303
+05/18/2019 09:44:11 - INFO - __main__ -   epoch 1 step 118309 train loss:0.2376343458890915
+05/18/2019 09:44:28 - INFO - __main__ -   epoch 1 step 118409 train loss:0.2375989407300949
+05/18/2019 09:44:45 - INFO - __main__ -   epoch 1 step 118509 train loss:0.23761065304279327
+05/18/2019 09:45:02 - INFO - __main__ -   epoch 1 step 118609 train loss:0.23763437569141388
+05/18/2019 09:45:19 - INFO - __main__ -   epoch 1 step 118709 train loss:0.23764626681804657
+05/18/2019 09:45:35 - INFO - __main__ -   epoch 1 step 118809 train loss:0.23761072754859924
+05/18/2019 09:45:52 - INFO - __main__ -   epoch 1 step 118909 train loss:0.23762257397174835
+05/18/2019 09:46:09 - INFO - __main__ -   epoch 1 step 119009 train loss:0.23761069774627686
+05/18/2019 09:46:26 - INFO - __main__ -   epoch 1 step 119109 train loss:0.23762254416942596
+05/18/2019 09:46:43 - INFO - __main__ -   epoch 1 step 119209 train loss:0.23765800893306732
+05/18/2019 09:47:00 - INFO - __main__ -   epoch 1 step 119309 train loss:0.23764614760875702
+05/18/2019 09:47:17 - INFO - __main__ -   epoch 1 step 119409 train loss:0.23762252926826477
+05/18/2019 09:47:34 - INFO - __main__ -   epoch 1 step 119509 train loss:0.23759888112545013
+05/18/2019 09:47:50 - INFO - __main__ -   epoch 1 step 119609 train loss:0.23758704960346222
+05/18/2019 09:48:07 - INFO - __main__ -   epoch 1 step 119709 train loss:0.23762252926826477
+05/18/2019 09:48:24 - INFO - __main__ -   epoch 1 step 119809 train loss:0.23761074244976044
+05/18/2019 09:48:41 - INFO - __main__ -   epoch 1 step 119909 train loss:0.23762249946594238
+05/18/2019 09:48:56 - INFO - __main__ -   Start predicton for evaluating..............
+05/18/2019 10:01:34 - INFO - __main__ -   Writing predictions to: ../../output/log_eval/epoch_1_step_120000_predictions.json
+05/18/2019 10:01:34 - INFO - __main__ -   Writing nbest to: ../../output/log_eval/epoch_1_step_120000_nbest_predictions.json
+05/18/2019 10:02:25 - INFO - __main__ -   start evaluation script.................
+05/18/2019 10:02:28 - INFO - examples.evaluate -   write evaluation result to ../../output/log_eval/eval_res/eval.jsonOK!
+05/18/2019 10:02:28 - INFO - __main__ -   epoch 1 step 120000 eval_loss: 5.702303409576416 evaluate f1: 50.07159100480081 evaluate best f1:50.07159100480081
+05/18/2019 10:02:29 - INFO - __main__ -   epoch 1 step 120009 train loss:0.2376343309879303
+05/18/2019 10:02:46 - INFO - __main__ -   epoch 1 step 120109 train loss:0.23761072754859924
+05/18/2019 10:03:03 - INFO - __main__ -   epoch 1 step 120209 train loss:0.2376343309879303
+05/18/2019 10:03:19 - INFO - __main__ -   epoch 1 step 120309 train loss:0.23758704960346222
+05/18/2019 10:03:36 - INFO - __main__ -   epoch 1 step 120409 train loss:0.2375752031803131
+05/18/2019 10:03:53 - INFO - __main__ -   epoch 1 step 120509 train loss:0.2376343309879303
+05/18/2019 10:04:10 - INFO - __main__ -   epoch 1 step 120609 train loss:0.2375989407300949
+05/18/2019 10:04:27 - INFO - __main__ -   epoch 1 step 120709 train loss:0.23761072754859924
+05/18/2019 10:04:44 - INFO - __main__ -   epoch 1 step 120809 train loss:0.23757536709308624
+05/18/2019 10:05:01 - INFO - __main__ -   epoch 1 step 120909 train loss:0.23762254416942596
+05/18/2019 10:05:18 - INFO - __main__ -   epoch 1 step 121009 train loss:0.23758701980113983
+05/18/2019 10:05:34 - INFO - __main__ -   epoch 1 step 121109 train loss:0.23762249946594238
+05/18/2019 10:05:51 - INFO - __main__ -   epoch 1 step 121209 train loss:0.23761068284511566
+05/18/2019 10:06:10 - INFO - __main__ -   epoch 1 step 121309 train loss:0.23758697509765625
+05/18/2019 10:06:31 - INFO - __main__ -   epoch 1 step 121409 train loss:0.23759889602661133
+05/18/2019 10:06:49 - INFO - __main__ -   epoch 1 step 121509 train loss:0.23759885132312775
+05/18/2019 10:07:09 - INFO - __main__ -   epoch 1 step 121609 train loss:0.23761074244976044
+05/18/2019 10:07:28 - INFO - __main__ -   epoch 1 step 121709 train loss:0.23763437569141388
+05/18/2019 10:07:45 - INFO - __main__ -   epoch 1 step 121809 train loss:0.23762252926826477
+05/18/2019 10:08:04 - INFO - __main__ -   epoch 1 step 121909 train loss:0.2376462072134018
+05/18/2019 10:08:23 - INFO - __main__ -   epoch 1 step 122009 train loss:0.23761072754859924
+05/18/2019 10:08:41 - INFO - __main__ -   epoch 1 step 122109 train loss:0.23762249946594238
+05/18/2019 10:09:00 - INFO - __main__ -   epoch 1 step 122209 train loss:0.23761069774627686
+05/18/2019 10:09:17 - INFO - __main__ -   epoch 1 step 122309 train loss:0.23762249946594238
+05/18/2019 10:09:35 - INFO - __main__ -   epoch 1 step 122409 train loss:0.23762249946594238
+05/18/2019 10:09:52 - INFO - __main__ -   epoch 1 step 122509 train loss:0.23762260377407074
+05/18/2019 10:10:09 - INFO - __main__ -   epoch 1 step 122609 train loss:0.23762252926826477
+05/18/2019 10:10:29 - INFO - __main__ -   epoch 1 step 122709 train loss:0.2376224845647812
+05/18/2019 10:10:48 - INFO - __main__ -   epoch 1 step 122809 train loss:0.23759889602661133
+05/18/2019 10:11:06 - INFO - __main__ -   epoch 1 step 122909 train loss:0.23762254416942596
+05/18/2019 10:11:22 - INFO - __main__ -   Start predicton for evaluating..............
+Terminated
