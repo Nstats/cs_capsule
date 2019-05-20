@@ -1292,8 +1292,8 @@ class CapsuleLoss(nn.Module):
             self.mark -= 1
         classes = F.softmax(1e4*classes, -1)
         # If len(out_capsule) is 300, the average value of this capsule's element is smaller than 1/(10*sqrt(3))
-        # which causes softmax function stop working. Thus it's necessary to multiply a scalar to make
-        # softmax works.
+        # which causes softmax function stop working. Thus it's necessary to multiply a large scalar to make
+        # softmax work.
         if self.mark > 0:
             print("probs_pred:", classes)
             print("labels:", labels)
