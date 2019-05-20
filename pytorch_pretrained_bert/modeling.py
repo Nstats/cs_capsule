@@ -1147,7 +1147,7 @@ class BertForTokenClassification(BertPreTrainedModel):
         else:
             return logits
 
-MARK = 10
+MARK = 5
 
 ###for capsule 2019.5.13 zsw
 class CapsuleLayer(nn.Module):
@@ -1290,11 +1290,12 @@ class CapsuleLoss(nn.Module):
             print("probs_pred:", classes)
             print("labels:", labels)
             self.mark -= 1
-        left = F.relu(0.9 - classes, inplace=True) ** 2
-        right = F.relu(classes - 0.1, inplace=True) ** 2
-
+        # left = F.relu(0.9 - classes, inplace=True) ** 2
+        # right = F.relu(classes - 0.1, inplace=True) ** 2
+        # left = F.relu(1. - classes, inplace=True)
+        # right = F.relu(classes - 0.1, inplace=True)
         # margin_loss = labels * left + 0.5 * (1. - labels) * right
-        margin_loss = labels * left
+        margin_loss = -torch.log(classes) * labels
         margin_loss = margin_loss.sum()
         return margin_loss
 
