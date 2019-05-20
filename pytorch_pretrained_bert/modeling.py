@@ -1173,6 +1173,7 @@ class CapsuleLayer(nn.Module):
         transposed_input = input.transpose(dim, len(input.size()) - 1)
         softmaxed_output = F.softmax(transposed_input.contiguous().view(-1, transposed_input.size(-1)), dim=-1)
         return softmaxed_output.view(*transposed_input.size()).transpose(dim, len(input.size()) - 1)
+
     def squash(self, tensor, dim=-1):
         squared_norm = (tensor ** 2).sum(dim=dim, keepdim=True)
         scale = squared_norm / (1 + squared_norm)
@@ -1185,9 +1186,9 @@ class CapsuleLayer(nn.Module):
             # =====> [num_capsules,batch, num_route_nodes=32*6*6, 1, out_channels]
             # projection(get predict vector)
             priors = x[None, :, :, None, :] @ self.route_weights[:, None, :, :, :]
-            if self.mark>0:
-                print("priors:",priors)
-               # self.mark-=1
+            # if self.mark>0:
+                # print("priors:",priors)
+                # self.mark-=1
             logits = Variable(torch.zeros(*priors.size())).cuda()###  c_ij
             for i in range(self.num_iterations):
              #   if  self.mark>0:
@@ -1198,8 +1199,8 @@ class CapsuleLayer(nn.Module):
 
                 weighted_sum = tmp_res.sum(dim=2, keepdim=True)
                 if self.mark > 0:
-                    print("product res:", i, tmp_res)
-                    print("weighted_sum",i,weighted_sum)
+                    # print("product res:", i, tmp_res)
+                    # print("weighted_sum",i,weighted_sum)
                     self.mark -= 1
                 outputs = self.squash(weighted_sum)#[num_capsules,batch, 1, 1, out_channels]
 
@@ -1241,8 +1242,8 @@ class CapsuleNet(nn.Module):
        # print("sequence_output:",list(x.size()))
         #x = F.relu(self.conv1(x), inplace=True)
         x = self.primary_capsules(x)
-        if self.mark:
-            print("conv:",x)
+        # if self.mark:
+        #     print("conv:",x)
         #print("conv:", list(x.size()))
         #method 1
         #x = x.view(x.size(0),int(x.size(1)/8),8,x.size(2)).transpose(2,3).contiguous() # batch , 32, len-1, 8
@@ -1254,8 +1255,8 @@ class CapsuleNet(nn.Module):
 
         #x=x.transpose(1,2).contiguous().view(x.size(0),-1,8)
         x = self.digit_capsules(x)
-        if self.mark:
-            print("digit_capsules:", x)
+        # if self.mark:
+        #     print("digit_capsules:", x)
         #print("digit_capsules:",list(x.size()))
         x=x.view(x.size(0),x.size(1),x.size(4)).transpose(0,1)#squeeze().transpose(0, 1)#[batch,NUM_CLASSES,out_channels]
         #print("x = self.digit_capsules(x).squeeze().transpose(0, 1)#",list(x.size()))
@@ -1283,10 +1284,10 @@ class CapsuleLoss(nn.Module):
     def forward(self, classes, labels):
         if self.mark > 0:
             classes *= 1e4
-            print("predict res:", classes)
+            print("logits_pred:", classes)
         classes = F.softmax(classes, -1)
         if self.mark > 0:
-            print("classes", classes)
+            print("probs_pred:", classes)
             print("labels:", labels)
             self.mark -= 1
         left = F.relu(0.9 - classes, inplace=True) ** 2
