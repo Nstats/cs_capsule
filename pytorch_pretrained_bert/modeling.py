@@ -1354,7 +1354,7 @@ class BertForQuestionAnswering(BertPreTrainedModel):
         self.capsule = CapsuleNet(self.seq_len, self.hidden_size, 3)
         #self.qa_outputs = nn.Linear(config.hidden_size, 2)
         #self.apply(self.init_bert_weights)
-        self.loss_fct = CapsuleLoss()
+        # self.loss_fct = CapsuleLoss()
         self.mark = 100
 
     def forward(self, input_ids, token_type_ids=None, attention_mask=None, start_positions=None, end_positions=None,device="cpu",is_eval=False):
@@ -1388,7 +1388,7 @@ class BertForQuestionAnswering(BertPreTrainedModel):
             start_positions.clamp_(0, ignored_index)
             end_positions.clamp_(0, ignored_index)
 
-            #loss_fct = CrossEntropyLoss(ignore_index=ignored_index)
+            self.loss_fct = CrossEntropyLoss(ignore_index=ignored_index)
             # loss_fct = MultiMarginLoss()
             if self.mark>0:
                 self.mark-=1
