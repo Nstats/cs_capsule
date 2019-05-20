@@ -1399,7 +1399,7 @@ class BertForQuestionAnswering(BertPreTrainedModel):
             end_onehot = torch.FloatTensor(end_logits.size(0), self.seq_len).zero_().to(device).scatter_(1,end_positions[:,None],1)
 
             def compute_loss(logits, one_hot_positions):
-                log_probs = F.log_softmax(logits, -1)
+                log_probs = -F.log_softmax(logits, -1)
                 loss = one_hot_positions * log_probs
                 loss = loss.sum()
                 return loss
