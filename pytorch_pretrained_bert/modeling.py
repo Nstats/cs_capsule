@@ -1289,7 +1289,7 @@ class CapsuleLoss(nn.Module):
         if self.mark > 0:
             print("logits_pred:", classes)
             self.mark -= 1
-        classes = F.softmax(1e4*classes, -1)
+        classes = F.softmax(classes, -1)
         if self.mark > 0:
             print("probs_pred:", classes)
             print("labels:", labels)
