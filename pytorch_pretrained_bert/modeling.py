@@ -1147,7 +1147,7 @@ class BertForTokenClassification(BertPreTrainedModel):
         else:
             return logits
 
-MARK = 100
+MARK = 10
 
 ###for capsule 2019.5.13 zsw
 class CapsuleLayer(nn.Module):
@@ -1166,7 +1166,7 @@ class CapsuleLayer(nn.Module):
             self.capsules = nn.ModuleList(
                 [nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=0) for _ in
                  range(num_capsules)])
-        self.mark = MARK*3
+        self.mark = MARK
 
     ###for capsule 2019.5.13 zsw
     def softmax(self,input, dim=1):
