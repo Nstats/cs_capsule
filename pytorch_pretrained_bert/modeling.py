@@ -1180,8 +1180,8 @@ class CapsuleLayer(nn.Module):
     def squash(self, tensor, dim=-1):
         squared_norm = (tensor ** 2).sum(dim=dim, keepdim=True)
         scale = squared_norm / (1 + squared_norm)
-        # return scale * tensor / torch.sqrt(squared_norm)
-        return tensor / torch.sqrt(squared_norm)
+        return scale * tensor / torch.sqrt(squared_norm)
+        # return tensor / torch.sqrt(squared_norm)
 
     def forward(self, x):
         if self.num_route_nodes != -1:
@@ -1207,6 +1207,7 @@ class CapsuleLayer(nn.Module):
                     # print("weighted_sum",i,weighted_sum)
                     self.mark -= 1
                 outputs = self.squash(weighted_sum)#[num_capsules,batch, 1, 1, out_channels]
+                # outputs = weighted_sum
 
                 if i != self.num_iterations - 1:
                     delta_logits = (priors * outputs).sum(dim=-1, keepdim=True)
@@ -1223,7 +1224,7 @@ class CapsuleNet(nn.Module):
     '''
      copy from https://github.com/gram-ai/capsule-networks/blob/master/capsule_network.py
     '''
-    def __init__(self,seq_len,hidden_size,kernel_conv_h):
+    def __init__(self, seq_len, hidden_size, kernel_conv_h):
         super(CapsuleNet, self).__init__()
         NUM_CLASSES = seq_len * 2
         self.kernel_conv_h = kernel_conv_h
@@ -1262,7 +1263,7 @@ class CapsuleNet(nn.Module):
         # if self.mark:
         #     print("digit_capsules:", x)
         #print("digit_capsules:",list(x.size()))
-        x=x.view(x.size(0),x.size(1),x.size(4)).transpose(0,1)#squeeze().transpose(0, 1)#[batch,NUM_CLASSES,out_channels]
+        x=x.view(x.size(0), x.size(1), x.size(4)).transpose(0, 1)#squeeze().transpose(0, 1)#[batch,NUM_CLASSES,out_channels]
         #print("x = self.digit_capsules(x).squeeze().transpose(0, 1)#",list(x.size()))
         #if self.mark :
         #    print("reshape:",x)
@@ -1283,13 +1284,16 @@ class CapsuleLoss(nn.Module):
     def __init__(self):
         super(CapsuleLoss, self).__init__()
         self.reconstruction_loss = nn.MSELoss(size_average=False)
-        self.mark = MARK  # MARK
+        self.mark = MARK
 
     def forward(self, classes, labels):
         if self.mark > 0:
             print("logits_pred:", classes)
             self.mark -= 1
-        classes = F.softmax(classes, -1)
+        classes = F.softmax(1e4*classes, -1)
+        # If len(out_capsule) is 300, the average value of this capsule's element is smaller than 1/(10*sqrt(3))
+        # which causes softmax function stop working. Thus it's necessary to multiply a scalar to make
+        # softmax works.
         if self.mark > 0:
             print("probs_pred:", classes)
             print("labels:", labels)
