@@ -1254,13 +1254,13 @@ class CapsuleNet(nn.Module):
 
         #x=x.transpose(1,2).contiguous().view(x.size(0),-1,8)
         x = self.digit_capsules(x)
-        if self.mark :
-            print("digit_capsules:",x)
+        if self.mark:
+            print("digit_capsules:", x)
         #print("digit_capsules:",list(x.size()))
         x=x.view(x.size(0),x.size(1),x.size(4)).transpose(0,1)#squeeze().transpose(0, 1)#[batch,NUM_CLASSES,out_channels]
         #print("x = self.digit_capsules(x).squeeze().transpose(0, 1)#",list(x.size()))
-        if self.mark :
-            print("reshape:",x)
+        #if self.mark :
+        #    print("reshape:",x)
         #classes = (x ** 2).sum(dim=-1) ** 0.5  #[batch,NUM_CLASSES]
         #if self.mark:
         #   print("classes:",classes)
