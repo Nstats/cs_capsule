@@ -1279,13 +1279,13 @@ class CapsuleLoss(nn.Module):
     def __init__(self):
         super(CapsuleLoss, self).__init__()
         self.reconstruction_loss = nn.MSELoss(size_average=False)
-        self.mark = 100  # MARK
+        self.mark = MARK  # MARK
 
     def forward(self, classes, labels):
         if self.mark > 0:
-            classes *= 1e4
             print("logits_pred:", classes)
-        classes = F.softmax(classes, -1)
+            self.mark -= 1
+        classes = F.softmax(1e4*classes, -1)
         if self.mark > 0:
             print("probs_pred:", classes)
             print("labels:", labels)
@@ -1293,7 +1293,8 @@ class CapsuleLoss(nn.Module):
         left = F.relu(0.9 - classes, inplace=True) ** 2
         right = F.relu(classes - 0.1, inplace=True) ** 2
 
-        margin_loss = labels * left + 0.5 * (1. - labels) * right
+        # margin_loss = labels * left + 0.5 * (1. - labels) * right
+        margin_loss = labels * left
         margin_loss = margin_loss.sum()
         return margin_loss
 
