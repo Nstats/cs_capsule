@@ -1354,7 +1354,7 @@ class BertForQuestionAnswering(BertPreTrainedModel):
         self.capsule = CapsuleNet(self.seq_len, self.hidden_size, 3)
         #self.qa_outputs = nn.Linear(config.hidden_size, 2)
         #self.apply(self.init_bert_weights)
-        # self.loss_fct = CapsuleLoss()
+        self.loss_fct = CapsuleLoss()
         self.mark = 100
 
     def forward(self, input_ids, token_type_ids=None, attention_mask=None, start_positions=None, end_positions=None,device="cpu",is_eval=False):
@@ -1388,20 +1388,29 @@ class BertForQuestionAnswering(BertPreTrainedModel):
             start_positions.clamp_(0, ignored_index)
             end_positions.clamp_(0, ignored_index)
 
-            self.loss_fct = CrossEntropyLoss(ignore_index=ignored_index)
+            # self.loss_fct = CrossEntropyLoss(ignore_index=ignored_index)
             # loss_fct = MultiMarginLoss()
-            if self.mark>0:
-                self.mark-=1
-                print("start_positions:",start_positions)
-                print("end_positions:",end_positions)
-            start_onehot = torch.FloatTensor(start_logits.size(0),self.seq_len).zero_().to(device)
-            start_onehot = start_onehot.scatter_(1,start_positions[:,None],1)
-            end_onehot = torch.FloatTensor(end_logits.size(0),self.seq_len).zero_().to(device).scatter_(1,end_positions[:,None],1)
-            start_loss = self.loss_fct(start_logits, start_onehot)
-            end_loss = self.loss_fct(end_logits, end_onehot)
+            if self.mark > 0:
+                self.mark -= 1
+                print("start_positions:", start_positions)
+                print("end_positions:", end_positions)
+            start_onehot = torch.FloatTensor(start_logits.size(0), self.seq_len).zero_().to(device)
+            start_onehot = start_onehot.scatter_(1, start_positions[:, None], 1)
+            end_onehot = torch.FloatTensor(end_logits.size(0), self.seq_len).zero_().to(device).scatter_(1,end_positions[:,None],1)
+
+            def compute_loss(logits, one_hot_positions):
+                log_probs = F.log_softmax(logits, -1)
+                loss = one_hot_positions * log_probs
+                loss = loss.sum()
+                return loss
+
+            start_loss = compute_loss(start_logits, start_onehot)
+            end_loss = compute_loss(end_logits, end_onehot)
+            # start_loss = self.loss_fct(start_logits, start_onehot)
+            # end_loss = self.loss_fct(end_logits, end_onehot)
             total_loss = (start_loss + end_loss) / 2
             if is_eval:
-                return start_logits, end_logits,total_loss
+                return start_logits, end_logits, total_loss
             return total_loss
         else:
             return start_logits, end_logits
