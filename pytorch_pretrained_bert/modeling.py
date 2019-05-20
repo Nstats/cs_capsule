@@ -1147,9 +1147,12 @@ class BertForTokenClassification(BertPreTrainedModel):
         else:
             return logits
 
+
 MARK = 5
 
-###for capsule 2019.5.13 zsw
+#  for capsule 2019.5.13 zsw
+
+
 class CapsuleLayer(nn.Module):
     def __init__(self, num_capsules, num_route_nodes, in_channels, out_channels, kernel_size=None, stride=None,
                  num_iterations=3):
@@ -1177,7 +1180,8 @@ class CapsuleLayer(nn.Module):
     def squash(self, tensor, dim=-1):
         squared_norm = (tensor ** 2).sum(dim=dim, keepdim=True)
         scale = squared_norm / (1 + squared_norm)
-        return scale * tensor / torch.sqrt(squared_norm)
+        # return scale * tensor / torch.sqrt(squared_norm)
+        return tensor / torch.sqrt(squared_norm)
 
     def forward(self, x):
         if self.num_route_nodes != -1:
