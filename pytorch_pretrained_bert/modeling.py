@@ -1224,10 +1224,10 @@ class CapsuleNet(nn.Module):
         self.kernel_conv_h = kernel_conv_h
         #self.conv1 = nn.Conv2d(in_channels=1, out_channels=128, kernel_size=(kernel_conv_h,hidden_size), stride=1)  ##batch ,256, len-2, 1
         self.primary_capsules = CapsuleLayer(num_capsules=8, num_route_nodes=-1, in_channels=1, out_channels=32,
-                                              kernel_size=(3,hidden_size), stride=2) ##batch ,32*(len-2)*1,8
-        self.digit_capsules = CapsuleLayer(num_capsules=2 , num_route_nodes=16 * (seq_len-kernel_conv_h+1), in_channels=8,  # 修改！
+                                             kernel_size=(3, hidden_size), stride=2)  # batch ,32*(len-2)*1,8
+        self.digit_capsules = CapsuleLayer(num_capsules=2, num_route_nodes=16 * (seq_len-kernel_conv_h+1), in_channels=8,  # 修改！
                                            out_channels=300)
-        self.mark=MARK
+        self.mark = MARK
         # self.decoder = nn.Sequential(
         #     nn.Linear(16 * NUM_CLASSES, 512),
         #     nn.ReLU(inplace=True),
@@ -1271,21 +1271,23 @@ class CapsuleNet(nn.Module):
         if self.mark > 0:
             self.mark -= 1
 
-        return x#classes
+        return x  # classes
+
+
 class CapsuleLoss(nn.Module):
     def __init__(self):
         super(CapsuleLoss, self).__init__()
         self.reconstruction_loss = nn.MSELoss(size_average=False)
-        self.mark = 100#MARK
+        self.mark = 100  # MARK
 
-
-    def forward(self, classes,labels):
-        if self.mark>0:
-            print("predict res:",classes)
-        classes = F.softmax(classes,-1)
-        if self.mark >0:
-            print("classes",classes)
-            print("labels:",labels)
+    def forward(self, classes, labels):
+        if self.mark > 0:
+            classes *= 1000
+            print("predict res:", classes)
+        classes = F.softmax(classes, -1)
+        if self.mark > 0:
+            print("classes", classes)
+            print("labels:", labels)
             self.mark -= 1
         left = F.relu(0.9 - classes, inplace=True) ** 2
         right = F.relu(classes - 0.1, inplace=True) ** 2
