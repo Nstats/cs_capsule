@@ -18,3 +18,6 @@ python ../run_squad_capsule.py \
           --eveluate_every_step 3000\
 	  --save_model_every_step 6000\
 	  --learning_rate 0.05
+
+# nohup sh run_squad_capsule_base.sh > ../log/run_squad_capsule_base.log_cs 2>&1 &
+# tail -f ../log/run_squad_capsule_base.log_cs

@@ -1282,7 +1282,7 @@ class CapsuleLoss(nn.Module):
 
     def forward(self, classes, labels):
         if self.mark > 0:
-            # classes *= 1000
+            classes *= 1e4
             print("predict res:", classes)
         classes = F.softmax(classes, -1)
         if self.mark > 0:
@@ -1389,7 +1389,7 @@ class BertForQuestionAnswering(BertPreTrainedModel):
             end_positions.clamp_(0, ignored_index)
 
             # self.loss_fct = CrossEntropyLoss(ignore_index=ignored_index)
-            # loss_fct = MultiMarginLoss()
+            # self.loss_fct = MultiMarginLoss()
             if self.mark > 0:
                 self.mark -= 1
                 print("start_positions:", start_positions)
@@ -1398,19 +1398,8 @@ class BertForQuestionAnswering(BertPreTrainedModel):
             start_onehot = start_onehot.scatter_(1, start_positions[:, None], 1)
             end_onehot = torch.FloatTensor(end_logits.size(0), self.seq_len).zero_().to(device).scatter_(1,end_positions[:,None],1)
 
-            def compute_loss(logits, one_hot_positions, print_info=False):
-                probs = F.softmax(logits, -1)
-                if print_info:
-                    print('classes:', probs)
-                log_probs = torch.log(probs)
-                loss = -one_hot_positions * log_probs
-                loss = loss.sum()
-                return loss
-
-            start_loss = compute_loss(start_logits, start_onehot, True)
-            end_loss = compute_loss(end_logits, end_onehot)
-            # start_loss = self.loss_fct(start_logits, start_onehot)
-            # end_loss = self.loss_fct(end_logits, end_onehot)
+            start_loss = self.loss_fct(start_logits, start_onehot)
+            end_loss = self.loss_fct(end_logits, end_onehot)
             total_loss = (start_loss + end_loss) / 2
             if is_eval:
                 return start_logits, end_logits, total_loss
