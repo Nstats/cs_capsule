@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 python ../run_squad_capsule.py \
 	  --bert_model ../../pretrained_models/uncased_L-24_H-1024_A-16 \
           --do_train\

@@ -1148,9 +1148,9 @@ class BertForTokenClassification(BertPreTrainedModel):
             return logits
 
 
-MARK = 5
+MARK = 12
 
-#  for capsule 2019.5.13 zsw
+#  for capsule 2019.5.13 zsw cs
 
 
 class CapsuleLayer(nn.Module):
@@ -1164,15 +1164,17 @@ class CapsuleLayer(nn.Module):
         self.num_capsules = num_capsules
 
         if num_route_nodes != -1:
-            self.route_weights = nn.Parameter(torch.randn(num_capsules, num_route_nodes, in_channels, out_channels))
+            # self.route_weights = nn.Parameter(torch.randn(num_capsules, num_route_nodes, in_channels, out_channels))
+            self.route_weights = nn.Parameter(torch.randn(num_capsules, in_channels, out_channels))
         else:
             self.capsules = nn.ModuleList(
                 [nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride, padding=0) for _ in
                  range(num_capsules)])
         self.mark = MARK
+        self.MLP = MLP(in_channels, in_channels)
 
-    ###for capsule 2019.5.13 zsw
-    def softmax(self,input, dim=1):
+    ###for capsule 2019.5.13 zsw cs
+    def softmax(self, input, dim=1):
         transposed_input = input.transpose(dim, len(input.size()) - 1)
         softmaxed_output = F.softmax(transposed_input.contiguous().view(-1, transposed_input.size(-1)), dim=-1)
         return softmaxed_output.view(*transposed_input.size()).transpose(dim, len(input.size()) - 1)
@@ -1185,23 +1187,24 @@ class CapsuleLayer(nn.Module):
 
     def forward(self, x):
         if self.num_route_nodes != -1:
-
             # @ = matmul [1,batch,32*6*6,1,8]    (num_capsules,1, num_route_nodes, in_channels=8, out_channels)
             # =====> [num_capsules,batch, num_route_nodes=32*6*6, 1, out_channels]
             # projection(get predict vector)
-            priors = x[None, :, :, None, :] @ self.route_weights[:, None, :, :, :]
-            # if self.mark>0:
-                # print("priors:",priors)
-                # self.mark-=1
+            # priors = x[None, :, :, None, :] @ self.route_weights[:, None, :, :, :]
+            # priors = self.MLP(x)  # [batch, seq_len, hidden]
+            priors = x[:, None, :, :] @ self.route_weights
+            size = priors.size()
+            priors = priors.view(size[0], size[1], size[-1], size[-2])
+            # print('priors_size:', priors.size())
             logits = Variable(torch.zeros(*priors.size())).cuda()###  c_ij
             for i in range(self.num_iterations):
              #   if  self.mark>0:
               #      print("logits",i,logits
                #           )
-                probs = self.softmax(logits, dim=2)
+                probs = self.softmax(logits, dim=-1)
                 tmp_res = probs * priors
 
-                weighted_sum = tmp_res.sum(dim=2, keepdim=True)
+                weighted_sum = tmp_res.sum(dim=-1, keepdim=True)
                 if self.mark > 0:
                     # print("product res:", i, tmp_res)
                     # print("weighted_sum",i,weighted_sum)
@@ -1211,11 +1214,13 @@ class CapsuleLayer(nn.Module):
 
                 if i != self.num_iterations - 1:
                     delta_logits = (priors * outputs).sum(dim=-1, keepdim=True)
-                    logits = logits + delta_logits
+                    # logits = logits + delta_logits
+                    logits = delta_logits
         else:
             outputs = [capsule(x).view(x.size(0), -1, 1) for capsule in self.capsules]
             outputs = torch.cat(outputs, dim=-1)  ##
             outputs = self.squash(outputs)
+        # print('cluster_out_size:', outputs.size())
         return outputs
 
 
@@ -1227,12 +1232,16 @@ class CapsuleNet(nn.Module):
     def __init__(self, seq_len, hidden_size, kernel_conv_h):
         super(CapsuleNet, self).__init__()
         NUM_CLASSES = seq_len * 2
+        self.seq_len = seq_len
         self.kernel_conv_h = kernel_conv_h
         #self.conv1 = nn.Conv2d(in_channels=1, out_channels=128, kernel_size=(kernel_conv_h,hidden_size), stride=1)  ##batch ,256, len-2, 1
-        self.primary_capsules = CapsuleLayer(num_capsules=8, num_route_nodes=-1, in_channels=1, out_channels=32,
-                                             kernel_size=(3, hidden_size), stride=2)  # batch ,32*(len-2)*1,8
-        self.digit_capsules = CapsuleLayer(num_capsules=2, num_route_nodes=16 * (seq_len-kernel_conv_h+1), in_channels=8,  # 修改！
-                                           out_channels=300)
+        # self.primary_capsules = CapsuleLayer(num_capsules=8, num_route_nodes=-1, in_channels=1, out_channels=32,
+        #                                      kernel_size=(3, hidden_size), stride=2)  # batch ,32*(len-2)*1,8
+        self.digit_capsules = CapsuleLayer(num_capsules=2*seq_len, num_route_nodes=1,
+                                           in_channels=hidden_size, out_channels=16)
+        # self.digit_capsules = CapsuleLayer(num_capsules=1, num_route_nodes=1,
+        #                                    in_channels=hidden_size, out_channels=2 * seq_len)
+        self.MLP = MLP(layer_num_in=hidden_size, layer_num_out=hidden_size)
         self.mark = MARK
         # self.decoder = nn.Sequential(
         #     nn.Linear(16 * NUM_CLASSES, 512),
@@ -1246,10 +1255,7 @@ class CapsuleNet(nn.Module):
     def forward(self, x):
        # print("sequence_output:",list(x.size()))
         #x = F.relu(self.conv1(x), inplace=True)
-        x = self.primary_capsules(x)
-        # if self.mark:
-        #     print("conv:",x)
-        #print("conv:", list(x.size()))
+        # x = self.primary_capsules(x)
         #method 1
         #x = x.view(x.size(0),int(x.size(1)/8),8,x.size(2)).transpose(2,3).contiguous() # batch , 32, len-1, 8
         #x = x.view(x.size(0),-1,8) ## batch , 32*len-1, 8
@@ -1259,11 +1265,14 @@ class CapsuleNet(nn.Module):
         #x = x.view(x.size(0),x.size(1),int(x.size(2)/8),8)
 
         #x=x.transpose(1,2).contiguous().view(x.size(0),-1,8)
-        x = self.digit_capsules(x)
+        # x = self.digit_capsules(x)
         # if self.mark:
         #     print("digit_capsules:", x)
         #print("digit_capsules:",list(x.size()))
-        x=x.view(x.size(0), x.size(1), x.size(4)).transpose(0, 1)#squeeze().transpose(0, 1)#[batch,NUM_CLASSES,out_channels]
+        x = self.digit_capsules(x)
+        # print("x_size:", x.size())
+        # x = x.view(x.size(0), x.size(1), x.size(4)).transpose(0, 1)#squeeze().transpose(0, 1)#[batch,NUM_CLASSES,out_channels]
+        x = x.view(x.size(0), x.size(1), x.size(2))
         #print("x = self.digit_capsules(x).squeeze().transpose(0, 1)#",list(x.size()))
         #if self.mark :
         #    print("reshape:",x)
@@ -1274,10 +1283,23 @@ class CapsuleNet(nn.Module):
         #classes = F.softmax(classes, dim=-1)  #[batch,NUM_CLASSES]
         #self.mark=0
 
-        if self.mark > 0:
-            self.mark -= 1
-
         return x  # classes
+
+
+class MLP(nn.Module):
+    def __init__(self, layer_num_in, layer_num_out):
+        super(MLP, self).__init__()
+        self.layer_num_in = layer_num_in
+        self.fc1 = nn.Linear(layer_num_in, layer_num_in)
+        self.fc2 = nn.Linear(layer_num_in, layer_num_out)
+        self.dropout = nn.Dropout(p=0.9)
+
+    def forward(self, din):
+        # dout = nn.functional.relu(self.fc1(din))
+        dout = self.fc2(din)
+        # dout = self.dropout(dout)
+        # return self.fc2(dout)
+        return dout
 
 
 class CapsuleLoss(nn.Module):
@@ -1286,15 +1308,10 @@ class CapsuleLoss(nn.Module):
         self.reconstruction_loss = nn.MSELoss(size_average=False)
         self.mark = MARK
 
-    def forward(self, classes, labels):
+    def forward(self, logits, labels):
+        classes = F.softmax(logits, -1)
         if self.mark > 0:
-            print("logits_pred:", classes)
-            self.mark -= 1
-        classes = F.softmax(1e4*classes, -1)
-        # If len(out_capsule) is 300, the average value of this capsule's element is smaller than 1/(10*sqrt(3))
-        # which causes softmax function stop working. Thus it's necessary to multiply a large scalar to make
-        # softmax work.
-        if self.mark > 0:
+            print("logits_pred:", logits)
             print("probs_pred:", classes)
             print("labels:", labels)
             self.mark -= 1
@@ -1360,25 +1377,29 @@ class BertForQuestionAnswering(BertPreTrainedModel):
         self.bert = BertModel(config)
         # TODO check with Google if it's normal there is no dropout on the token classifier of SQuAD in the TF version
         # self.dropout = nn.Dropout(config.hidden_dropout_prob)
-        self.seq_len = 300#sequence_output.size(1)
-        self.hidden_size = config.hidden_size#sequence_output.size(2)
+        self.seq_len = 300  # sequence_output.size(1)
+        self.hidden_size = config.hidden_size  # sequence_output.size(2)
         self.capsule = CapsuleNet(self.seq_len, self.hidden_size, 3)
         #self.qa_outputs = nn.Linear(config.hidden_size, 2)
         #self.apply(self.init_bert_weights)
+        self.MLP = MLP(self.hidden_size, 2)
         self.loss_fct = CapsuleLoss()
-        self.mark = 100
+        self.mark = MARK
 
     def forward(self, input_ids, token_type_ids=None, attention_mask=None, start_positions=None, end_positions=None,device="cpu",is_eval=False):
         sequence_output, _ = self.bert(input_ids, token_type_ids, attention_mask, output_all_encoded_layers=False)
-        sequence_output = sequence_output.view(sequence_output.size(0), 1, sequence_output.size(1),
-                                               sequence_output.size(2))  ##batch，1，len，hiden
-
-        logits = self.capsule(sequence_output)  #[batch,NUM_CLASSES] = [batch,length*2]
-        #print("logits",list(logits.size()))
-        #start_logits,end_logits = logits.split(self.seq_len, dim=-1)
-        start_logits,end_logits = logits.split(1, dim=1)
-        start_logits = start_logits.view(start_logits.size(0),start_logits.size(2))
-        end_logits = end_logits.view(end_logits.size(0),end_logits.size(2))
+        #sequence_output = sequence_output.view(sequence_output.size(0), 1, sequence_output.size(1),
+         #                                      sequence_output.size(2))  ##batch，1，len，hiden
+        # print('seq_out_size:', sequence_output.size())
+        logits = self.capsule(sequence_output)
+        logits = logits**2
+        logits = logits.sum(-1)  # [batch, 2*seq]
+        # logits = self.MLP(sequence_output)  # [batch, 1, len, 2]
+        #logits = logits.view(logits.size(0),logits.size(2))
+        start_logits, end_logits = torch.split(logits, self.seq_len, dim=-1)
+        # start_logits_, end_logits_ = logits.split(1, dim=1)
+        # start_logits = start_logits_.view(start_logits_.size(0), start_logits_.size(2))
+        # end_logits = end_logits_.view(start_logits_.size(0), end_logits_.size(2))
         #print("start_logits:",start_logits)
         #print("end_logits:",end_logits)
         #logits = self.qa_outputs(sequence_output)
@@ -1401,17 +1422,19 @@ class BertForQuestionAnswering(BertPreTrainedModel):
 
             # self.loss_fct = CrossEntropyLoss(ignore_index=ignored_index)
             # self.loss_fct = MultiMarginLoss()
-            if self.mark > 0:
-                self.mark -= 1
-                print("start_positions:", start_positions)
-                print("end_positions:", end_positions)
             start_onehot = torch.FloatTensor(start_logits.size(0), self.seq_len).zero_().to(device)
             start_onehot = start_onehot.scatter_(1, start_positions[:, None], 1)
-            end_onehot = torch.FloatTensor(end_logits.size(0), self.seq_len).zero_().to(device).scatter_(1,end_positions[:,None],1)
-
+            end_onehot = torch.FloatTensor(end_logits.size(0), self.seq_len).zero_().to(device).scatter_(1, end_positions[:,None],1)
             start_loss = self.loss_fct(start_logits, start_onehot)
             end_loss = self.loss_fct(end_logits, end_onehot)
             total_loss = (start_loss + end_loss) / 2
+            if self.mark > 0:
+                print('seq_out_size:', sequence_output.size())
+                print('logits_size:', logits.size())
+                print('start_logits_size:', start_logits.size())
+                print("start_positions_size:", start_positions.size())
+                print('start_onehot_size:', start_onehot.size())
+                self.mark -= 1
             if is_eval:
                 return start_logits, end_logits, total_loss
             return total_loss
